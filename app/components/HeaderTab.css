@@ -1,0 +1,8 @@
+.headerTab {
+  height: 100%;
+  width: 33.333%;
+  color: #0f93fc;
+  cursor: pointer;
+  display: inline-block;
+  background: white;
+}

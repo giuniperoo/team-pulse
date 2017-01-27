@@ -15,9 +15,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
-
+  app.quit()
+})
 
 const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -51,4 +50,11 @@ let mb = menubar({
 
 mb.on('ready', async () => {
   await installExtensions();
+
+  if (process.env.NODE_ENV === 'development') {
+    mb.window.openDevTools();
+  }
+
+  // prevent user from resizing window
+  // mb.window.setResizable(false)
 });
