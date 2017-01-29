@@ -1,18 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import styles from './UserProfile.css';
+import Header from './Header';
+import UserProfileContent from './UserProfileContent';
 
-class UserProfile extends Component {
-  props: { };
-
+export default class UserProfile extends Component {
   render() {
     return (
       <div>
-        UserProfile
+        <Header activeTab="userProfile" />
+        <UserProfileContent />
       </div>
     );
   }
 }
-
-export default UserProfile;

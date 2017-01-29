@@ -1,18 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import styles from './Feedback.css';
+import Header from './Header';
+import FeedbackContent from './FeedbackContent';
 
-class Feedback extends Component {
-  props: { };
-
+export default class Feedback extends Component {
   render() {
     return (
       <div>
-        Feedback
+        <Header activeTab="feedback" />
+        <FeedbackContent />
       </div>
     );
   }
 }
-
-export default Feedback;

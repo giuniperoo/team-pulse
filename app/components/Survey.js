@@ -1,18 +1,16 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import styles from './Survey.css';
+import Header from './Header';
+import SurveyContent from './SurveyContent';
 
-class Survey extends Component {
-  props: { };
 
+export default class Survey extends Component {
   render() {
     return (
       <div>
-        Survey
+        <Header activeTab="feedback" />
+        <SurveyContent />
       </div>
     );
   }
 }
-
-export default Survey;

@@ -6,3 +6,5 @@
   display: inline-block;
   background: white;
 }
+
+.active { font-weight: bold; }
