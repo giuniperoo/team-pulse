@@ -8,7 +8,7 @@ export default class Survey extends Component {
   render() {
     return (
       <div>
-        <Header activeTab="feedback" />
+        <Header activeTab="survey" />
         <SurveyContent />
       </div>
     );

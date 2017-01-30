@@ -5,17 +5,19 @@ import classNames from 'classnames/bind';
 import camelCase from 'lodash/camelCase';
 import styles from './HeaderTab.css';
 
+const cx = classNames.bind(styles);
 
 export default class HeaderTab extends Component {
   render() {
-    const classes = classNames(styles.headerTab, {
+    const className = cx(styles.headerTab, `icon-${this.props.icon}`, {
       active: this.props.activeTab === camelCase(this.props.name)
     });
 
     return (
-      <div className={classes}>
-        <Link to={this.props.path}>{this.props.name}</Link>
-      </div>
+      (this.props.activeTab === camelCase(this.props.name)) ?
+        <div className={className} />
+      :
+        <Link to={this.props.path} className={className} />
     );
   }
 }
@@ -23,5 +25,6 @@ export default class HeaderTab extends Component {
 HeaderTab.propTypes = {
   activeTab: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
-  path: React.PropTypes.string.isRequired
+  path: React.PropTypes.string.isRequired,
+  icon: React.PropTypes.string.isRequired
 };

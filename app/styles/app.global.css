@@ -1,0 +1,11 @@
+@import "./icon-font.css";
+
+body {
+  position: relative;
+  color: grey;
+  margin: 0;
+  height: 100vh;
+  background-color: white;
+  font-family: Helvetica, Helvetica Neue, serif;
+  overflow-y: hidden;
+}

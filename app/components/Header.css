@@ -1,4 +1,25 @@
 .header {
   height: 35px;
+  display: flex;
+  position: relative;
   border-bottom: 1px solid #d1d1d1;
+}
+
+.slider {
+  width: 33.333%;
+  height: 2px;
+  bottom: -1px;
+  position: absolute;
+  background: #0f93fc;
+  transition: transform 300ms;
+}
+
+.sliderActive-1 {
+  transform: translateX(0);
+}
+.sliderActive-2 {
+  transform: translateX(100%);
+}
+.sliderActive-3 {
+  transform: translateX(200%);
 }

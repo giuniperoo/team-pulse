@@ -1,10 +1,14 @@
 .headerTab {
-  height: 100%;
-  width: 33.333%;
-  color: #0f93fc;
-  cursor: pointer;
-  display: inline-block;
+  color: #d1d1d1;
+  flex-grow: 1;
   background: white;
+  text-align: center;
+  transition: color 300ms;
+  text-decoration: none;
 }
 
-.active { font-weight: bold; }
+:before { line-height: 35px !important; }
+
+:hover { color: #9b9b9b; }
+
+.active { color: #0f93fc; }
