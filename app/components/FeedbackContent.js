@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './FeedbackContent.css';
+import styles from '../styles/FeedbackContent.css';
 
 
 export default class FeedbackContent extends Component {

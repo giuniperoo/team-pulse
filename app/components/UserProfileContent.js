@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './UserProfileContent.css';
+import styles from '../styles/UserProfileContent.css';
 
 
 export default class UserProfileContent extends Component {

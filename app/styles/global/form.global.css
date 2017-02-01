@@ -1,0 +1,26 @@
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  color: #545555;
+  margin: 5px 0;
+  border: 1px solid #d1d1d1;
+  margin: 5px 0;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] { height: 30px; }
+
+input:focus, textarea {
+  outline: none !important;
+}
+
+::-webkit-input-placeholder {
+  color: #d1d1d1;
+}

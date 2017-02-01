@@ -1,0 +1,64 @@
+/*@import "./../../../node_modules/normalize.css/normalize.css";*/
+@import "./icon-font.global.css";
+@import "./form.global.css";
+
+
+html {
+  height: 100%;
+  min-width: 100%;
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  color: grey;
+  margin: 0;
+  height: 100vh;
+  background-color: white;
+  font-family: Helvetica Neue, Helvetica, serif;
+  overflow-y: hidden;
+}
+
+h1,
+h2 {
+  margin: 10px;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 24px;
+  color: #545555;
+}
+
+h2 {
+  font-size: 18px;
+  color: #9b9b9b;
+}
+
+button {
+  width: 100%;
+  color: white;
+  border: none;
+  height: 30px;
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 14px;
+  background: #34abff;
+  font-weight: 300;
+  border-radius: 4px;
+  text-transform: uppercase;
+  transition: background 300ms;
+}
+
+button:hover {
+  background: #008cf0;
+}
+
+button:focus {
+  outline: none !important;
+}

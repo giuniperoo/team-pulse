@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Header.css';
+import styles from '../styles/Header.css';
 import HeaderTab from './HeaderTab';
 
 const cx = classNames.bind(styles);

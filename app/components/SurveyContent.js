@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './SurveyContent.css';
+import styles from '../styles/SurveyContent.css';
 
 
 export default class SurveyContent extends Component {

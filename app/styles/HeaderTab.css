@@ -7,8 +7,8 @@
   text-decoration: none;
 }
 
-:before { line-height: 35px !important; }
+.headerTab:before { line-height: 35px !important; }
 
-:hover { color: #9b9b9b; }
+.headerTab:hover { color: #9b9b9b; }
 
-.active { color: #0f93fc; }
+.headerTab.active { color: #0f93fc; }
