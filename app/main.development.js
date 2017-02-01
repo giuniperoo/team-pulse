@@ -1,6 +1,6 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app } from 'electron';
 
-let menubar = require('menubar');
+const menubar = require('menubar');
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support'); // eslint-disable-line
@@ -15,8 +15,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.on('window-all-closed', () => {
-  app.quit()
-})
+  app.quit();
+});
 
 const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -38,15 +38,14 @@ const installExtensions = async () => {
   }
 };
 
-let mb = menubar({
+const mb = menubar({
   dir: __dirname,
   width: 520,
   height: 570,
-  preloadWindow: true,
   index: `file://${__dirname}/app.html`,
   icon: `${__dirname}/../resources/iconTemplate.png`,
   y: 30
-})
+});
 
 mb.on('ready', async () => {
   await installExtensions();

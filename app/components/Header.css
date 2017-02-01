@@ -14,12 +14,6 @@
   transition: transform 300ms;
 }
 
-.sliderActive-1 {
-  transform: translateX(0);
-}
-.sliderActive-2 {
-  transform: translateX(100%);
-}
-.sliderActive-3 {
-  transform: translateX(200%);
-}
+.sliderActive1 { transform: translateX(0); }
+.sliderActive2 { transform: translateX(100%); }
+.sliderActive3 { transform: translateX(200%); }

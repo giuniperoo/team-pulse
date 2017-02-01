@@ -1,21 +1,22 @@
 // @flow
-// import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/user-profile';
+import { uiActionTypes } from '../actions/ui';
 
-// export type counterStateType = {
-//   counter: number
-// };
-//
-// type actionType = {
-//   type: string
-// };
-//
-// export default function counter(state: number = 0, action: actionType) {
-//   switch (action.type) {
-//     case INCREMENT_COUNTER:
-//       return state + 1;
-//     case DECREMENT_COUNTER:
-//       return state - 1;
-//     default:
-//       return state;
-//   }
-// }
+const initialState = {
+  displayedTab: 'feedback'
+};
+
+/* eslint no-param-reassign: ["error", { "props": false }] */
+const reducer = (
+  state: { displayedTab: string } = initialState,
+  action: { type: string, tab: string | void }
+) => {
+  switch (action.type) {
+    case uiActionTypes.CHANGE_TAB:
+      state.displayedTab = action.tab || 'feedback';
+      return state;
+    default:
+      return state;
+  }
+};
+
+export { reducer as default };

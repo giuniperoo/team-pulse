@@ -7,7 +7,7 @@ export default class Feedback extends Component {
   render() {
     return (
       <div>
-        <Header activeTab="feedback" />
+        <Header activeTab="feedback" {...this.props} />
         <FeedbackContent />
       </div>
     );

@@ -7,7 +7,7 @@ export default class UserProfile extends Component {
   render() {
     return (
       <div>
-        <Header activeTab="userProfile" />
+        <Header activeTab="userProfile" {...this.props} />
         <UserProfileContent />
       </div>
     );

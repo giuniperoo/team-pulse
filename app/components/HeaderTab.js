@@ -17,7 +17,10 @@ export default class HeaderTab extends Component {
       (this.props.activeTab === camelCase(this.props.name)) ?
         <div className={className} />
       :
-        <Link to={this.props.path} className={className} />
+        <Link
+          to={this.props.path} className={className}
+          onClick={() => this.props.changeTab(this.props.activeTab)}
+        />
     );
   }
 }
@@ -26,5 +29,6 @@ HeaderTab.propTypes = {
   activeTab: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
   path: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired
+  icon: React.PropTypes.string.isRequired,
+  changeTab: React.PropTypes.func.isRequired
 };
