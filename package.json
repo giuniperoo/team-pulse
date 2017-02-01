@@ -167,6 +167,7 @@
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "menubar": "^5.2.0",
+    "radium": "^0.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

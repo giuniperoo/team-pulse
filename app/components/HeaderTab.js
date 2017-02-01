@@ -1,24 +1,23 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import classNames from 'classnames/bind';
+import Radium from 'radium';
 import camelCase from 'lodash/camelCase';
-import styles from './HeaderTab.css';
 
-const cx = classNames.bind(styles);
-
-export default class HeaderTab extends Component {
+@Radium
+class HeaderTab extends Component {
   render() {
-    const className = cx(styles.headerTab, `icon-${this.props.icon}`, {
-      active: this.props.activeTab === camelCase(this.props.name)
-    });
-
     return (
       (this.props.activeTab === camelCase(this.props.name)) ?
-        <div className={className} />
+        <div
+          className={`icon-${this.props.icon}`}
+          style={[styles.base, styles.active]}
+        />
       :
         <Link
-          to={this.props.path} className={className}
+          to={this.props.path}
+          className={`icon-${this.props.icon}`}
+          style={styles.base}
           onClick={() => this.props.changeTab(this.props.activeTab)}
         />
     );
@@ -32,3 +31,22 @@ HeaderTab.propTypes = {
   icon: React.PropTypes.string.isRequired,
   changeTab: React.PropTypes.func.isRequired
 };
+
+const styles = {
+  base: {
+    color: '#d1d1d1',
+    flexGrow: 1,
+    background: 'white',
+    textAlign: 'center',
+    transition: 'color 300ms',
+    textDecoration: 'none',
+
+    ':before': { lineHeight: '35px' },
+
+    ':hover': { color: '#9b9b9b' }
+  },
+
+  active: { color: '#0f93fc' }
+};
+
+module.exports = HeaderTab;
