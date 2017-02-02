@@ -44,6 +44,7 @@ const mb = menubar({
   height: 570,
   index: `file://${__dirname}/app.html`,
   icon: `${__dirname}/../resources/iconTemplate.png`,
+  preloadWindow: true,
   y: 30
 });
 

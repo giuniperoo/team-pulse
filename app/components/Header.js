@@ -27,7 +27,7 @@ export default class Header extends Component {
 
   render() {
     const sliderClassName = cx(styles.slider,
-      Header.getSlideTransitionClass(this.props.displayedTab));
+      Header.getSlideTransitionClass(this.props.displayedTab || this.props.activeTab));
 
     return (
       <div className={styles.header}>

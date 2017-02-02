@@ -2,7 +2,7 @@
 import { uiActionTypes } from '../actions/ui';
 
 const initialState = {
-  displayedTab: 'feedback'
+  displayedTab: ''
 };
 
 /* eslint no-param-reassign: ["error", { "props": false }] */

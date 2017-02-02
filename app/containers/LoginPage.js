@@ -7,11 +7,18 @@ export default class LoginPage extends Component {
   login() {
     const email = 'giunipero@gmail.com';
     const password = 'blahblah1';
+    const router = this.props.router;
 
-    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    function signInSuccess(response) {
+      console.log('signInSuccess', response);
+      router.push('/feedback');
+    }
+
+    function signInError(response) { console.log('signInError', response); }
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(signInSuccess)
+      .catch(signInError);
   }
 
   render() {
@@ -30,3 +37,8 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  // eslint-disable-next-line
+  router: React.PropTypes.object.isRequired
+};

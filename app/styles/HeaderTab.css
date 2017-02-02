@@ -7,7 +7,8 @@
   text-decoration: none;
 }
 
-.headerTab:before { line-height: 35px !important; }
+.headerTab[class^="icon-"]:before,
+.headerTab[class*=" icon-"]:before { line-height: 35px; }
 
 .headerTab:hover { color: #9b9b9b; }
 

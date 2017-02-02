@@ -1,11 +1,11 @@
 // @flow
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import counter from './counter';
+import survey from './survey';
 import ui from './ui';
 
 const rootReducer = combineReducers({
-  counter,
+  survey,
   routing,
   ui
 });

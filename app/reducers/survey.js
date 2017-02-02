@@ -1,21 +1,23 @@
 // @flow
-// import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/user-profile';
+import { surveyActionTypes } from '../actions/survey';
 
-// export type counterStateType = {
-//   counter: number
-// };
-//
-// type actionType = {
-//   type: string
-// };
-//
-// export default function counter(state: number = 0, action: actionType) {
-//   switch (action.type) {
-//     case INCREMENT_COUNTER:
-//       return state + 1;
-//     case DECREMENT_COUNTER:
-//       return state - 1;
-//     default:
-//       return state;
-//   }
-// }
+const initialState = {
+  surveyContent: {}
+};
+
+/* eslint no-param-reassign: ["error", { "props": false }] */
+const reducer = (
+  state: { surveyContent: {} } = initialState,
+  action: { type: string, survey: {} | void }
+) => {
+  switch (action.type) {
+    case surveyActionTypes.FETCH_SURVEY_SUCCESS:
+      return Object.assign({}, state, {
+        surveyContent: action.survey
+      });
+    default:
+      return state;
+  }
+};
+
+export { reducer as default };
