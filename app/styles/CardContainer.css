@@ -1,0 +1,37 @@
+.header {
+  height: 45px;
+  padding: 7px;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.icon {
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d1d1d1;
+  text-align: center;
+  line-height: 28px;
+  position: absolute;;
+}
+
+.icon[class^="icon-"]:before,
+.icon[class*=" icon-"]:before {
+  top: 2px;
+  color: #0f93fc;
+  position: relative;
+}
+
+.title { font-size: 14px; }
+
+.title.withDate {
+  left: 37px;
+  position: relative;
+}
+
+.startDate {
+  left: 37px;
+  color: #9b9b9b;
+  position: relative;
+  font-size: 10px;
+  line-height: 14px;
+}

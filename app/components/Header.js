@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 export default class Header extends Component {
   static getSlideTransitionClass(tab: string) {
     switch (tab) {
-      case 'feedback':
+      case 'survey':
         return styles.sliderActive2;
       case 'userProfile':
         return styles.sliderActive3;
@@ -31,8 +31,8 @@ export default class Header extends Component {
 
     return (
       <div className={styles.header}>
-        <HeaderTab name="Survey" path="/survey" icon="pulse" {...this.props} />
-        <HeaderTab name="Feedback" path="/feedback" icon="feedback" {...this.props} />
+        <HeaderTab name="Feedback" path="/feedback" icon="pulse" {...this.props} />
+        <HeaderTab name="Survey" path="/survey" icon="feedback" {...this.props} />
         <HeaderTab name="User Profile" path="/user-profile" icon="profile" {...this.props} />
         <div id="slider" className={sliderClassName} />
       </div>

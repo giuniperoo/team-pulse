@@ -11,7 +11,7 @@ export default class LoginPage extends Component {
 
     function signInSuccess(response) {
       console.log('signInSuccess', response);
-      router.push('/feedback');
+      router.push('/survey');
     }
 
     function signInError(response) { console.log('signInError', response); }

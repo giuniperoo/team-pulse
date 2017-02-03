@@ -1,7 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty, keys } from 'lodash';
+import moment from 'moment';
 import Header from './Header';
+import CardContainer from './CardContainer';
 
 
 export default class Survey extends Component {
@@ -12,11 +14,17 @@ export default class Survey extends Component {
   }
 
   render() {
-    const survey = this.props.surveyContent;
+    const surveyKey = keys(this.props.surveyContent)[0];
+    const survey = this.props.surveyContent[surveyKey];
+    const surveyTitle = survey && survey.surveyTitle;
+    const startDate = survey && survey.start && moment.unix(survey.start).format('MMM Do YYYY');
+
     return (
       <div>
         <Header activeTab="survey" {...this.props} />
-        <div style={{ padding: '20px' }}>{JSON.stringify(survey)}</div>
+        <div className="tabContainer">
+          <CardContainer header={surveyTitle} icon="feedback" startDate={startDate} />
+        </div>
       </div>
     );
   }

@@ -40,7 +40,7 @@ const installExtensions = async () => {
 
 const mb = menubar({
   dir: __dirname,
-  width: 520,
+  width: 375,
   height: 570,
   index: `file://${__dirname}/app.html`,
   icon: `${__dirname}/../resources/iconTemplate.png`,

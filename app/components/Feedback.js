@@ -1,14 +1,17 @@
 // @flow
 import React, { Component } from 'react';
 import Header from './Header';
-import FeedbackContent from './FeedbackContent';
+import CardContainer from './CardContainer';
+
 
 export default class Feedback extends Component {
   render() {
     return (
       <div>
         <Header activeTab="feedback" {...this.props} />
-        <FeedbackContent />
+        <div className="tabContainer">
+          <CardContainer />
+        </div>
       </div>
     );
   }

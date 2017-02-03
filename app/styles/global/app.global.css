@@ -10,7 +10,7 @@ html { box-sizing: border-box; }
 
 body {
   position: relative;
-  color: grey;
+  color: #545555;
   margin: 0;
   height: 100vh;
   background-color: white;
@@ -55,4 +55,23 @@ button:hover {
 
 button:focus {
   outline: none !important;
+}
+
+/* Below are global classes */
+
+.tabContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #efefef;
+}
+
+.cardContainer {
+  width: calc(100% - 20px);
+  margin: 10px;
+  border: 1px solid #d1d1d1;
+  min-height: 100px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
