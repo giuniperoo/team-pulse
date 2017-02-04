@@ -1,3 +1,4 @@
+// @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { hashHistory } from 'react-router';
@@ -5,12 +6,13 @@ import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
-import * as counterActions from '../actions/counter';
-import type { counterStateType } from '../reducers/counter';
+import * as surveyActions from '../actions/survey';
+import * as uiActions from '../actions/ui';
 
 const actionCreators = {
-  ...counterActions,
-  push,
+  ...surveyActions,
+  ...uiActions,
+  push
 };
 
 const logger = createLogger({
@@ -33,7 +35,7 @@ const enhancer = composeEnhancers(
   applyMiddleware(thunk, router, logger)
 );
 
-export default function configureStore(initialState?: counterStateType) {
+export default function configureStore(initialState?: {}) {
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
