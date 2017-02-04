@@ -1,0 +1,41 @@
+.numericQuestion {
+  padding: 10px;
+}
+
+h3 {
+  margin: 5px 0;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+button {
+  height: 33px;
+  border: 1px solid #d1d1d1;
+  border-right: none;
+  display: inline-block;
+  flex-grow: 1;
+  font-size: 15px;
+  background: white;
+}
+
+button:hover,
+button.active {
+  color: white;
+  background: #34abff;
+}
+
+button:last-of-type {
+  border-right: 1px solid #d1d1d1;
+}
+
+span {
+  font-size: 10px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+span.right { float: right; }

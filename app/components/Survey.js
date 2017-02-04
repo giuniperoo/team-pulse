@@ -4,6 +4,8 @@ import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
 import CardContainer from './CardContainer';
+import NumericQuestion from './NumericQuestion';
+import GraphicQuestion from './GraphicQuestion';
 
 
 export default class Survey extends Component {
@@ -13,6 +15,30 @@ export default class Survey extends Component {
     }
   }
 
+  prepareSurveyQuestions() {
+    const surveyKey = keys(this.props.surveyContent)[0];
+    const survey = this.props.surveyContent[surveyKey];
+    const questions = survey && survey.questions;
+
+    const components = [];
+
+    questions.forEach((question, index) => {
+      /* eslint-disable react/no-array-index-key */
+      switch (question.type) {
+        case 'numeric':
+          components.push(<NumericQuestion key={index} title={question.title} />);
+          break;
+        case 'graphic':
+          components.push(<GraphicQuestion key={index} title={question.title} />);
+          break;
+        default:
+      /* eslint-enable react/no-array-index-key */
+      }
+    });
+
+    return components;
+  }
+
   render() {
     const surveyKey = keys(this.props.surveyContent)[0];
     const survey = this.props.surveyContent[surveyKey];
@@ -20,12 +46,14 @@ export default class Survey extends Component {
     const startDate = survey && survey.start && moment.unix(survey.start).format('MMM Do YYYY');
 
     return (
-      <div>
+      <section>
         <Header activeTab="survey" {...this.props} />
         <div className="tabContainer">
-          <CardContainer header={surveyTitle} icon="feedback" startDate={startDate} />
+          <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
+            {survey && this.prepareSurveyQuestions()}
+          </CardContainer>
         </div>
-      </div>
+      </section>
     );
   }
 }

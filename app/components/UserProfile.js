@@ -5,10 +5,10 @@ import Header from './Header';
 export default class UserProfile extends Component {
   render() {
     return (
-      <div>
+      <section>
         <Header activeTab="userProfile" {...this.props} />
         <div className="tabContainer" />
-      </div>
+      </section>
     );
   }
 }

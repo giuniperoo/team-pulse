@@ -9,7 +9,8 @@ export default class CardContainer extends Component {
   static defaultProps = {
     header: '',
     icon: '',
-    startDate: ''
+    startDate: '',
+    children: ''
   }
 
   render() {
@@ -27,6 +28,7 @@ export default class CardContainer extends Component {
           <div className={titleClassName}>{header}</div>
           {startDate && <div className={styles.startDate}>{startDate}</div>}
         </header>}
+        {this.props.children}
       </div>
     );
   }
@@ -35,5 +37,6 @@ export default class CardContainer extends Component {
 CardContainer.propTypes = {
   header: React.PropTypes.string,
   icon: React.PropTypes.string,
-  startDate: React.PropTypes.string
+  startDate: React.PropTypes.string,
+  children: React.PropTypes.node
 };

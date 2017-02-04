@@ -7,12 +7,12 @@ import CardContainer from './CardContainer';
 export default class Feedback extends Component {
   render() {
     return (
-      <div>
+      <section>
         <Header activeTab="feedback" {...this.props} />
         <div className="tabContainer">
           <CardContainer />
         </div>
-      </div>
+      </section>
     );
   }
 }
