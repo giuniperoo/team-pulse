@@ -37,6 +37,7 @@ h2 {
 button {
   color: #545555;
   cursor: pointer;
+  padding: 0;
 }
 
 button:focus {

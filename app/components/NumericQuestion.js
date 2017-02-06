@@ -12,16 +12,16 @@ export default class NumericQuestion extends Component {
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>10</button>
+          <button className={styles.numericButton}>1</button>
+          <button className={`${styles.numericButton} active`}>2</button>
+          <button className={styles.numericButton}>3</button>
+          <button className={styles.numericButton}>4</button>
+          <button className={styles.numericButton}>5</button>
+          <button className={styles.numericButton}>6</button>
+          <button className={styles.numericButton}>7</button>
+          <button className={styles.numericButton}>8</button>
+          <button className={styles.numericButton}>9</button>
+          <button className={styles.numericButton}>10</button>
         </div>
 
         <span>Extremely Bad</span>

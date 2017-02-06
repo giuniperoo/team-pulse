@@ -1,0 +1,68 @@
+.numericQuestion {
+  padding: 10px;
+}
+
+h3 {
+  margin: 5px 0;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.graphicButton {
+  width: 20%;
+  height: 60px;
+  border: 1px solid #d1d1d1;
+  flex-grow: 1;
+  font-size: 30px;
+  background: white;
+  border-right: none;
+}
+
+.graphicButton[class^="icon-"]:before,
+.graphicButton[class*=" icon-"]:before {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 3px;
+}
+
+.graphicButton[class^="icon-"]:hover,
+.graphicButton[class*=" icon-"]:hover {
+  color: white;
+  background: #f39c12;
+}
+
+.graphicButton[class^="icon-"]:hover span,
+.graphicButton[class*=" icon-"]:hover span {
+  color: white;
+}
+
+.graphicButton[class^="icon-"]:global.active,
+.graphicButton[class*=" icon-"]:global.active {
+  color: white;
+  background: #f39c12;
+}
+
+.graphicButton[class^="icon-"]:global.active span,
+.graphicButton[class*=" icon-"]:global.active span {
+  color: white;
+}
+
+.graphicButton:last-of-type {
+  border-right: 1px solid #d1d1d1;
+}
+
+.graphicButton:global.icon-very-unsatisfied { color: #e74c3c; }
+.graphicButton:global.icon-unsatisfied      { color: #d35400; }
+.graphicButton:global.icon-neutral          { color: #f39c12; }
+.graphicButton:global.icon-satisfied        { color: #7ed321; }
+.graphicButton:global.icon-very-satisfied   { color: #2ecc71; }
+
+.graphicButton span {
+  color: #545555;
+  font-size: 8px;
+  vertical-align: top;
+}
