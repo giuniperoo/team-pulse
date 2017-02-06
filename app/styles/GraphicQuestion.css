@@ -16,6 +16,7 @@ h3 {
   width: 20%;
   height: 60px;
   border: 1px solid #d1d1d1;
+  overflow: hidden;
   flex-grow: 1;
   font-size: 30px;
   background: white;

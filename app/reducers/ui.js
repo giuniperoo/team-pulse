@@ -1,22 +1,22 @@
 // @flow
+import Immutable from 'seamless-immutable';
 import { uiActionTypes } from '../actions/ui';
 
-const initialState = {
+const initialState = Immutable({
   displayedTab: ''
-};
+});
 
-/* eslint no-param-reassign: ["error", { "props": false }] */
-const reducer = (
-  state: { displayedTab: string } = initialState,
+const uiReducer = (
+  // eslint-disable-next-line flowtype/no-weak-types
+  state: { set: Function, displayedTab: string } = initialState,
   action: { type: string, tab: string | void }
 ) => {
   switch (action.type) {
     case uiActionTypes.CHANGE_TAB:
-      state.displayedTab = action.tab || 'feedback';
-      return state;
+      return state.set('displayedTab', action.tab);
     default:
       return state;
   }
 };
 
-export { reducer as default };
+export { uiReducer as default };

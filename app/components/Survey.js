@@ -23,6 +23,8 @@ export default class Survey extends Component {
     const components = [];
 
     questions.forEach((question, index) => {
+      if (!question) return;
+
       /* eslint-disable react/no-array-index-key */
       switch (question.type) {
         case 'numeric':

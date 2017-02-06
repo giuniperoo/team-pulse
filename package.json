@@ -176,6 +176,7 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
+    "seamless-immutable": "^7.0.1",
     "source-map-support": "^0.4.8"
   },
   "devEngines": {
