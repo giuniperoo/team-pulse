@@ -4,6 +4,7 @@ import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
 import CardContainer from './CardContainer';
+import TextQuestion from './TextQuestion';
 import NumericQuestion from './NumericQuestion';
 import GraphicQuestion from './GraphicQuestion';
 
@@ -33,7 +34,8 @@ export default class Survey extends Component {
         case 'graphic':
           components.push(<GraphicQuestion key={index} title={question.title} />);
           break;
-        default:
+        default: // text
+          components.push(<TextQuestion key={index} title={question.title} />);
       /* eslint-enable react/no-array-index-key */
       }
     });

@@ -1,0 +1,17 @@
+.textQuestion {
+  padding: 10px;
+}
+
+h3 {
+  margin: 5px 0;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.userInput {
+  margin: 0;
+  padding: 10px;
+  font-size: 14px;
+  min-height: 80px;
+  border-radius: 4px;
+}
