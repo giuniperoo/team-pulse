@@ -33,7 +33,7 @@ h3 {
   background: #34abff;
 }
 
-.numericQuestion:first-of-type {
+.numericButton:first-of-type {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }

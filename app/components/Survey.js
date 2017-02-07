@@ -29,7 +29,12 @@ export default class Survey extends Component {
       /* eslint-disable react/no-array-index-key */
       switch (question.type) {
         case 'numeric':
-          components.push(<NumericQuestion key={index} title={question.title} />);
+          components.push(<NumericQuestion
+            key={index}
+            title={question.title}
+            labelMin={question.labelMin}
+            labelMax={question.labelMax}
+          />);
           break;
         case 'graphic':
           components.push(<GraphicQuestion key={index} title={question.title} />);

@@ -4,8 +4,15 @@ import styles from '../styles/NumericQuestion.css';
 
 
 export default class NumericQuestion extends Component {
+  static defaultProps = {
+    labelMin: 'Extremely Bad',
+    labelMax: 'Extremely Good'
+  }
+
   render() {
     const title = this.props.title;
+    const labelMin = this.props.labelMin;
+    const labelMax = this.props.labelMax;
 
     return (
       <div className={styles.numericQuestion}>
@@ -24,13 +31,15 @@ export default class NumericQuestion extends Component {
           <button className={styles.numericButton}>10</button>
         </div>
 
-        <span>Extremely Bad</span>
-        <span className={styles.right}>Extremely Good</span>
+        <span>{labelMin}</span>
+        <span className={styles.right}>{labelMax}</span>
       </div>
     );
   }
 }
 
 NumericQuestion.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: React.PropTypes.string.isRequired,
+  labelMin: React.PropTypes.string,
+  labelMax: React.PropTypes.string
 };
