@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/NumericQuestion.css';
 
 
@@ -39,7 +39,7 @@ export default class NumericQuestion extends Component {
 }
 
 NumericQuestion.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  labelMin: React.PropTypes.string,
-  labelMax: React.PropTypes.string
+  title: PropTypes.string.isRequired,
+  labelMin: PropTypes.string,
+  labelMax: PropTypes.string
 };

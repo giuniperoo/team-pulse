@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import * as firebase from 'firebase';
 import styles from '../styles/Login.css';
 
@@ -31,7 +31,7 @@ export default class LoginPage extends Component {
 
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <button className={styles.loginButton} onClick={() => this.login()}>Login</button>
+          <button className="blueButton" onClick={() => this.login()}>Login</button>
         </div>
       </div>
     );
@@ -40,5 +40,5 @@ export default class LoginPage extends Component {
 
 LoginPage.propTypes = {
   // eslint-disable-next-line
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };

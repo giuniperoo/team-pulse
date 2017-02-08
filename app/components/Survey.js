@@ -1,12 +1,14 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
+import Checkbox from './Checkbox';
 import CardContainer from './CardContainer';
 import TextQuestion from './TextQuestion';
 import NumericQuestion from './NumericQuestion';
 import GraphicQuestion from './GraphicQuestion';
+import styles from '../styles/Survey.css';
 
 
 export default class Survey extends Component {
@@ -40,7 +42,12 @@ export default class Survey extends Component {
           components.push(<GraphicQuestion key={index} title={question.title} />);
           break;
         default: // text
-          components.push(<TextQuestion key={index} title={question.title} />);
+          components.push(
+            <TextQuestion
+              key={index}
+              title={question.title}
+              classes={styles.surveyTextQuestion}
+            />);
       /* eslint-enable react/no-array-index-key */
       }
     });
@@ -55,11 +62,21 @@ export default class Survey extends Component {
     const startDate = survey && survey.start && moment.unix(survey.start).format('MMM Do YYYY');
 
     return (
-      <section>
+      <section className={styles.survey}>
         <Header activeTab="survey" {...this.props} />
         <div className="tabContainer">
           <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
-            {survey && this.prepareSurveyQuestions()}
+            <div className={styles.surveyFormContainer}>
+              {survey && this.prepareSurveyQuestions()}
+              <hr />
+              <Checkbox
+                label="Anonymous"
+                id="anonymousCheckbox"
+                classes={styles.surveyCheckbox}
+                onClick={() => console.log('toggle anon')}
+              />
+              <button className="blueButton" onClick={() => console.log('submit')}>Submit</button>
+            </div>
           </CardContainer>
         </div>
       </section>
@@ -68,7 +85,7 @@ export default class Survey extends Component {
 }
 
 Survey.propTypes = {
-  fetchSurvey: React.PropTypes.func.isRequired,
+  fetchSurvey: PropTypes.func.isRequired,
   // eslint-disable-next-line
-  surveyContent: React.PropTypes.object
+  surveyContent: PropTypes.object
 };

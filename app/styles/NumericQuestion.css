@@ -1,8 +1,8 @@
 .numericQuestion {
-  padding: 10px;
+  margin-bottom: 20px;
 }
 
-h3 {
+.numericQuestion h3 {
   margin: 5px 0;
   font-size: 15px;
   font-weight: 300;

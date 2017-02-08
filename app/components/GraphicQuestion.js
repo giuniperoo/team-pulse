@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/GraphicQuestion.css';
 
 export default class GraphicQuestion extends Component {
@@ -7,7 +7,7 @@ export default class GraphicQuestion extends Component {
     const title = this.props.title;
 
     return (
-      <div className={styles.numericQuestion}>
+      <div className={styles.graphicQuestion}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
@@ -33,5 +33,5 @@ export default class GraphicQuestion extends Component {
 }
 
 GraphicQuestion.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../styles/CardContainer.css';
 
@@ -35,8 +35,8 @@ export default class CardContainer extends Component {
 }
 
 CardContainer.propTypes = {
-  header: React.PropTypes.string,
-  icon: React.PropTypes.string,
-  startDate: React.PropTypes.string,
-  children: React.PropTypes.node
+  header: PropTypes.string,
+  icon: PropTypes.string,
+  startDate: PropTypes.string,
+  children: PropTypes.node
 };

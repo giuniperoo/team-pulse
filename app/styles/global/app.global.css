@@ -2,7 +2,10 @@
 @import "./form.global.css";
 
 
-html { box-sizing: border-box; }
+html {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+}
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -44,6 +47,12 @@ button:focus {
   outline: none !important;
 }
 
+hr {
+  height: 1px;
+  border: none;
+  background-color: #d1d1d1;
+}
+
 /* Below are global classes */
 
 .tabContainer {
@@ -61,4 +70,22 @@ button:focus {
   background: white;
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.blueButton {
+  width: 100%;
+  color: white;
+  border: none;
+  height: 30px;
+  margin: 5px 0;
+  font-size: 15px;
+  background: #34abff;
+  font-weight: 300;
+  border-radius: 4px;
+  text-transform: uppercase;
+  transition: background 300ms;
+}
+
+.blueButton:hover {
+  background: #008cf0;
 }

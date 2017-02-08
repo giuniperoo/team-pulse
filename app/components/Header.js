@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../styles/Header.css';
 import HeaderTab from './HeaderTab';
@@ -41,6 +41,6 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-  activeTab: React.PropTypes.string.isRequired,
-  displayedTab: React.PropTypes.string.isRequired
+  activeTab: PropTypes.string.isRequired,
+  displayedTab: PropTypes.string.isRequired
 };

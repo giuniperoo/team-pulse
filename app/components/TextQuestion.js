@@ -1,14 +1,21 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames/bind';
 import styles from '../styles/TextQuestion.css';
 
+const cx = classNames.bind(styles);
 
 export default class TextQuestion extends Component {
+  static defaultProps = {
+    classes: ''
+  }
+
   render() {
     const title = this.props.title;
+    const classes = this.props.classes;
 
     return (
-      <div className={styles.textQuestion}>
+      <div className={cx(styles.textQuestion, classes)}>
         <h3>{title}</h3>
 
         <textArea
@@ -22,5 +29,6 @@ export default class TextQuestion extends Component {
 }
 
 TextQuestion.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  classes: PropTypes.string
 };

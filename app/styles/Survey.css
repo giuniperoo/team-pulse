@@ -1,0 +1,5 @@
+.survey .surveyFormContainer { padding: 10px; }
+
+.surveyTextQuestion { margin-bottom: 0; }
+
+.surveyCheckbox > input + label { margin-top: 0; }

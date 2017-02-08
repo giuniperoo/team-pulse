@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames/bind';
 import camelCase from 'lodash/camelCase';
@@ -26,9 +26,9 @@ export default class HeaderTab extends Component {
 }
 
 HeaderTab.propTypes = {
-  activeTab: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  path: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired,
-  changeTab: React.PropTypes.func.isRequired
+  activeTab: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  changeTab: PropTypes.func.isRequired
 };

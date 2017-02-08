@@ -1,8 +1,9 @@
 .textQuestion {
-  padding: 10px;
+  font-size: 0;
+  margin-bottom: 20px;
 }
 
-h3 {
+.textQuestion h3 {
   margin: 5px 0;
   font-size: 15px;
   font-weight: 300;
@@ -12,6 +13,7 @@ h3 {
   margin: 0;
   padding: 10px;
   font-size: 14px;
+  max-width: 100%;
   min-height: 80px;
-  border-radius: 4px;
+  max-height: 200px;
 }

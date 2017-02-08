@@ -1,3 +1,4 @@
+.checkbox > label,
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -12,9 +13,14 @@ textarea {
   border-radius: 4px;
 }
 
+.checkbox > label,
 input[type="text"],
 input[type="email"],
-input[type="password"] { height: 30px; }
+input[type="password"] {
+  height: 30px;
+  font-size: 14px;
+  line-height: 2;
+}
 
 input:focus, textarea {
   outline: none !important;
@@ -22,4 +28,25 @@ input:focus, textarea {
 
 ::-webkit-input-placeholder {
   color: #d1d1d1;
+}
+
+.checkbox > label {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.checkbox input { display: none; }
+
+.checkbox > label:before {
+  right: 7px;
+  color: #d1d1d1;
+  content: "\62";
+  position: absolute;
+  font-family: "teamPulse" !important;
+}
+
+.checkbox > input:checked + label:before {
+  color: #0f93fc;
+  content: "\61";
 }

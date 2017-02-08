@@ -15,21 +15,3 @@
   height: 45px;
   margin: 10px;
 }
-
-.loginButton {
-  width: 100%;
-  color: white;
-  border: none;
-  height: 30px;
-  margin: 5px 0;
-  font-size: 14px;
-  background: #34abff;
-  font-weight: 300;
-  border-radius: 4px;
-  text-transform: uppercase;
-  transition: background 300ms;
-}
-
-.loginButton:hover {
-  background: #008cf0;
-}
