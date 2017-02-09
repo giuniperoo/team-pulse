@@ -9,7 +9,9 @@ import * as surveyActions from '../actions/survey';
 function mapStateToProps(state) {
   return {
     surveyContent: state.survey.surveyContent,
-    displayedTab: state.ui.displayedTab
+    userInput: state.survey.userInput,
+    displayedTab: state.ui.displayedTab,
+    anonymous: state.survey.anonymous
   };
 }
 

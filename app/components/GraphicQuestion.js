@@ -1,8 +1,31 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import { kebabCase } from 'lodash';
 import styles from '../styles/GraphicQuestion.css';
 
 export default class GraphicQuestion extends Component {
+  prepareButtons() {
+    const buttons = [];
+    const labels = ['Very Unsatisfied', 'Unsatisfied', 'Neutral', 'Satisfied', 'Very Satisfied'];
+
+    /* eslint-disable react/no-array-index-key */
+    labels.forEach((label, index) => {
+      buttons.push(
+        <button
+          key={index}
+          value={index + 1}
+          className={`icon-${kebabCase(label)} ${styles.graphicButton}`}
+          onClick={(evt) => {
+            this.props.onClick(evt.target.value, this.props.surveyPosition);
+          }}
+        >
+          <span>{label}</span>
+        </button>);
+    });
+
+    return buttons;
+  }
+
   render() {
     const title = this.props.title;
 
@@ -11,21 +34,7 @@ export default class GraphicQuestion extends Component {
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
-          <button className={`icon-very-unsatisfied ${styles.graphicButton}`}>
-            <span>Very Unsatisfied</span>
-          </button>
-          <button className={`icon-unsatisfied ${styles.graphicButton}`}>
-            <span>Unsatisfied</span>
-          </button>
-          <button className={`icon-neutral active ${styles.graphicButton}`}>
-            <span>Neutral</span>
-          </button>
-          <button className={`icon-satisfied ${styles.graphicButton}`}>
-            <span>Satisfied</span>
-          </button>
-          <button className={`icon-very-satisfied ${styles.graphicButton}`}>
-            <span>Very Satisfied</span>
-          </button>
+          {this.prepareButtons()}
         </div>
       </div>
     );
@@ -33,5 +42,7 @@ export default class GraphicQuestion extends Component {
 }
 
 GraphicQuestion.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  surveyPosition: PropTypes.number.isRequired
 };

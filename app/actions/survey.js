@@ -3,8 +3,20 @@ import * as firebase from 'firebase';
 
 export const surveyActionTypes = {
   FETCH_SURVEY_SUCCESS: 'FETCH_SURVEY_SUCCESS',
-  FETCH_SURVEY_ERROR: 'FETCH_SURVEY_ERROR'
+  FETCH_SURVEY_ERROR: 'FETCH_SURVEY_ERROR',
+  TOGGLE_ANONYMOUS: 'TOGGLE_ANONYMOUS',
+  SET_USER_INPUT: 'SET_USER_INPUT'
 };
+
+export const toggleAnonymous = () => ({
+  type: surveyActionTypes.TOGGLE_ANONYMOUS
+});
+
+export const setUserInput = (value: string, position: number) => ({
+  type: surveyActionTypes.SET_USER_INPUT,
+  value,
+  position
+});
 
 export const fetchSurveySuccess = (survey: {}) => ({
   type: surveyActionTypes.FETCH_SURVEY_SUCCESS,

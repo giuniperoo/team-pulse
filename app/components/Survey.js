@@ -12,6 +12,12 @@ import styles from '../styles/Survey.css';
 
 
 export default class Survey extends Component {
+  static defaultProps = {
+    surveyContent: {},
+    userInput: {},
+    anonymous: false
+  }
+
   componentWillMount() {
     if (isEmpty(this.props.surveyContent)) {
       this.props.fetchSurvey();
@@ -22,7 +28,6 @@ export default class Survey extends Component {
     const surveyKey = keys(this.props.surveyContent)[0];
     const survey = this.props.surveyContent[surveyKey];
     const questions = survey && survey.questions;
-
     const components = [];
 
     questions.forEach((question, index) => {
@@ -36,10 +41,17 @@ export default class Survey extends Component {
             title={question.title}
             labelMin={question.labelMin}
             labelMax={question.labelMax}
+            surveyPosition={index + 1}
+            onClick={(value, position) => this.handleButtonClick(value, position)}
           />);
           break;
         case 'graphic':
-          components.push(<GraphicQuestion key={index} title={question.title} />);
+          components.push(<GraphicQuestion
+            key={index}
+            title={question.title}
+            surveyPosition={index + 1}
+            onClick={(value, position) => this.handleButtonClick(value, position)}
+          />);
           break;
         default: // text
           components.push(
@@ -47,12 +59,17 @@ export default class Survey extends Component {
               key={index}
               title={question.title}
               classes={styles.surveyTextQuestion}
+              surveyPosition={index + 1}
             />);
       /* eslint-enable react/no-array-index-key */
       }
     });
 
     return components;
+  }
+
+  handleButtonClick(value: string, position: number) {
+    this.props.setUserInput(value, position);
   }
 
   render() {
@@ -73,7 +90,8 @@ export default class Survey extends Component {
                 label="Anonymous"
                 id="anonymousCheckbox"
                 classes={styles.surveyCheckbox}
-                onClick={() => console.log('toggle anon')}
+                isChecked={this.props.anonymous}
+                onClick={() => { this.props.toggleAnonymous(); }}
               />
               <button className="blueButton" onClick={() => console.log('submit')}>Submit</button>
             </div>
@@ -85,7 +103,12 @@ export default class Survey extends Component {
 }
 
 Survey.propTypes = {
+  anonymous: PropTypes.bool,
   fetchSurvey: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  surveyContent: PropTypes.object
+  setUserInput: PropTypes.func.isRequired,
+  toggleAnonymous: PropTypes.func.isRequired,
+  /* eslint-disable react/forbid-prop-types */
+  surveyContent: PropTypes.object,
+  // userInput: PropTypes.array
+  /* eslint-enable react/forbid-prop-types */
 };
