@@ -12,10 +12,6 @@ export default class NumericQuestion extends Component {
     labelMax: 'Extremely Good'
   }
 
-  propagateClick(evt: Proxy<*>) {
-    this.props.onClick(evt);
-  }
-
   prepareButtons() {
     const buttons = [];
 
@@ -30,7 +26,11 @@ export default class NumericQuestion extends Component {
           value={i}
           className={className}
           onClick={(evt) => {
-            this.props.onClick(evt.target.value, this.props.surveyPosition);
+            let value = evt.target.value;
+            if (value === this.props.value) {
+              value = null;
+            }
+            this.props.onClick(value, this.props.surveyPosition);
           }}
         >{i}</button>);
     }

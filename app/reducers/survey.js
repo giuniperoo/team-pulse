@@ -30,8 +30,10 @@ const surveyReducer = (
   switch (action.type) {
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
       return state.set('surveyContent', action.survey);
+
     case surveyActionTypes.TOGGLE_ANONYMOUS:
       return state.set('anonymous', !state.anonymous);
+
     case surveyActionTypes.SET_USER_INPUT:
       if (!action.position) { return state; }
 
@@ -41,6 +43,7 @@ const surveyReducer = (
       userInputArray = Immutable.asMutable(state.userInput);
       userInputArray[arrayPos] = action.value;
       return state.set('userInput', userInputArray);
+
     default:
       return state;
   }

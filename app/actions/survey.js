@@ -12,7 +12,7 @@ export const toggleAnonymous = () => ({
   type: surveyActionTypes.TOGGLE_ANONYMOUS
 });
 
-export const setUserInput = (value: string, position: number) => ({
+export const setUserInput = (value: string | void, position: number) => ({
   type: surveyActionTypes.SET_USER_INPUT,
   value,
   position

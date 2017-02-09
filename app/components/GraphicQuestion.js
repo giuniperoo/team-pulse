@@ -26,7 +26,11 @@ export default class GraphicQuestion extends Component {
           value={index + 1}
           className={className}
           onClick={(evt) => {
-            this.props.onClick(evt.target.value, this.props.surveyPosition);
+            let value = evt.target.value;
+            if (value === this.props.value) {
+              value = null;
+            }
+            this.props.onClick(value, this.props.surveyPosition);
           }}
         >
           <span>{label}</span>
