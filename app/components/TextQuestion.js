@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 
 export default class TextQuestion extends Component {
   static defaultProps = {
+    value: '',
     classes: ''
   }
 
@@ -19,6 +20,10 @@ export default class TextQuestion extends Component {
         <h3>{title}</h3>
 
         <textArea
+          onBlur={(evt) => {
+            this.props.onBlur(evt.target.value, this.props.surveyPosition);
+          }}
+          defaultValue={this.props.value}
           className={styles.userInput}
           maxLength="800"
           placeholder="Insert your thoughts here..."
@@ -30,5 +35,8 @@ export default class TextQuestion extends Component {
 
 TextQuestion.propTypes = {
   title: PropTypes.string.isRequired,
-  classes: PropTypes.string
+  onBlur: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  classes: PropTypes.string,
+  surveyPosition: PropTypes.number.isRequired
 };

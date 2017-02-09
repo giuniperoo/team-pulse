@@ -29,6 +29,7 @@ export default class Survey extends Component {
     const survey = this.props.surveyContent[surveyKey];
     const questions = survey && survey.questions;
     const components = [];
+    const userInput = this.props.userInput;
 
     questions.forEach((question, index) => {
       if (!question) return;
@@ -36,40 +37,42 @@ export default class Survey extends Component {
       /* eslint-disable react/no-array-index-key */
       switch (question.type) {
         case 'numeric':
-          components.push(<NumericQuestion
-            key={index}
-            title={question.title}
-            labelMin={question.labelMin}
-            labelMax={question.labelMax}
-            surveyPosition={index + 1}
-            onClick={(value, position) => this.handleButtonClick(value, position)}
-          />);
+          components.push(
+            <NumericQuestion
+              key={index}
+              title={question.title}
+              value={userInput[index]}
+              labelMin={question.labelMin}
+              labelMax={question.labelMax}
+              surveyPosition={index + 1}
+              onClick={(value, position) => this.props.setUserInput(value, position)}
+            />);
           break;
         case 'graphic':
-          components.push(<GraphicQuestion
-            key={index}
-            title={question.title}
-            surveyPosition={index + 1}
-            onClick={(value, position) => this.handleButtonClick(value, position)}
-          />);
+          components.push(
+            <GraphicQuestion
+              key={index}
+              title={question.title}
+              value={userInput[index]}
+              surveyPosition={index + 1}
+              onClick={(value, position) => this.props.setUserInput(value, position)}
+            />);
           break;
         default: // text
           components.push(
             <TextQuestion
               key={index}
               title={question.title}
+              value={userInput[index]}
               classes={styles.surveyTextQuestion}
               surveyPosition={index + 1}
+              onBlur={(value, position) => this.props.setUserInput(value, position)}
             />);
       /* eslint-enable react/no-array-index-key */
       }
     });
 
     return components;
-  }
-
-  handleButtonClick(value: string, position: number) {
-    this.props.setUserInput(value, position);
   }
 
   render() {
@@ -109,6 +112,6 @@ Survey.propTypes = {
   toggleAnonymous: PropTypes.func.isRequired,
   /* eslint-disable react/forbid-prop-types */
   surveyContent: PropTypes.object,
-  // userInput: PropTypes.array
+  userInput: PropTypes.array
   /* eslint-enable react/forbid-prop-types */
 };

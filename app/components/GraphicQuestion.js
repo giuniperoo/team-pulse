@@ -1,20 +1,30 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { kebabCase } from 'lodash';
+import classNames from 'classnames/bind';
 import styles from '../styles/GraphicQuestion.css';
 
+const cx = classNames.bind(styles);
+
 export default class GraphicQuestion extends Component {
+
+  static defaultProps = { value: '' }
+
   prepareButtons() {
     const buttons = [];
     const labels = ['Very Unsatisfied', 'Unsatisfied', 'Neutral', 'Satisfied', 'Very Satisfied'];
 
     /* eslint-disable react/no-array-index-key */
     labels.forEach((label, index) => {
+      const className = cx(styles.graphicButton, `icon-${kebabCase(label)}`, {
+        active: this.props.value === (index + 1).toString()
+      });
+
       buttons.push(
         <button
           key={index}
           value={index + 1}
-          className={`icon-${kebabCase(label)} ${styles.graphicButton}`}
+          className={className}
           onClick={(evt) => {
             this.props.onClick(evt.target.value, this.props.surveyPosition);
           }}
@@ -42,6 +52,7 @@ export default class GraphicQuestion extends Component {
 }
 
 GraphicQuestion.propTypes = {
+  value: PropTypes.string,
   title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   surveyPosition: PropTypes.number.isRequired

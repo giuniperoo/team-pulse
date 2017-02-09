@@ -31,7 +31,7 @@ export const fetchSurveyError = (error: {}) => ({
 // eslint-disable-next-line flowtype/no-weak-types
 export const fetchSurvey = () => (dispatch: Function) => {
   const database = firebase.database();
-  const survey = database.ref().child('test').orderByChild('start').limitToLast(1);
+  const survey = database.ref().child('v1/surveys').orderByChild('start').limitToLast(1);
 
   survey.once('value')
     .then(snapshot => dispatch(fetchSurveySuccess(snapshot.val())))

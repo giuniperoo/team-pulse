@@ -33,7 +33,7 @@ const surveyReducer = (
     case surveyActionTypes.TOGGLE_ANONYMOUS:
       return state.set('anonymous', !state.anonymous);
     case surveyActionTypes.SET_USER_INPUT:
-      if (!action.position || !action.value) { return state; }
+      if (!action.position) { return state; }
 
       // position is 1-based, so decrease
       arrayPos = action.position - 1;
