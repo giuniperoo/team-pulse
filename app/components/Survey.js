@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
+import Loader from './Loader';
 import Checkbox from './Checkbox';
 import CardContainer from './CardContainer';
 import TextQuestion from './TextQuestion';
@@ -75,30 +76,39 @@ export default class Survey extends Component {
     return components;
   }
 
+  renderLoaderOrSurvey(survey: { surveyTitle: string | void, start: string | void }) {
+    if (isEmpty(survey)) return <Loader />;
+
+    const surveyTitle = survey.surveyTitle;
+    const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
+
+    return (
+      <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
+        <div className={styles.surveyFormContainer}>
+          {survey && this.prepareSurveyQuestions()}
+          <hr />
+          <Checkbox
+            label="Anonymous"
+            id="anonymousCheckbox"
+            classes={styles.surveyCheckbox}
+            isChecked={this.props.anonymous}
+            onClick={() => { this.props.toggleAnonymous(); }}
+          />
+          <button className="blueButton" onClick={() => console.log('submit')}>Submit</button>
+        </div>
+      </CardContainer>
+    );
+  }
+
   render() {
     const surveyKey = keys(this.props.surveyContent)[0];
-    const survey = this.props.surveyContent[surveyKey];
-    const surveyTitle = survey && survey.surveyTitle;
-    const startDate = survey && survey.start && moment.unix(survey.start).format('MMM Do YYYY');
+    const survey = this.props.surveyContent[surveyKey] || {};
 
     return (
       <section className={styles.survey}>
         <Header activeTab="survey" {...this.props} />
         <div className="tabContainer">
-          <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
-            <div className={styles.surveyFormContainer}>
-              {survey && this.prepareSurveyQuestions()}
-              <hr />
-              <Checkbox
-                label="Anonymous"
-                id="anonymousCheckbox"
-                classes={styles.surveyCheckbox}
-                isChecked={this.props.anonymous}
-                onClick={() => { this.props.toggleAnonymous(); }}
-              />
-              <button className="blueButton" onClick={() => console.log('submit')}>Submit</button>
-            </div>
-          </CardContainer>
+          {this.renderLoaderOrSurvey(survey)}
         </div>
       </section>
     );
