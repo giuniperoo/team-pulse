@@ -12,6 +12,14 @@
   display: flex;
 }
 
+.buttonContainer ~ span {
+  font-size: 10px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.buttonContainer ~ span.right { float: right; }
+
 .numericButton {
   height: 33px;
   border: 1px solid #d1d1d1;
@@ -20,11 +28,21 @@
   flex-grow: 1;
   font-size: 15px;
   background: white;
+  line-height: 15px;
 }
 
 .numericButton:hover {
   color: white;
   background: #34abff;
+}
+
+.numericButton > span {
+  display: inline-block;
+  transition: transform 100ms;
+}
+
+.numericButton:active > span {
+  transform: scale(1.3);
 }
 
 .numericButton:global.active,
@@ -43,11 +61,3 @@
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
-.numericQuestion span {
-  font-size: 10px;
-  margin-top: 5px;
-  display: inline-block;
-}
-
-.numericQuestion span.right { float: right; }

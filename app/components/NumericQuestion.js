@@ -32,7 +32,9 @@ export default class NumericQuestion extends Component {
             }
             this.props.onClick(value, this.props.surveyPosition);
           }}
-        >{i}</button>);
+        >
+          <span>{i}</span>
+        </button>);
     }
 
     return buttons;
