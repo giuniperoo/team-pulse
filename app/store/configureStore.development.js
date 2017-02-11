@@ -7,10 +7,12 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
 import * as surveyActions from '../actions/survey';
+import * as userActions from '../actions/user';
 import * as uiActions from '../actions/ui';
 
 const actionCreators = {
   ...surveyActions,
+  ...userActions,
   ...uiActions,
   push
 };

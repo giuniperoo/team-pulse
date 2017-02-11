@@ -39,6 +39,7 @@
 .numericButton > span {
   display: inline-block;
   transition: transform 100ms;
+  pointer-events: none;
 }
 
 .numericButton:active > span {

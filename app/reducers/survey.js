@@ -10,10 +10,9 @@ const initialState = Immutable({
 
 const surveyReducer = (
   state: {
-    // eslint-disable-next-line flowtype/no-weak-types
+    /* eslint-disable flowtype/no-weak-types */
     set: Function,
-    // eslint-disable-next-line flowtype/no-weak-types
-    merge: Function,
+    /* eslint-enable flowtype/no-weak-types */
     surveyContent: {},
     userInput: Array<*>,
     anonymous: boolean

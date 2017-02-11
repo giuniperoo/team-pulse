@@ -1,6 +1,7 @@
 .header {
   height: 45px;
   padding: 7px;
+  position: relative;
   border-bottom: 1px solid #d1d1d1;
 }
 
@@ -21,17 +22,22 @@
   position: relative;
 }
 
-.title { font-size: 14px; }
-
-.title.withDate {
-  left: 37px;
-  position: relative;
+.startDate,
+.title {
+  left: 45px;
+  position: absolute;
 }
 
+.title {
+  top: 14px;
+  font-size: 14px;
+}
+
+.title.withDate { top: 7px; }
+
 .startDate {
-  left: 37px;
+  top: 23px;
   color: #9b9b9b;
-  position: relative;
   font-size: 10px;
   line-height: 14px;
 }
