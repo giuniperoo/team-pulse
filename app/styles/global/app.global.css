@@ -80,6 +80,7 @@ hr {
   border: none;
   height: 30px;
   margin: 5px 0;
+  position: relative;
   font-size: 15px;
   background: #34abff;
   font-weight: 300;

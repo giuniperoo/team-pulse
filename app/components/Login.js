@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import ReactSpinner from 'react-spinjs';
 import styles from '../styles/Login.css';
 
 export default class Login extends Component {
@@ -9,7 +10,12 @@ export default class Login extends Component {
     }
   }
 
+  emailInput = null;
+  passwordInput = null;
+
   login() {
+    if (!this.emailInput || !this.passwordInput) return false;
+
     // rather than place user credentials directly in
     // the store let's just grab them from the DOM
     const email = this.emailInput.value || 'giunipero@gmail.com';
@@ -18,6 +24,15 @@ export default class Login extends Component {
   }
 
   render() {
+    const spinnerOptions = {
+      color: 'white',
+      lines: 9,
+      width: 2,
+      length: 3,
+      radius: 4,
+      hwaccel: true
+    };
+
     return (
       <div className={styles.loginContainer}>
         <div className={styles.loginForm}>
@@ -27,7 +42,9 @@ export default class Login extends Component {
 
           <input type="email" name="email" placeholder="Email" ref={input => { this.emailInput = input; }} />
           <input type="password" name="password" placeholder="Password" ref={input => { this.passwordInput = input; }} />
-          <button className="blueButton" onClick={() => this.login()}>Login</button>
+          <button className="blueButton" onClick={() => this.login()}>
+            {this.props.buttonSpinnerActive ? <ReactSpinner config={spinnerOptions} /> : 'Login'}
+          </button>
         </div>
       </div>
     );
@@ -37,5 +54,6 @@ export default class Login extends Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
+  buttonSpinnerActive: PropTypes.bool.isRequired
 };

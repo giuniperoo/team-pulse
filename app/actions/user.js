@@ -1,5 +1,6 @@
 // @flow
 import * as firebase from 'firebase';
+import { toggleButtonSpinner } from '../actions/ui';
 
 export const userActionTypes = {
   LOGIN_START: 'LOGIN_START',
@@ -24,8 +25,15 @@ export const loginError = (error: {}) => ({
 // eslint-disable-next-line flowtype/no-weak-types
 export const login = (email: string, password: string) => (dispatch: Function) => {
   dispatch(loginStart());
+  dispatch(toggleButtonSpinner());
 
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(response => dispatch(loginSuccess(response)))
-    .catch(error => dispatch(loginError(error)));
+    .then(response => {
+      dispatch(loginSuccess(response));
+      return dispatch(toggleButtonSpinner());
+    })
+    .catch(error => {
+      dispatch(loginError(error));
+      return dispatch(toggleButtonSpinner());
+    });
 };

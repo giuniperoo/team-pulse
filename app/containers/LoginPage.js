@@ -9,7 +9,8 @@ import * as userActions from '../actions/user';
 function mapStateToProps(state) {
   return {
     user: state.user,
-    displayedTab: state.ui.displayedTab
+    displayedTab: state.ui.displayedTab,
+    buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
 }
 

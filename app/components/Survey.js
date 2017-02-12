@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import ReactSpinner from 'react-spinjs';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
@@ -15,7 +16,7 @@ import styles from '../styles/Survey.css';
 export default class Survey extends Component {
   static defaultProps = {
     surveyContent: {},
-    userInput: {},
+    userInput: [],
     anonymous: false
   }
 
@@ -23,6 +24,11 @@ export default class Survey extends Component {
     if (isEmpty(this.props.surveyContent)) {
       this.props.fetchSurvey();
     }
+  }
+
+  submit() {
+    const userInput = this.props.userInput;
+    this.props.submitSurvey(userInput);
   }
 
   prepareSurveyQuestions() {
@@ -81,6 +87,14 @@ export default class Survey extends Component {
 
     const surveyTitle = survey.surveyTitle;
     const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
+    const spinnerOptions = {
+      color: 'white',
+      lines: 9,
+      width: 2,
+      length: 3,
+      radius: 4,
+      hwaccel: true
+    };
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
@@ -94,7 +108,9 @@ export default class Survey extends Component {
             isChecked={this.props.anonymous}
             onClick={() => { this.props.toggleAnonymous(); }}
           />
-          <button className="blueButton" onClick={() => console.log('submit')}>Submit</button>
+          <button className="blueButton" onClick={() => this.submit()}>
+            {this.props.buttonSpinnerActive ? <ReactSpinner config={spinnerOptions} /> : 'Submit'}
+          </button>
         </div>
       </CardContainer>
     );
@@ -118,8 +134,10 @@ export default class Survey extends Component {
 Survey.propTypes = {
   anonymous: PropTypes.bool,
   fetchSurvey: PropTypes.func.isRequired,
+  submitSurvey: PropTypes.func.isRequired,
   setUserInput: PropTypes.func.isRequired,
   toggleAnonymous: PropTypes.func.isRequired,
+  buttonSpinnerActive: PropTypes.bool.isRequired,
   /* eslint-disable react/forbid-prop-types */
   surveyContent: PropTypes.object,
   userInput: PropTypes.array
