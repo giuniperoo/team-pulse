@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import ReactSpinner from 'react-spinjs';
+import ButtonWithSpinner from './ButtonWithSpinner';
 import styles from '../styles/Login.css';
 
 export default class Login extends Component {
@@ -24,15 +24,6 @@ export default class Login extends Component {
   }
 
   render() {
-    const spinnerOptions = {
-      color: 'white',
-      lines: 9,
-      width: 2,
-      length: 3,
-      radius: 4,
-      hwaccel: true
-    };
-
     return (
       <div className={styles.loginContainer}>
         <div className={styles.loginForm}>
@@ -42,9 +33,7 @@ export default class Login extends Component {
 
           <input type="email" name="email" placeholder="Email" ref={input => { this.emailInput = input; }} />
           <input type="password" name="password" placeholder="Password" ref={input => { this.passwordInput = input; }} />
-          <button className="blueButton" onClick={() => this.login()}>
-            {this.props.buttonSpinnerActive ? <ReactSpinner config={spinnerOptions} /> : 'Login'}
-          </button>
+          <ButtonWithSpinner label="Login" onClick={() => this.login()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
         </div>
       </div>
     );

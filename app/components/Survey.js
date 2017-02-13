@@ -1,6 +1,5 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import ReactSpinner from 'react-spinjs';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
 import Header from './Header';
@@ -10,6 +9,7 @@ import CardContainer from './CardContainer';
 import TextQuestion from './TextQuestion';
 import NumericQuestion from './NumericQuestion';
 import GraphicQuestion from './GraphicQuestion';
+import ButtonWithSpinner from './ButtonWithSpinner';
 import styles from '../styles/Survey.css';
 
 
@@ -87,14 +87,6 @@ export default class Survey extends Component {
 
     const surveyTitle = survey.surveyTitle;
     const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
-    const spinnerOptions = {
-      color: 'white',
-      lines: 9,
-      width: 2,
-      length: 3,
-      radius: 4,
-      hwaccel: true
-    };
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
@@ -108,9 +100,7 @@ export default class Survey extends Component {
             isChecked={this.props.anonymous}
             onClick={() => { this.props.toggleAnonymous(); }}
           />
-          <button className="blueButton" onClick={() => this.submit()}>
-            {this.props.buttonSpinnerActive ? <ReactSpinner config={spinnerOptions} /> : 'Submit'}
-          </button>
+          <ButtonWithSpinner label="Login" onClick={() => this.submit()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
         </div>
       </CardContainer>
     );
