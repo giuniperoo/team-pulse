@@ -34,16 +34,15 @@ export const fetchSurveyError = (error: {}) => ({
 // eslint-disable-next-line flowtype/no-weak-types
 export const fetchSurvey = () => (dispatch: Function) => {
   const database = firebase.database();
-  const survey = database.ref().child('v1/surveys').orderByChild('start').limitToLast(1);
+  const survey = database.ref('v1/surveys').orderByChild('start').limitToLast(1);
 
   survey.once('value')
     .then(snapshot => dispatch(fetchSurveySuccess(snapshot.val())))
     .catch(error => dispatch(fetchSurveyError(error)));
 };
 
-export const submitSurveySuccess = (survey: {}) => ({
-  type: surveyActionTypes.SUBMIT_SURVEY_SUCCESS,
-  survey
+export const submitSurveySuccess = () => ({
+  type: surveyActionTypes.SUBMIT_SURVEY_SUCCESS
 });
 
 export const submitSurveyError = (error: {}) => ({
@@ -51,17 +50,23 @@ export const submitSurveyError = (error: {}) => ({
   error
 });
 
+export const submitSurvey = (
+  surveyKey: string,
+  userId: string,
+  userInput: Array<*>
 // eslint-disable-next-line flowtype/no-weak-types
-export const submitSurvey = (userInput: Array<*>) => (dispatch: Function) => {
+) => (dispatch: Function) => {
   dispatch(toggleButtonSpinner());
-  console.log(userInput);
 
-  setTimeout(() => dispatch(toggleButtonSpinner()), 1000);
+  const database = firebase.database();
 
-  // const database = firebase.database();
-  // const survey = database.ref().child('v1/surveys').orderByChild('start').limitToLast(1);
-
-  // survey.once('value')
-  //   .then(snapshot => dispatch(submitSurveySuccess(snapshot.val())))
-  //   .catch(error => dispatch(submitSurveyError(error)));
+  database.ref(`v1/answers/${surveyKey}/${userId}`).set(userInput)
+    .then(() => {
+      dispatch(submitSurveySuccess());
+      return dispatch(toggleButtonSpinner());
+    })
+    .catch(error => {
+      dispatch(submitSurveyError(error));
+      return dispatch(toggleButtonSpinner());
+    });
 };

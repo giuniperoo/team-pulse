@@ -27,8 +27,11 @@ export default class Survey extends Component {
   }
 
   submit() {
+    const userId = this.props.userProfile.uid;
     const userInput = this.props.userInput;
-    this.props.submitSurvey(userInput);
+    const surveyKey = keys(this.props.surveyContent)[0];
+
+    this.props.submitSurvey(surveyKey, userId, userInput);
   }
 
   prepareSurveyQuestions() {
@@ -100,7 +103,7 @@ export default class Survey extends Component {
             isChecked={this.props.anonymous}
             onClick={() => { this.props.toggleAnonymous(); }}
           />
-          <ButtonWithSpinner label="Login" onClick={() => this.submit()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
+          <ButtonWithSpinner label="Submit" onClick={() => this.submit()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
         </div>
       </CardContainer>
     );
@@ -128,8 +131,15 @@ Survey.propTypes = {
   setUserInput: PropTypes.func.isRequired,
   toggleAnonymous: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired,
-  /* eslint-disable react/forbid-prop-types */
-  surveyContent: PropTypes.object,
-  userInput: PropTypes.array
-  /* eslint-enable react/forbid-prop-types */
+  userProfile: PropTypes.shape({
+    uid: PropTypes.string
+  }).isRequired,
+  userInput: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])
+  ),
+  // eslint-disable-next-line react/forbid-prop-types
+  surveyContent: PropTypes.object
 };

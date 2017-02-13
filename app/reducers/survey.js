@@ -5,7 +5,8 @@ import { surveyActionTypes } from '../actions/survey';
 const initialState = Immutable({
   surveyContent: {},
   userInput: [],
-  anonymous: false
+  anonymous: false,
+  submitted: false
 });
 
 const surveyReducer = (
@@ -15,13 +16,15 @@ const surveyReducer = (
     /* eslint-enable flowtype/no-weak-types */
     surveyContent: {},
     userInput: Array<*>,
-    anonymous: boolean
+    anonymous: boolean,
+    submitted: boolean
   } = initialState,
   action: {
     type: string,
     survey: {} | void,
     position: number | void,
-    value: string | void
+    value: string | void,
+    error: {} | void
   }
 ) => {
   let userInputArray = [];
@@ -29,6 +32,13 @@ const surveyReducer = (
   switch (action.type) {
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
       return state.set('surveyContent', action.survey);
+
+    case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
+      return state.set('submitted', true);
+
+    case surveyActionTypes.SUBMIT_SURVEY_ERROR:
+      console.error('submitSurveyError', action.error);
+      return state;
 
     case surveyActionTypes.TOGGLE_ANONYMOUS:
       return state.set('anonymous', !state.anonymous);
