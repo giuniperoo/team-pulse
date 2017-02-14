@@ -17,7 +17,18 @@ export default class Survey extends Component {
   static defaultProps = {
     surveyContent: {},
     userInput: [],
-    anonymous: false
+    anonymous: false,
+    submitted: false
+  }
+
+  static renderSubmittedView() {
+    return (
+      <div className={`icon-thumbs-up ${styles.submittedIcon}`}>
+        <h3 style={{ fontSize: '30px', fontWeight: 300 }}>
+          Nicely done!
+        </h3>
+      </div>
+    );
   }
 
   componentWillMount() {
@@ -85,14 +96,18 @@ export default class Survey extends Component {
     return components;
   }
 
-  renderLoaderOrSurvey(survey: { surveyTitle?: string, start?: string }) {
+  // render loader, survey, or 'submitted' screen
+  renderContent(survey: { surveyTitle?: string, start?: string }) {
     if (isEmpty(survey)) return <Loader />;
+
+    if (this.props.submitted) return Survey.renderSubmittedView();
 
     const surveyTitle = survey.surveyTitle;
     const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
+
         <div className={styles.surveyFormContainer}>
           {survey && this.prepareSurveyQuestions()}
           <hr />
@@ -117,7 +132,7 @@ export default class Survey extends Component {
       <section className={styles.survey}>
         <Header activeTab="survey" {...this.props} />
         <div className="tabContainer">
-          {this.renderLoaderOrSurvey(survey)}
+          {this.renderContent(survey)}
         </div>
       </section>
     );
@@ -126,6 +141,7 @@ export default class Survey extends Component {
 
 Survey.propTypes = {
   anonymous: PropTypes.bool,
+  submitted: PropTypes.bool,
   fetchSurvey: PropTypes.func.isRequired,
   submitSurvey: PropTypes.func.isRequired,
   setUserInput: PropTypes.func.isRequired,

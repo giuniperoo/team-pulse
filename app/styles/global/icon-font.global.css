@@ -70,3 +70,6 @@
 .icon-neutral:before {
   content: "\6f";
 }
+.icon-thumbs-up:before {
+  content: "\67";
+}

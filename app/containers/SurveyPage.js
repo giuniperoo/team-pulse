@@ -13,7 +13,8 @@ function mapStateToProps(state) {
     userInput: state.survey.userInput,
     displayedTab: state.ui.displayedTab,
     buttonSpinnerActive: state.ui.buttonSpinnerActive,
-    anonymous: state.survey.anonymous
+    anonymous: state.survey.anonymous,
+    submitted: state.survey.submitted
   };
 }
 

@@ -3,3 +3,10 @@
 .surveyTextQuestion { margin-bottom: 0; }
 
 .surveyCheckbox > input + label { margin-top: 0; }
+
+.survey .submittedIcon {
+  font-size: 60px;
+  color: #9b9b9b;
+  text-align: center;
+  margin-top: 30%;
+}
