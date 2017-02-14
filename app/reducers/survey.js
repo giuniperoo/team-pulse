@@ -21,10 +21,10 @@ const surveyReducer = (
   } = initialState,
   action: {
     type: string,
-    survey: {} | void,
-    position: number | void,
-    value: string | void,
-    error: {} | void
+    survey?: {},
+    position?: number,
+    value?: string,
+    error?: {}
   }
 ) => {
   let userInputArray = [];

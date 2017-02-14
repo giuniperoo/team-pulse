@@ -27,11 +27,11 @@ export default class Survey extends Component {
   }
 
   submit() {
-    const userId = this.props.userProfile.uid;
-    const userInput = this.props.userInput;
     const surveyKey = keys(this.props.surveyContent)[0];
+    const userInput = this.props.userInput;
+    const userId = !this.props.anonymous ? this.props.userProfile.uid : null;
 
-    this.props.submitSurvey(surveyKey, userId, userInput);
+    this.props.submitSurvey(surveyKey, userInput, userId);
   }
 
   prepareSurveyQuestions() {
@@ -85,7 +85,7 @@ export default class Survey extends Component {
     return components;
   }
 
-  renderLoaderOrSurvey(survey: { surveyTitle: string | void, start: string | void }) {
+  renderLoaderOrSurvey(survey: { surveyTitle?: string, start?: string }) {
     if (isEmpty(survey)) return <Loader />;
 
     const surveyTitle = survey.surveyTitle;

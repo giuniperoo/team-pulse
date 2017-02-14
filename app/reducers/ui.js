@@ -10,7 +10,7 @@ const initialState = Immutable({
 const uiReducer = (
   // eslint-disable-next-line flowtype/no-weak-types
   state: { set: Function, displayedTab: string, buttonSpinnerActive: boolean } = initialState,
-  action: { type: string, tab: string | void }
+  action: { type: string, tab?: string }
 ) => {
   switch (action.type) {
     case uiActionTypes.CHANGE_TAB:

@@ -18,8 +18,8 @@ const userReducer = (
   } = initialState,
   action: {
     type: string,
-    userProfile: {} | void,
-    error: {} | void
+    userProfile?: {},
+    error?: {}
   }
 ) => {
   switch (action.type) {

@@ -15,7 +15,7 @@ export const toggleAnonymous = () => ({
   type: surveyActionTypes.TOGGLE_ANONYMOUS
 });
 
-export const setUserInput = (value: string | void, position: number) => ({
+export const setUserInput = (value?: string, position: number) => ({
   type: surveyActionTypes.SET_USER_INPUT,
   value,
   position
@@ -52,15 +52,19 @@ export const submitSurveyError = (error: {}) => ({
 
 export const submitSurvey = (
   surveyKey: string,
-  userId: string,
-  userInput: Array<*>
+  userInput: Array<*>,
+  userId?: string
 // eslint-disable-next-line flowtype/no-weak-types
 ) => (dispatch: Function) => {
   dispatch(toggleButtonSpinner());
 
   const database = firebase.database();
+  const pushRef = database.ref(`v1/answers/${surveyKey}`).push();
 
-  database.ref(`v1/answers/${surveyKey}/${userId}`).set(userInput)
+  const surveyData: { values: Array<number | string>, uid?: string } = { values: userInput };
+  if (userId) { surveyData.uid = userId; }
+
+  pushRef.set(surveyData)
     .then(() => {
       dispatch(submitSurveySuccess());
       return dispatch(toggleButtonSpinner());
