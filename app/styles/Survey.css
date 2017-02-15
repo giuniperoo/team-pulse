@@ -4,9 +4,28 @@
 
 .surveyCheckbox > input + label { margin-top: 0; }
 
-.survey .submittedIcon {
-  font-size: 60px;
+.survey .submitted {
   color: #9b9b9b;
-  text-align: center;
+  font-size: 60px;
   margin-top: 30%;
+  text-align: center;
+}
+
+.survey .submitted h2,
+.survey .submitted aside {
+  width: 100%;
+  position: absolute;
+}
+
+.survey .animatedContent {
+  animation: slideContent 10s ease 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideContent {
+  0%   { transform: translateX(0); }
+  45%  { transform: translateX(0); }
+  50%  { transform: translateX(-100%); }
+  95%  { transform: translateX(-100%); }
+  100% { transform: translateX(-200%); }
 }

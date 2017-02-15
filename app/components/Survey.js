@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
+import Haiku from './Haiku';
 import Header from './Header';
 import Loader from './Loader';
 import Checkbox from './Checkbox';
@@ -23,10 +24,13 @@ export default class Survey extends Component {
 
   static renderSubmittedView() {
     return (
-      <div className={`icon-thumbs-up ${styles.submittedIcon}`}>
-        <h3 style={{ fontSize: '30px', fontWeight: 300 }}>
-          Nicely done!
-        </h3>
+      <div className={`icon-thumbs-up ${styles.submitted}`}>
+        <div className={styles.animatedContent}>
+          <h2 style={{ fontSize: '30px' }}>Nicely done!</h2>
+          <h2 style={{ fontSize: '24px', transform: 'translateX(100%)' }}>Next survey goes up in 3 days...</h2>
+          <h2 style={{ fontSize: '20px', transform: 'translateX(200%)' }}>In the meantime, why not enjoy this haiku?</h2>
+          <Haiku />
+        </div>
       </div>
     );
   }

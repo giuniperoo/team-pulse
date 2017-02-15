@@ -22,8 +22,9 @@ body {
 }
 
 h1,
-h2 {
-  margin: 10px;
+h2,
+p {
+  margin: 10px 0;
   font-weight: 300;
 }
 
@@ -35,6 +36,10 @@ h1 {
 h2 {
   font-size: 18px;
   color: #9b9b9b;
+}
+
+p {
+  font-size: 16px;
 }
 
 button {
