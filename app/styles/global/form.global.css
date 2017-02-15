@@ -32,8 +32,9 @@ input:focus, textarea {
 
 .checkbox > label {
   cursor: pointer;
-  position: relative;
   display: inline-block;
+  position: relative;
+  background: white;
 }
 
 .checkbox input { display: none; }

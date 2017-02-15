@@ -1,5 +1,6 @@
 // @flow
 import * as firebase from 'firebase';
+import { delay } from 'lodash';
 import { toggleButtonSpinner } from '../actions/ui';
 
 export const surveyActionTypes = {
@@ -58,19 +59,25 @@ export const submitSurvey = (
 ) => (dispatch: Function) => {
   dispatch(toggleButtonSpinner());
 
-  const database = firebase.database();
-  const pushRef = database.ref(`v1/answers/${surveyKey}`).push();
+  // wait a little while ;)
+  delay(() => _submitSurvey(), 1000);
 
-  const surveyData: { values: Array<number | string>, uid?: string } = { values: userInput };
-  if (userId) { surveyData.uid = userId; }
+  // eslint-disable-next-line no-underscore-dangle
+  const _submitSurvey = () => {
+    const database = firebase.database();
+    const pushRef = database.ref(`v1/answers/${surveyKey}`).push();
 
-  pushRef.set(surveyData)
-    .then(() => {
-      dispatch(submitSurveySuccess());
-      return dispatch(toggleButtonSpinner());
-    })
-    .catch(error => {
-      dispatch(submitSurveyError(error));
-      return dispatch(toggleButtonSpinner());
-    });
+    const surveyData: { values: Array<number | string>, uid?: string } = { values: userInput };
+    if (userId) { surveyData.uid = userId; }
+
+    pushRef.set(surveyData)
+      .then(() => {
+        dispatch(submitSurveySuccess());
+        return dispatch(toggleButtonSpinner());
+      })
+      .catch(error => {
+        dispatch(submitSurveyError(error));
+        return dispatch(toggleButtonSpinner());
+      });
+  };
 };

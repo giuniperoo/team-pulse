@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { isEmpty, keys } from 'lodash';
 import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Haiku from './Haiku';
 import Header from './Header';
 import Loader from './Loader';
@@ -24,14 +25,22 @@ export default class Survey extends Component {
 
   static renderSubmittedView() {
     return (
-      <div className={`icon-thumbs-up ${styles.submitted}`}>
-        <div className={styles.animatedContent}>
-          <h2 style={{ fontSize: '30px' }}>Nicely done!</h2>
-          <h2 style={{ fontSize: '24px', transform: 'translateX(100%)' }}>Next survey goes up in 3 days...</h2>
-          <h2 style={{ fontSize: '20px', transform: 'translateX(200%)' }}>In the meantime, why not enjoy this haiku?</h2>
-          <Haiku />
+      <ReactCSSTransitionGroup
+        transitionName="submittedContent"
+        transitionAppear
+        transitionAppearTimeout={300}
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={300}
+      >
+        <div key="submittedContent" className={`icon-thumbs-up ${styles.submitted}`}>
+          <div className={styles.submittedContent}>
+            <h2 style={{ fontSize: '30px' }}>Nicely done!</h2>
+            <h2 style={{ fontSize: '24px', transform: 'translateX(100%)' }}>Next survey goes up in 3 days...</h2>
+            <h2 style={{ fontSize: '21px', transform: 'translateX(200%)' }}>In the meantime, why not enjoy this haiku?</h2>
+            <Haiku />
+          </div>
         </div>
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 
@@ -100,7 +109,7 @@ export default class Survey extends Component {
     return components;
   }
 
-  // render loader, survey, or 'submitted' screen
+  // render loader, survey, or 'submitted' view
   renderContent(survey: { surveyTitle?: string, start?: string }) {
     if (isEmpty(survey)) return <Loader />;
 
@@ -111,7 +120,6 @@ export default class Survey extends Component {
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
-
         <div className={styles.surveyFormContainer}>
           {survey && this.prepareSurveyQuestions()}
           <hr />

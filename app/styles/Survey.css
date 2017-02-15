@@ -17,9 +17,15 @@
   position: absolute;
 }
 
-.survey .animatedContent {
+.survey .submittedContent {
   animation: slideContent 10s ease 1;
   animation-fill-mode: forwards;
+}
+
+:global .submittedContent-appear { opacity: 0; }
+:global .submittedContent-appear.submittedContent-appear-active {
+  opacity: 1;
+  transition: opacity 300ms;
 }
 
 @keyframes slideContent {
