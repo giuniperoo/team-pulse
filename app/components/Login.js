@@ -4,11 +4,6 @@ import ButtonWithSpinner from './ButtonWithSpinner';
 import styles from '../styles/Login.css';
 
 export default class Login extends Component {
-  componentWillReceiveProps(nextProps: { user: {}}) {
-    if (nextProps.user.authenticated) {
-      this.props.router.push('/survey');
-    }
-  }
 
   emailInput = null;
   passwordInput = null;
@@ -42,7 +37,5 @@ export default class Login extends Component {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  router: PropTypes.object.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired
 };

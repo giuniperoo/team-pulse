@@ -43,6 +43,16 @@ const userReducer = (
 
     case userActionTypes.LOGIN_ERROR:
       console.error('loginError', action.error);
+
+      // Handle Errors here.
+      // var errorCode = action.error.code;
+      // var errorMessage = action.error.message;
+      // if (errorCode === 'auth/wrong-password') {
+      //   alert('Wrong password.');
+      // } else {
+      //   alert(errorMessage);
+      // }
+
       return state;
 
     default:
