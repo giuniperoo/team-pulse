@@ -9,7 +9,8 @@ export const surveyActionTypes = {
   SUBMIT_SURVEY_SUCCESS: 'SUBMIT_SURVEY_SUCCESS',
   SUBMIT_SURVEY_ERROR: 'SUBMIT_SURVEY_ERROR',
   TOGGLE_ANONYMOUS: 'TOGGLE_ANONYMOUS',
-  SET_USER_INPUT: 'SET_USER_INPUT'
+  SET_USER_INPUT: 'SET_USER_INPUT',
+  REMOVE_JUST_SUBMITTED: 'REMOVE_JUST_SUBMITTED'
 };
 
 export const toggleAnonymous = () => ({
@@ -49,6 +50,10 @@ export const submitSurveySuccess = () => ({
 export const submitSurveyError = (error: {}) => ({
   type: surveyActionTypes.SUBMIT_SURVEY_ERROR,
   error
+});
+
+export const removeJustSubmitted = () => ({
+  type: surveyActionTypes.REMOVE_JUST_SUBMITTED
 });
 
 export const submitSurvey = (

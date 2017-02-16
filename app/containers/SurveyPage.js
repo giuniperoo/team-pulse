@@ -14,7 +14,7 @@ function mapStateToProps(state) {
     displayedTab: state.ui.displayedTab,
     buttonSpinnerActive: state.ui.buttonSpinnerActive,
     anonymous: state.survey.anonymous,
-    submitted: state.survey.submitted
+    justSubmitted: state.survey.justSubmitted
   };
 }
 

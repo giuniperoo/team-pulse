@@ -11,15 +11,15 @@
   text-align: center;
 }
 
-.survey .submitted h2,
-.survey .submitted aside {
-  width: 100%;
-  position: absolute;
-}
-
 .survey .submittedContent {
   animation: slideContent 10s ease 1;
   animation-fill-mode: forwards;
+}
+
+.survey .submittedContent h2,
+.survey .submittedContent aside {
+  width: 100%;
+  position: absolute;
 }
 
 :global .submittedContent-appear { opacity: 0; }

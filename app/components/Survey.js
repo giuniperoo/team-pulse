@@ -20,10 +20,19 @@ export default class Survey extends Component {
     surveyContent: {},
     userInput: [],
     anonymous: false,
-    submitted: false
+    justSubmitted: false
   }
 
   static renderSubmittedView() {
+    return (
+      <div className={`icon-thumbs-up ${styles.submitted}`}>
+        <h2 style={{ fontSize: '24px' }}>Next survey goes up in 3 days...</h2>
+        <h2 style={{ fontSize: '21px' }}>We&apos;ll send out a notification :)</h2>
+      </div>
+    );
+  }
+
+  static renderJustSubmittedView() {
     return (
       <ReactCSSTransitionGroup
         transitionName="submittedContent"
@@ -48,6 +57,10 @@ export default class Survey extends Component {
     if (isEmpty(this.props.surveyContent)) {
       this.props.fetchSurvey();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.removeJustSubmitted();
   }
 
   submit() {
@@ -109,11 +122,16 @@ export default class Survey extends Component {
     return components;
   }
 
-  // render loader, survey, or 'submitted' view
+  // render loader, survey, 'submitted' view, or 'just submitted' view
   renderContent(survey: { surveyTitle?: string, start?: string }) {
     if (isEmpty(survey)) return <Loader />;
 
-    if (this.props.submitted) return Survey.renderSubmittedView();
+    if (this.props.justSubmitted) return Survey.renderJustSubmittedView();
+
+    const surveyKey = keys(this.props.surveyContent)[0];
+    if (surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
+      return Survey.renderSubmittedView();
+    }
 
     const surveyTitle = survey.surveyTitle;
     const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
@@ -153,11 +171,12 @@ export default class Survey extends Component {
 
 Survey.propTypes = {
   anonymous: PropTypes.bool,
-  submitted: PropTypes.bool,
+  justSubmitted: PropTypes.bool,
   fetchSurvey: PropTypes.func.isRequired,
   submitSurvey: PropTypes.func.isRequired,
   setUserInput: PropTypes.func.isRequired,
   toggleAnonymous: PropTypes.func.isRequired,
+  removeJustSubmitted: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired,
   userProfile: PropTypes.shape({
     uid: PropTypes.string

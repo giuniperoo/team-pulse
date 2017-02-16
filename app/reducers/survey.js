@@ -1,12 +1,13 @@
 // @flow
 import Immutable from 'seamless-immutable';
+import { keys } from 'lodash';
 import { surveyActionTypes } from '../actions/survey';
 
 const initialState = Immutable({
   surveyContent: {},
   userInput: [],
   anonymous: false,
-  submitted: false
+  justSubmitted: false
 });
 
 const surveyReducer = (
@@ -17,7 +18,7 @@ const surveyReducer = (
     surveyContent: {},
     userInput: Array<*>,
     anonymous: boolean,
-    submitted: boolean
+    justSubmitted: boolean
   } = initialState,
   action: {
     type: string,
@@ -27,14 +28,21 @@ const surveyReducer = (
     error?: {}
   }
 ) => {
-  let userInputArray = [];
+  // lexical declarations for inside case blocks
   let arrayPos = null;
+  let surveyKey = null;
+  let userInputArray = [];
+
   switch (action.type) {
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
       return state.set('surveyContent', action.survey);
 
     case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
-      return state.set('submitted', true);
+      // store key of submitted survey in local storage
+      surveyKey = keys(state.surveyContent)[0];
+      localStorage.setItem('lastSubmittedSurvey', surveyKey);
+
+      return state.set('justSubmitted', true);
 
     case surveyActionTypes.SUBMIT_SURVEY_ERROR:
       console.error('submitSurveyError', action.error);
@@ -52,6 +60,9 @@ const surveyReducer = (
       userInputArray = Immutable.asMutable(state.userInput);
       userInputArray[arrayPos] = action.value;
       return state.set('userInput', userInputArray);
+
+    case surveyActionTypes.REMOVE_JUST_SUBMITTED:
+      return state.set('justSubmitted', false);
 
     default:
       return state;
