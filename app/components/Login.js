@@ -13,14 +13,14 @@ export default class Login extends Component {
 
     // rather than place user credentials directly in
     // the store let's just grab them from the DOM
-    const email = this.emailInput.value || 'giunipero@gmail.com';
-    const password = this.passwordInput.value || 'blahblah1';
+    const email = this.emailInput.value || 'troy@teampulse.com';
+    const password = this.passwordInput.value || 'oklahoma79';
     this.props.login(email, password);
   }
 
   render() {
     return (
-      <div className={styles.loginContainer}>
+      <div style={{ opacity: 0 }} className={styles.loginContainer}>
         <div className={styles.loginForm}>
           <img className={styles.logo} src="../resources/images/team-pulse-logo.svg" alt="TeamPulse logo" />
           <h1>Welcome to TeamPulse</h1>

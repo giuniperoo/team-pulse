@@ -81,7 +81,7 @@ export default class Survey extends Component {
   //
   // returns true if validation succeeds, false if fails
   validate() {
-    const requiredQuestionTypes = ['numeric', 'pictoral'];
+    const requiredQuestionTypes = ['numeric', 'graphic'];
     const questions = this.survey.questions;
     const userInput = this.props.userInput;
     // eslint-disable-next-line max-len
@@ -140,7 +140,7 @@ export default class Survey extends Component {
               onClick={(value, position) => this.props.setUserInput(value, position)}
             />);
           break;
-        case 'pictoral':
+        case 'graphic':
           components.push(
             <PictoralQuestion
               key={index}
