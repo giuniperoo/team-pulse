@@ -2,11 +2,11 @@
 import React, { Component, PropTypes } from 'react';
 import { kebabCase } from 'lodash';
 import classNames from 'classnames/bind';
-import styles from '../styles/GraphicQuestion.css';
+import styles from '../styles/PictoralQuestion.css';
 
 const cx = classNames.bind(styles);
 
-export default class GraphicQuestion extends Component {
+export default class PictoralQuestion extends Component {
 
   static defaultProps = {
     value: '',
@@ -19,7 +19,7 @@ export default class GraphicQuestion extends Component {
 
     /* eslint-disable react/no-array-index-key */
     labels.forEach((label, index) => {
-      const className = cx(styles.graphicButton, `icon-${kebabCase(label)}`, {
+      const className = cx(styles.pictoralButton, `icon-${kebabCase(label)}`, {
         active: this.props.value === (index + 1).toString()
       });
 
@@ -48,7 +48,7 @@ export default class GraphicQuestion extends Component {
     const domRef = this.props.domRef;
 
     return (
-      <div ref={domRef} className={`question ${styles.graphicQuestion}`}>
+      <div ref={domRef} className={`question ${styles.pictoralQuestion}`}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
@@ -59,7 +59,7 @@ export default class GraphicQuestion extends Component {
   }
 }
 
-GraphicQuestion.propTypes = {
+PictoralQuestion.propTypes = {
   value: PropTypes.string,
   title: PropTypes.string.isRequired,
   domRef: PropTypes.func,

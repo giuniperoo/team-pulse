@@ -10,7 +10,7 @@ import Checkbox from './Checkbox';
 import CardContainer from './CardContainer';
 import TextQuestion from './TextQuestion';
 import NumericQuestion from './NumericQuestion';
-import GraphicQuestion from './GraphicQuestion';
+import PictoralQuestion from './PictoralQuestion';
 import ButtonWithSpinner from './ButtonWithSpinner';
 import styles from '../styles/Survey.css';
 
@@ -81,7 +81,7 @@ export default class Survey extends Component {
   //
   // returns true if validation succeeds, false if fails
   validate() {
-    const requiredQuestionTypes = ['numeric', 'graphic'];
+    const requiredQuestionTypes = ['numeric', 'pictoral'];
     const questions = this.survey.questions;
     const userInput = this.props.userInput;
     // eslint-disable-next-line max-len
@@ -140,9 +140,9 @@ export default class Survey extends Component {
               onClick={(value, position) => this.props.setUserInput(value, position)}
             />);
           break;
-        case 'graphic':
+        case 'pictoral':
           components.push(
-            <GraphicQuestion
+            <PictoralQuestion
               key={index}
               // eslint-disable-next-line
               domRef={$elem => this[`question${index}`] = $elem}
