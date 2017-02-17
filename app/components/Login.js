@@ -26,8 +26,8 @@ export default class Login extends Component {
           <h1>Welcome to TeamPulse</h1>
           <h2 style={{ marginBottom: 20 }}>Login with your credentials</h2>
 
-          <input type="email" name="email" placeholder="Email" ref={input => { this.emailInput = input; }} />
-          <input type="password" name="password" placeholder="Password" ref={input => { this.passwordInput = input; }} />
+          <input type="email" name="email" placeholder="Email" ref={$input => { this.emailInput = $input; }} />
+          <input type="password" name="password" placeholder="Password" ref={$input => { this.passwordInput = $input; }} />
           <ButtonWithSpinner label="Login" onClick={() => this.login()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
         </div>
       </div>

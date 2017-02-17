@@ -97,3 +97,11 @@ hr {
 .blueButton:hover {
   background: #008cf0;
 }
+
+.question.scalePulse { animation: scalePulse 500ms; }
+
+@keyframes scalePulse {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

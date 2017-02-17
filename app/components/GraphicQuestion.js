@@ -8,7 +8,10 @@ const cx = classNames.bind(styles);
 
 export default class GraphicQuestion extends Component {
 
-  static defaultProps = { value: '' }
+  static defaultProps = {
+    value: '',
+    domRef: null
+  }
 
   prepareButtons() {
     const buttons = [];
@@ -42,9 +45,10 @@ export default class GraphicQuestion extends Component {
 
   render() {
     const title = this.props.title;
+    const domRef = this.props.domRef;
 
     return (
-      <div className={styles.graphicQuestion}>
+      <div ref={domRef} className={`question ${styles.graphicQuestion}`}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
@@ -58,6 +62,7 @@ export default class GraphicQuestion extends Component {
 GraphicQuestion.propTypes = {
   value: PropTypes.string,
   title: PropTypes.string.isRequired,
+  domRef: PropTypes.func,
   onClick: PropTypes.func.isRequired,
   surveyPosition: PropTypes.number.isRequired
 };

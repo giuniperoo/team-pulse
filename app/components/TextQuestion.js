@@ -16,7 +16,7 @@ export default class TextQuestion extends Component {
     const classes = this.props.classes;
 
     return (
-      <div className={cx(styles.textQuestion, classes)}>
+      <div className={cx('question', styles.textQuestion, classes)}>
         <h3>{title}</h3>
 
         <textArea

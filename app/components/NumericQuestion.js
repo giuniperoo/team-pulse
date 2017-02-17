@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 export default class NumericQuestion extends Component {
   static defaultProps = {
     value: '',
+    domRef: null,
     labelMin: 'Extremely Bad',
     labelMax: 'Extremely Good'
   }
@@ -42,11 +43,12 @@ export default class NumericQuestion extends Component {
 
   render() {
     const title = this.props.title;
+    const domRef = this.props.domRef;
     const labelMin = this.props.labelMin;
     const labelMax = this.props.labelMax;
 
     return (
-      <div className={styles.numericQuestion}>
+      <div ref={domRef} className={`question ${styles.numericQuestion}`}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
@@ -63,6 +65,7 @@ export default class NumericQuestion extends Component {
 NumericQuestion.propTypes = {
   value: PropTypes.string,
   title: PropTypes.string.isRequired,
+  domRef: PropTypes.func,
   onClick: PropTypes.func.isRequired,
   labelMin: PropTypes.string,
   labelMax: PropTypes.string,

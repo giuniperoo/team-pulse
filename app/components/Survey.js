@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { isEmpty, keys } from 'lodash';
+import { isEmpty, keys, map, includes, forEach, delay } from 'lodash';
 import moment from 'moment';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Haiku from './Haiku';
@@ -44,8 +44,12 @@ export default class Survey extends Component {
         <div key="submittedContent" className={`icon-thumbs-up ${styles.submitted}`}>
           <div className={styles.submittedContent}>
             <h2 style={{ fontSize: '30px' }}>Nicely done!</h2>
-            <h2 style={{ fontSize: '24px', transform: 'translateX(100%)' }}>Next survey goes up in 3 days...</h2>
-            <h2 style={{ fontSize: '21px', transform: 'translateX(200%)' }}>In the meantime, why not enjoy this haiku?</h2>
+            <h2 style={{ fontSize: '24px', transform: 'translateX(100%)' }}>
+              Next survey goes up in 3 days...
+            </h2>
+            <h2 style={{ fontSize: '21px', transform: 'translateX(200%)' }}>
+              In the meantime, why not enjoy this haiku?
+            </h2>
             <Haiku />
           </div>
         </div>
@@ -59,34 +63,75 @@ export default class Survey extends Component {
     }
   }
 
+  componentWillUpdate(nextProps: { surveyContent: {}}) {
+    this.surveyKey = keys(nextProps.surveyContent)[0];
+    this.survey = nextProps.surveyContent[this.surveyKey];
+  }
+
   componentWillUnmount() {
     this.props.removeJustSubmitted();
   }
 
+  surveyKey = null;
+  survey = {};
+
+  // iterate through each question in the survey:
+  // if a required question hasn't been answered,
+  // a pulse animation is applied to the question
+  //
+  // returns true if validation succeeds, false if fails
+  validate() {
+    const requiredQuestionTypes = ['numeric', 'graphic'];
+    const questions = this.survey.questions;
+    const userInput = this.props.userInput;
+    // eslint-disable-next-line max-len
+    const requiredQuestions = map(questions, (question) => includes(requiredQuestionTypes, question.type));
+
+    let valid = true;
+
+    forEach(requiredQuestions, (required, index) => {
+      if (required && !userInput[index]) {
+        valid = false;
+
+        // eslint-disable-next-line
+        const $ref = this[`question${index}`];
+
+        $ref.classList.add('scalePulse');
+        delay(() => $ref.classList.remove('scalePulse'), 500);
+      }
+    });
+
+    return valid;
+  }
+
   submit() {
-    const surveyKey = keys(this.props.surveyContent)[0];
     const userInput = this.props.userInput;
     const userId = !this.props.anonymous ? this.props.userProfile.uid : null;
+    this.props.submitSurvey(this.surveyKey, userInput, userId);
+  }
 
-    this.props.submitSurvey(surveyKey, userInput, userId);
+  validateAndSubmit() {
+    const valid = this.validate();
+    if (valid) this.submit();
   }
 
   prepareSurveyQuestions() {
-    const surveyKey = keys(this.props.surveyContent)[0];
-    const survey = this.props.surveyContent[surveyKey];
-    const questions = survey && survey.questions;
-    const components = [];
     const userInput = this.props.userInput;
+    const questions = this.survey.questions;
+    const components = [];
 
     questions.forEach((question, index) => {
       if (!question) return;
 
       /* eslint-disable react/no-array-index-key */
+      // NB: using array index as key should be fine here - the array is static
       switch (question.type) {
         case 'numeric':
           components.push(
             <NumericQuestion
               key={index}
+              // eslint-disable-next-line
+              domRef={$elem => this[`question${index}`] = $elem}
               title={question.title}
               value={userInput[index]}
               labelMin={question.labelMin}
@@ -99,6 +144,8 @@ export default class Survey extends Component {
           components.push(
             <GraphicQuestion
               key={index}
+              // eslint-disable-next-line
+              domRef={$elem => this[`question${index}`] = $elem}
               title={question.title}
               value={userInput[index]}
               surveyPosition={index + 1}
@@ -122,24 +169,14 @@ export default class Survey extends Component {
     return components;
   }
 
-  // render loader, survey, 'submitted' view, or 'just submitted' view
-  renderContent(survey: { surveyTitle?: string, start?: string }) {
-    if (isEmpty(survey)) return <Loader />;
-
-    if (this.props.justSubmitted) return Survey.renderJustSubmittedView();
-
-    const surveyKey = keys(this.props.surveyContent)[0];
-    if (surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
-      return Survey.renderSubmittedView();
-    }
-
-    const surveyTitle = survey.surveyTitle;
-    const startDate = survey.start && moment.unix(survey.start).format('MMM Do YYYY');
+  renderSurvey() {
+    const surveyTitle = this.survey.surveyTitle;
+    const startDate = this.survey.start && moment.unix(this.survey.start).format('MMM Do YYYY');
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
         <div className={styles.surveyFormContainer}>
-          {survey && this.prepareSurveyQuestions()}
+          {this.prepareSurveyQuestions()}
           <hr />
           <Checkbox
             label="Anonymous"
@@ -148,21 +185,35 @@ export default class Survey extends Component {
             isChecked={this.props.anonymous}
             onClick={() => { this.props.toggleAnonymous(); }}
           />
-          <ButtonWithSpinner label="Submit" onClick={() => this.submit()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
+          <ButtonWithSpinner
+            label="Submit"
+            onClick={() => this.validateAndSubmit()}
+            buttonSpinnerActive={this.props.buttonSpinnerActive}
+          />
         </div>
       </CardContainer>
     );
   }
 
-  render() {
-    const surveyKey = keys(this.props.surveyContent)[0];
-    const survey = this.props.surveyContent[surveyKey] || {};
+  // render loader, survey, 'submitted' view, or 'just submitted' view
+  renderContent() {
+    if (isEmpty(this.survey)) return <Loader />;
 
+    if (this.props.justSubmitted) return Survey.renderJustSubmittedView();
+
+    if (this.surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
+      return Survey.renderSubmittedView();
+    }
+
+    return this.renderSurvey();
+  }
+
+  render() {
     return (
       <section className={styles.survey}>
         <Header activeTab="survey" {...this.props} />
         <div className="tabContainer">
-          {this.renderContent(survey)}
+          {this.renderContent()}
         </div>
       </section>
     );
