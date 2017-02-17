@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Login from '../components/Login';
 import * as uiActions from '../actions/ui';
-import * as userActions from '../actions/user';
+import * as authActions from '../actions/auth';
 
 
 function mapStateToProps(state) {
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Object.assign({}, userActions, uiActions), dispatch);
+  return bindActionCreators(Object.assign({}, authActions, uiActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

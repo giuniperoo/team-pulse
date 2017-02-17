@@ -106,7 +106,7 @@ export default class Survey extends Component {
 
   submit() {
     const userInput = this.props.userInput;
-    const userId = !this.props.anonymous ? this.props.userProfile.uid : null;
+    const userId = !this.props.anonymous ? this.props.user.uid : null;
     this.props.submitSurvey(this.surveyKey, userInput, userId);
   }
 
@@ -229,7 +229,7 @@ Survey.propTypes = {
   toggleAnonymous: PropTypes.func.isRequired,
   removeJustSubmitted: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired,
-  userProfile: PropTypes.shape({
+  user: PropTypes.shape({
     uid: PropTypes.string
   }).isRequired,
   userInput: PropTypes.arrayOf(

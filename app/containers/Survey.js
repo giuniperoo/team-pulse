@@ -9,7 +9,7 @@ import * as surveyActions from '../actions/survey';
 function mapStateToProps(state) {
   return {
     surveyContent: state.survey.surveyContent,
-    userProfile: state.user.profile,
+    user: state.user,
     userInput: state.survey.userInput,
     displayedTab: state.ui.displayedTab,
     buttonSpinnerActive: state.ui.buttonSpinnerActive,

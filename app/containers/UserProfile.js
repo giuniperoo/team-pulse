@@ -7,7 +7,8 @@ import * as uiActions from '../actions/ui';
 
 function mapStateToProps(state) {
   return {
-    displayedTab: state.ui.displayedTab
+    displayedTab: state.ui.displayedTab,
+    buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
 }
 

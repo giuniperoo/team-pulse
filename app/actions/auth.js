@@ -2,23 +2,23 @@
 import * as firebase from 'firebase';
 import { toggleButtonSpinner } from '../actions/ui';
 
-export const userActionTypes = {
+export const authActionTypes = {
   LOGIN_START: 'LOGIN_START',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_ERROR: 'LOGIN_ERROR'
 };
 
 export const loginStart = () => ({
-  type: userActionTypes.LOGIN_START
+  type: authActionTypes.LOGIN_START
 });
 
 export const loginSuccess = (user: {}) => ({
-  type: userActionTypes.LOGIN_SUCCESS,
+  type: authActionTypes.LOGIN_SUCCESS,
   user
 });
 
 export const loginError = (error: {}) => ({
-  type: userActionTypes.LOGIN_ERROR,
+  type: authActionTypes.LOGIN_ERROR,
   error
 });
 

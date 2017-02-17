@@ -1,48 +1,46 @@
 // @flow
 import Immutable from 'seamless-immutable';
-import { userActionTypes } from '../actions/user';
+import { authActionTypes } from '../actions/auth';
 
-const initialState = Immutable({
-  profile: {},
-  authenticated: false
-});
+const initialState = Immutable({});
 
 const userReducer = (
   state: {
     /* eslint-disable flowtype/no-weak-types */
     set: Function,
-    merge: Function,
+    merge: Function
     /* eslint-enable flowtype/no-weak-types */
-    profile: {},
-    authenticated: boolean
   } = initialState,
   action: {
     type: string,
-    userProfile?: {},
+    user?: {
+      uid: string,
+      email: string,
+      photoURL: string,
+      displayName: string,
+      emailVerified: boolean
+    },
     error?: {}
   }
 ) => {
   switch (action.type) {
-    case userActionTypes.LOGIN_START:
+    case authActionTypes.LOGIN_START:
       return state;
 
-    case userActionTypes.LOGIN_SUCCESS:
+    case authActionTypes.LOGIN_SUCCESS:
+      if (!action.user) return state;
+
       return state.merge({
-        authenticated: true,
         // subset of firebase' response
-        profile: {
-          /* eslint-disable */
-          name: action.user.displayName,
-          email: action.user.email,
-          photoUrl: action.user.photoURL,
-          emailVerified: action.user.emailVerified,
-          uid: action.user.uid
-          /* eslint-enable */
-        }
+        uid: action.user.uid,
+        name: action.user.displayName,
+        email: action.user.email,
+        photoUrl: action.user.photoURL,
+        emailVerified: action.user.emailVerified
       });
 
-    case userActionTypes.LOGIN_ERROR:
-      console.error('loginError', action.error);
+    case authActionTypes.LOGIN_ERROR:
+      console.error(action.error);
 
       // Handle Errors here.
       // var errorCode = action.error.code;
