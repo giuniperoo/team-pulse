@@ -10,11 +10,11 @@ import styles from '../styles/UserProfile.css';
 export default class UserProfile extends Component {
   render() {
     return (
-      <section>
+      <section className={styles.userProfile}>
         <Header activeTab="userProfile" {...this.props} />
         <div className="tabContainer">
           <Avatar />
-          <h2>Justino ScalottbusserTör</h2>
+          <h2 className={styles.name}>Justino ScalottbusserTör</h2>
           <p className={styles.email}>justin@teampulse.com</p>
 
           <section className={styles.attributesContainer}>

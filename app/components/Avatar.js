@@ -10,9 +10,7 @@ export default class Avatar extends Component {
 
   render() {
     return (
-      <div className={styles.avatar}>
-        Avatar
-      </div>
+      <div className={styles.avatar} />
     );
   }
 }

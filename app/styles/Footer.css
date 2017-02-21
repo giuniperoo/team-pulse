@@ -1,1 +1,32 @@
-.footer {}
+.footer {
+  margin: 10px 0;
+}
+
+.footer hr {
+  margin: 0 20px 20px;
+}
+
+.footer p,
+.footer a {
+  color: #9b9b9b;
+  font-size: 12px;
+}
+
+.footer a {
+  margin: 0 7px 10px;
+  display: inline-block;
+  position: relative;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.footer a:hover { border-bottom: 1px solid; }
+
+.footer a:after {
+  right: -8px;
+  content: '|';
+  position: absolute;
+  pointer-events: none;
+}
+
+.footer a:last-of-type:after { content: ''; }
