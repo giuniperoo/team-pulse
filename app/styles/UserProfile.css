@@ -1,3 +1,8 @@
+.userProfile {
+  animation: fadeIn 300ms;
+  animation-fill-mode: forwards;
+}
+
 .userProfile :global .tabContainer {
   background: white;
   text-align: center;
@@ -27,4 +32,9 @@
 .userProfile :global .blueButton {
   margin: 0 60px 15px;
   width: calc(100% - 120px);
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }

@@ -5,7 +5,10 @@ import { toggleButtonSpinner } from '../actions/ui';
 export const authActionTypes = {
   LOGIN_START: 'LOGIN_START',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_ERROR: 'LOGIN_ERROR'
+  LOGIN_ERROR: 'LOGIN_ERROR',
+  LOGOUT_START: 'LOGOUT_START',
+  LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+  LOGOUT_ERROR: 'LOGOUT_ERROR'
 };
 
 export const loginStart = () => ({
@@ -36,4 +39,27 @@ export const login = (email: string, password: string) => (dispatch: Function) =
       dispatch(loginError(error));
       return dispatch(toggleButtonSpinner());
     });
+};
+
+export const logoutStart = () => ({
+  type: authActionTypes.LOGOUT_START
+});
+
+export const logoutSuccess = () => ({
+  type: authActionTypes.LOGOUT_SUCCESS
+});
+
+export const logoutError = (error: {}) => ({
+  type: authActionTypes.LOGOUT_ERROR,
+  error
+});
+
+
+// eslint-disable-next-line flowtype/no-weak-types
+export const logout = () => (dispatch: Function) => {
+  dispatch(logoutStart());
+
+  firebase.auth().signOut()
+    .then(response => dispatch(logoutSuccess(response)))
+    .catch(error => dispatch(logoutError(error)));
 };

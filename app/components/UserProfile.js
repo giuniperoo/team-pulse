@@ -10,7 +10,7 @@ import styles from '../styles/UserProfile.css';
 export default class UserProfile extends Component {
   render() {
     return (
-      <section className={styles.userProfile}>
+      <section className={styles.userProfile} style={{ opacity: 0 }}>
         <Header activeTab="userProfile" {...this.props} />
         <div className="tabContainer">
           <Avatar />
@@ -42,7 +42,7 @@ export default class UserProfile extends Component {
             buttonSpinnerActive={this.props.buttonSpinnerActive}
           />
 
-          <Footer withLogoutLink />
+          <Footer withLogoutLink logout={this.props.logout} />
         </div>
       </section>
     );
@@ -50,6 +50,7 @@ export default class UserProfile extends Component {
 }
 
 UserProfile.propTypes = {
+  logout: PropTypes.func.isRequired,
   editUserProfile: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired
 };

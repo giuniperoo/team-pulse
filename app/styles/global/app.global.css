@@ -46,6 +46,10 @@ button {
   color: #545555;
   cursor: pointer;
   padding: 0;
+
+  border-width: 0;
+  background: transparent;
+  font-family: Helvetica Neue, Helvetica, serif;
 }
 
 button:focus {

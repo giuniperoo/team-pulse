@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UserProfile from '../components/UserProfile';
 import * as uiActions from '../actions/ui';
+import * as authActions from '../actions/auth';
 
 
 function mapStateToProps(state) {
@@ -13,7 +14,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(uiActions, dispatch);
+  return bindActionCreators(Object.assign({}, authActions, uiActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

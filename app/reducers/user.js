@@ -6,18 +6,16 @@ const initialState = Immutable({});
 
 const userReducer = (
   state: {
-    /* eslint-disable flowtype/no-weak-types */
-    set: Function,
+    // eslint-disable-next-line flowtype/no-weak-types
     merge: Function
-    /* eslint-enable flowtype/no-weak-types */
   } = initialState,
   action: {
     type: string,
     user?: {
       uid: string,
       email: string,
-      photoURL: string,
-      displayName: string,
+      photoURL?: string,
+      displayName?: string,
       emailVerified: boolean
     },
     error?: {}
@@ -51,6 +49,16 @@ const userReducer = (
       //   alert(errorMessage);
       // }
 
+      return state;
+
+    case authActionTypes.LOGOUT_START:
+      return state;
+
+    case authActionTypes.LOGOUT_SUCCESS:
+      return Immutable.replace(state, {});
+
+    case authActionTypes.LOGOUT_ERROR:
+      console.error(action.error);
       return state;
 
     default:
