@@ -58,6 +58,7 @@ export default class Survey extends Component {
   }
 
   componentWillMount() {
+    console.log(this.props.user);
     if (isEmpty(this.props.surveyContent)) {
       this.props.fetchSurvey();
     }
@@ -69,7 +70,7 @@ export default class Survey extends Component {
   }
 
   componentWillUnmount() {
-    this.props.removeJustSubmitted();
+    if (this.props.justSubmitted) this.props.removeJustSubmitted();
   }
 
   surveyKey = null;

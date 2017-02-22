@@ -15,7 +15,7 @@ export const loginStart = () => ({
   type: authActionTypes.LOGIN_START
 });
 
-export const loginSuccess = (user: {}) => ({
+export const storeUserData = (user: {}) => ({
   type: authActionTypes.LOGIN_SUCCESS,
   user
 });
@@ -32,7 +32,7 @@ export const login = (email: string, password: string) => (dispatch: Function) =
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(response => {
-      dispatch(loginSuccess(response));
+      dispatch(storeUserData(response));
       return dispatch(toggleButtonSpinner());
     })
     .catch(error => {

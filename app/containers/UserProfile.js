@@ -8,6 +8,7 @@ import * as authActions from '../actions/auth';
 
 function mapStateToProps(state) {
   return {
+    user: state.user,
     displayedTab: state.ui.displayedTab,
     buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
