@@ -9,15 +9,13 @@ import styles from '../styles/UserProfile.css';
 
 export default class UserProfile extends Component {
   render() {
-    const photoUrl = this.props.user && this.props.user.photoUrl;
-
     return (
       <section className={styles.userProfile} style={{ opacity: 0 }}>
         <Header activeTab="userProfile" {...this.props} />
         <div className="tabContainer">
-          <Avatar photoUrl={photoUrl} />
-          <h2 className={styles.name}>Justino ScalottbusserTör</h2>
-          <p className={styles.email}>justin@teampulse.com</p>
+          <Avatar photoUrl={this.props.user.photoUrl} />
+          <h2 className={styles.name}>{this.props.user.displayName}</h2>
+          <p className={styles.email}>{this.props.user.email}</p>
 
           <section className={styles.attributesContainer}>
             <div>
@@ -54,7 +52,9 @@ export default class UserProfile extends Component {
 UserProfile.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    photoUrl: PropTypes.string
+    email: PropTypes.string,
+    photoUrl: PropTypes.string,
+    displayName: PropTypes.string
   }).isRequired,
   editUserProfile: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired

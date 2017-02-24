@@ -5,3 +5,9 @@
   border: 1px solid #d1d1d1;
   border-radius: 45px;
 }
+
+.avatar[class^="icon-"],
+.avatar[class*=" icon-"] {
+  color: #d1d1d1;
+  font-size: 88px;
+}

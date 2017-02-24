@@ -10,12 +10,17 @@ export default class Avatar extends Component {
   }
 
   render() {
-    console.log(this.props.photoUrl);
     if (this.props.inEditMode) {
-      // TODO
+      if (this.props.photoUrl) {
+        return <div className={styles.avatar} />;
+      }
+      return <div className={`icon-satisfied ${styles.avatar}`} />;
+    }
+
+    if (this.props.photoUrl) {
       return <div className={styles.avatar} />;
     }
-    return <div className={styles.avatar} />;
+    return <div className={`icon-satisfied ${styles.avatar}`} />;
   }
 }
 
