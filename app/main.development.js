@@ -45,7 +45,7 @@ const mb = menubar({
   index: `file://${__dirname}/app.html`,
   icon: `${__dirname}/../resources/iconTemplate.png`,
   preloadWindow: true,
-  y: 30
+  transparent: true
 });
 
 mb.on('ready', async () => {
