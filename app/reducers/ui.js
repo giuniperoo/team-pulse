@@ -4,6 +4,7 @@ import { uiActionTypes } from '../actions/ui';
 
 const initialState = Immutable({
   displayedTab: '',
+  offline: false,
   buttonSpinnerActive: false,
   userProfileInEditMode: false
 });
@@ -11,7 +12,7 @@ const initialState = Immutable({
 const uiReducer = (
   // eslint-disable-next-line flowtype/no-weak-types
   state: { set: Function, displayedTab: string, buttonSpinnerActive: boolean } = initialState,
-  action: { type: string, tab?: string }
+  action: { type: string, tab?: string, toggle?: boolean }
 ) => {
   switch (action.type) {
     case uiActionTypes.CHANGE_TAB:
@@ -20,6 +21,8 @@ const uiReducer = (
       return state.set('userProfileInEditMode', true);
     case uiActionTypes.TOGGLE_BUTTON_SPINNER:
       return state.set('buttonSpinnerActive', !state.buttonSpinnerActive);
+    case uiActionTypes.TOGGLE_OFFLINE:
+      return state.set('offline', action.toggle);
     default:
       return state;
   }

@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactSpinner from 'react-spinjs';
 
 export default class ButtonWithSpinner extends Component {
-
   static defaultProps = {
     label: '',
     classes: 'blueButton'

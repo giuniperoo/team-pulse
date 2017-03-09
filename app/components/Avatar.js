@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../styles/Avatar.css';
 
 export default class Avatar extends Component {
-
   static defaultProps = {
     photoUrl: null,
     inEditMode: false

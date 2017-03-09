@@ -1,15 +1,22 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { map, includes } from 'lodash';
+import classNames from 'classnames/bind';
 import * as firebase from 'firebase';
+import Alert from './Alert';
+import styles from '../styles/App.css';
 
+const cx = classNames.bind(styles);
 
 export default class App extends Component {
-  static defaultProps = {
-    children: null
-  }
+  static defaultProps = { children: null }
 
   componentWillMount() {
+    this.handleFirebaseInitialization();
+    this.detectOffline();
+  }
+
+  handleFirebaseInitialization() {
     const config = {
       apiKey: 'AIzaSyBgTMhh1ONCNi5leEy1DNz2TgQQX8M33og',
       authDomain: 'team-pulse-magic.firebaseapp.com',
@@ -48,9 +55,27 @@ export default class App extends Component {
     });
   }
 
+  // https://firebase.google.com/docs/database/web/offline-capabilities
+  detectOffline() {
+    const connectedRef = firebase.database().ref('.info/connected');
+    connectedRef.on('value', snap => {
+      if (snap.val() === true) {
+        // we're connected (or reconnected)
+        this.props.toggleOffline(false);
+      } else {
+        this.props.toggleOffline(true);
+      }
+    });
+  }
+
   render() {
+    const className = cx(styles.app, {
+      offline: this.props.offline
+    });
+
     return (
-      <div>
+      <div className={className}>
+        {this.props.offline && <Alert text="You appear to be offline" />}
         {this.props.children}
       </div>
     );
@@ -63,6 +88,8 @@ App.propTypes = {
   children: PropTypes.object,
   /* eslint-enable react/forbid-prop-types */
   storeUserData: PropTypes.func.isRequired,
+  toggleOffline: PropTypes.func.isRequired,
+  offline: PropTypes.bool.isRequired,
   user: PropTypes.shape({
     uid: PropTypes.string
   }).isRequired

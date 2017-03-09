@@ -58,7 +58,6 @@ export default class Survey extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.user);
     if (isEmpty(this.props.surveyContent)) {
       this.props.fetchSurvey();
     }
@@ -198,13 +197,15 @@ export default class Survey extends Component {
 
   // render loader, survey, 'submitted' view, or 'just submitted' view
   renderContent() {
-    if (isEmpty(this.survey)) return <Loader />;
+    if (isEmpty(this.survey) && !this.props.offline) return <Loader />;
 
     if (this.props.justSubmitted) return Survey.renderJustSubmittedView();
 
-    if (this.surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
+    if (this.surveyKey && this.surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
       return Survey.renderSubmittedView();
     }
+
+    if (isEmpty(this.survey) && this.props.offline) return <div />;
 
     return this.renderSurvey();
   }
@@ -223,6 +224,7 @@ export default class Survey extends Component {
 
 Survey.propTypes = {
   anonymous: PropTypes.bool,
+  offline: PropTypes.bool.isRequired,
   justSubmitted: PropTypes.bool,
   fetchSurvey: PropTypes.func.isRequired,
   submitSurvey: PropTypes.func.isRequired,

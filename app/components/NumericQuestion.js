@@ -48,7 +48,7 @@ export default class NumericQuestion extends Component {
     const labelMax = this.props.labelMax;
 
     return (
-      <div ref={domRef} className={`question ${styles.numericQuestion}`}>
+      <div ref={domRef} className={styles.numericQuestion}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>

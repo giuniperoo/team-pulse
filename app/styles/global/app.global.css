@@ -16,31 +16,6 @@ body {
   background: transparent;
 }
 
-#teamPulse {
-  top: 10px;
-  left: 0;
-  right: 0;
-  color: #545555;
-  height: calc(100% - 10px);
-  position: absolute;
-  overflow-y: hidden;
-  font-family: Helvetica Neue, Helvetica, serif;
-  background-color: white;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
-#pointer {
-  top: 5px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  margin-left: -5px;
-  transform: rotate(45deg);
-  background-color: white;
-}
-
 h1,
 h2,
 p {
@@ -122,7 +97,9 @@ hr {
   background: #008cf0;
 }
 
-.question.scalePulse { animation: scalePulse 500ms; }
+.scalePulse { animation: scalePulse 500ms; }
+
+/* keyframes */
 
 @keyframes scalePulse {
   0%   { transform: scale(1); }

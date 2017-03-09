@@ -10,7 +10,7 @@ import styles from '../styles/UserProfile.css';
 export default class UserProfile extends Component {
   render() {
     return (
-      <section className={styles.userProfile} style={{ opacity: 0 }}>
+      <section className={styles.userProfile}>
         <Header activeTab="userProfile" {...this.props} />
         <div className="tabContainer">
           <Avatar photoUrl={this.props.user.photoUrl} />

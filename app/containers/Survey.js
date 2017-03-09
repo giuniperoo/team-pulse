@@ -8,13 +8,16 @@ import * as surveyActions from '../actions/survey';
 
 function mapStateToProps(state) {
   return {
-    surveyContent: state.survey.surveyContent,
-    user: state.user,
     userInput: state.survey.userInput,
-    displayedTab: state.ui.displayedTab,
-    buttonSpinnerActive: state.ui.buttonSpinnerActive,
     anonymous: state.survey.anonymous,
-    justSubmitted: state.survey.justSubmitted
+    surveyContent: state.survey.surveyContent,
+    justSubmitted: state.survey.justSubmitted,
+
+    user: state.user,
+
+    offline: state.ui.offline,
+    displayedTab: state.ui.displayedTab,
+    buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
 }
 

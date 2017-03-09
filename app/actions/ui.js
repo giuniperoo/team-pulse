@@ -2,7 +2,8 @@
 export const uiActionTypes = {
   CHANGE_TAB: 'CHANGE_TAB',
   EDIT_USER_PROFILE: 'EDIT_USER_PROFILE',
-  TOGGLE_BUTTON_SPINNER: 'TOGGLE_BUTTON_SPINNER'
+  TOGGLE_BUTTON_SPINNER: 'TOGGLE_BUTTON_SPINNER',
+  TOGGLE_OFFLINE: 'TOGGLE_OFFLINE'
 };
 
 export const changeTab = (tab: string) => ({
@@ -16,4 +17,9 @@ export const editUserProfile = () => ({
 
 export const toggleButtonSpinner = () => ({
   type: uiActionTypes.TOGGLE_BUTTON_SPINNER
+});
+
+export const toggleOffline = (toggle: boolean) => ({
+  type: uiActionTypes.TOGGLE_OFFLINE,
+  toggle
 });

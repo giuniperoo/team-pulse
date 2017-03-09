@@ -37,6 +37,10 @@ const surveyReducer = (
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
       return state.set('surveyContent', action.survey);
 
+    case surveyActionTypes.FETCH_SURVEY_ERROR:
+      console.error('FETCH_SURVEY_ERROR');
+      return state;
+
     case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
       // store key of submitted survey in local storage
       surveyKey = keys(state.surveyContent)[0];

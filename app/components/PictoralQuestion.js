@@ -7,7 +7,6 @@ import styles from '../styles/PictoralQuestion.css';
 const cx = classNames.bind(styles);
 
 export default class PictoralQuestion extends Component {
-
   static defaultProps = {
     value: '',
     domRef: null
@@ -48,7 +47,7 @@ export default class PictoralQuestion extends Component {
     const domRef = this.props.domRef;
 
     return (
-      <div ref={domRef} className={`question ${styles.pictoralQuestion}`}>
+      <div ref={domRef} className={styles.pictoralQuestion}>
         <h3>{title}</h3>
 
         <div className={styles.buttonContainer}>
