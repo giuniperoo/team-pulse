@@ -36,7 +36,7 @@ export const fetchSurveyError = (error: {}) => ({
 // eslint-disable-next-line flowtype/no-weak-types
 export const fetchSurvey = () => (dispatch: Function) => {
   const database = firebase.database();
-  const survey = database.ref('v1/surveys').orderByChild('start').limitToLast(1);
+  const survey = database.ref('surveys').orderByChild('start').limitToLast(1);
 
   survey.once('value')
     .then(snapshot => dispatch(fetchSurveySuccess(snapshot.val())))
@@ -70,7 +70,7 @@ export const submitSurvey = (
   // eslint-disable-next-line no-underscore-dangle
   const _submitSurvey = () => {
     const database = firebase.database();
-    const pushRef = database.ref(`v1/answers/${surveyKey}`).push();
+    const pushRef = database.ref(`answers/${surveyKey}`).push();
 
     const surveyData: { values: Array<number | string>, uid?: string } = { values: userInput };
     if (userId) { surveyData.uid = userId; }

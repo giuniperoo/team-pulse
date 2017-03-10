@@ -13,7 +13,7 @@ export default class Login extends Component {
 
     // rather than place user credentials directly in
     // the store let's just grab them from the DOM
-    const email = this.emailInput.value || 'troy@teampulse.com';
+    const email = this.emailInput.value || 'giuniperoo@teampulse.com';
     const password = this.passwordInput.value || 'oklahoma79';
     this.props.login(email, password);
   }
@@ -26,8 +26,8 @@ export default class Login extends Component {
           <h1>Welcome to TeamPulse</h1>
           <h2 style={{ marginBottom: 20 }}>Login with your credentials</h2>
 
-          <input type="email" name="email" placeholder="Email" ref={$input => { this.emailInput = $input; }} />
-          <input type="password" name="password" placeholder="Password" ref={$input => { this.passwordInput = $input; }} />
+          <input type="email" name="email" placeholder="Email" onKeyPress={(event) => { if (event.key === 'Enter') this.login(); }} ref={$input => { this.emailInput = $input; }} />
+          <input type="password" name="password" placeholder="Password" onKeyPress={(event) => { if (event.key === 'Enter') this.login(); }} ref={$input => { this.passwordInput = $input; }} />
           <ButtonWithSpinner label="Login" onClick={() => this.login()} buttonSpinnerActive={this.props.buttonSpinnerActive} />
         </div>
       </div>

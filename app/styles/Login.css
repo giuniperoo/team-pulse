@@ -1,9 +1,13 @@
 .loginContainer {
+  height: 100%;
   padding: 38px;
   display: flex;
-  justify-content: center;
   animation: fadeIn 300ms;
+  background: white;
+  justify-content: center;
   animation-fill-mode: forwards;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .loginForm {

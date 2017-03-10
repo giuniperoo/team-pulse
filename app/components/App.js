@@ -18,11 +18,11 @@ export default class App extends Component {
 
   handleFirebaseInitialization() {
     const config = {
-      apiKey: 'AIzaSyBgTMhh1ONCNi5leEy1DNz2TgQQX8M33og',
-      authDomain: 'team-pulse-magic.firebaseapp.com',
-      databaseURL: 'https://team-pulse-magic.firebaseio.com',
-      storageBucket: 'team-pulse-magic.appspot.com',
-      messagingSenderId: '114176198859'
+      apiKey: 'AIzaSyAgDXaM3G0WizjDejx-XxreQXEoUf8pKyU',
+      authDomain: 'team-pulse-6ed1c.firebaseapp.com',
+      databaseURL: 'https://team-pulse-6ed1c.firebaseio.com',
+      storageBucket: 'team-pulse-6ed1c.appspot.com',
+      messagingSenderId: '618048040108'
     };
 
     firebase.initializeApp(config);

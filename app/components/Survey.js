@@ -81,7 +81,7 @@ export default class Survey extends Component {
   //
   // returns true if validation succeeds, false if fails
   validate() {
-    const requiredQuestionTypes = ['numeric', 'graphic'];
+    const requiredQuestionTypes = ['numeric', 'pictoral'];
     const questions = this.survey.questions;
     const userInput = this.props.userInput;
     // eslint-disable-next-line max-len
@@ -140,7 +140,7 @@ export default class Survey extends Component {
               onClick={(value, position) => this.props.setUserInput(value, position)}
             />);
           break;
-        case 'graphic':
+        case 'pictoral':
           components.push(
             <PictoralQuestion
               key={index}
@@ -171,7 +171,7 @@ export default class Survey extends Component {
 
   renderSurvey() {
     const surveyTitle = this.survey.surveyTitle;
-    const startDate = this.survey.start && moment.unix(this.survey.start).format('MMM Do YYYY');
+    const startDate = this.survey.start && moment(this.survey.start).format('MMM Do YYYY');
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>

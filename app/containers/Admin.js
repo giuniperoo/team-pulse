@@ -1,7 +1,7 @@
 // @flow
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Feedback from '../components/Feedback';
+import Admin from '../components/Admin';
 import * as uiActions from '../actions/ui';
 
 
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(uiActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

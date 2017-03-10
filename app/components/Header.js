@@ -31,7 +31,7 @@ export default class Header extends Component {
 
     return (
       <div className={styles.header}>
-        <HeaderTab name="Feedback" path="/feedback" icon="pulse" {...this.props} />
+        <HeaderTab name="Feedback" path="/admin" icon="pulse" {...this.props} />
         <HeaderTab name="Survey" path="/survey" icon="feedback" {...this.props} />
         <HeaderTab name="User Profile" path="/user-profile" icon="profile" {...this.props} />
         <div id="slider" className={sliderClassName} />

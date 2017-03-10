@@ -164,7 +164,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "electron-debug": "^1.1.0",
-    "firebase": "^3.6.8",
+    "firebase": "^3.7.1",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "menubar": "^5.2.0",
