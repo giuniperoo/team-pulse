@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 import Header from './Header';
 import Footer from './Footer';
 import Avatar from './Avatar';
@@ -9,6 +10,9 @@ import styles from '../styles/UserProfile.css';
 
 export default class UserProfile extends Component {
   render() {
+    const startDate = moment.utc(this.props.user.startDate).format('MMM Do YYYY');
+    const anonymous = this.props.user.anonymous ? 'ON' : 'OFF';
+
     return (
       <section className={styles.userProfile}>
         <Header activeTab="userProfile" {...this.props} />
@@ -20,19 +24,19 @@ export default class UserProfile extends Component {
           <section className={styles.attributesContainer}>
             <div>
               <span className={styles.label}>Start Date</span>
-              <span className={styles.value}>February 20, 2013</span>
+              <span className={styles.value}>{startDate}</span>
             </div>
             <div>
               <span className={styles.label}>Team</span>
-              <span className={styles.value}>Berlin</span>
+              <span className={styles.value}>{this.props.user.team}</span>
             </div>
             <div>
               <span className={styles.label}>Location</span>
-              <span className={styles.value}>Berlin, DE</span>
+              <span className={styles.value}>{this.props.user.location}</span>
             </div>
             <div>
               <span className={styles.label}>Default to anonymous responses</span>
-              <span className={styles.value}>ON</span>
+              <span className={styles.value}>{anonymous}</span>
             </div>
           </section>
 
@@ -52,8 +56,12 @@ export default class UserProfile extends Component {
 UserProfile.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.shape({
+    team: PropTypes.string,
     email: PropTypes.string,
     photoUrl: PropTypes.string,
+    location: PropTypes.string,
+    anonymous: PropTypes.bool,
+    startDate: PropTypes.number,
     displayName: PropTypes.string
   }).isRequired,
   editUserProfile: PropTypes.func.isRequired,

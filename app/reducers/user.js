@@ -7,14 +7,18 @@ const initialState = Immutable({});
 const userReducer = (
   state: {
     // eslint-disable-next-line flowtype/no-weak-types
-    merge: Function
+    set: Function
   } = initialState,
   action: {
     type: string,
     user?: {
       uid: string,
+      team?: string,
       email: string,
+      location?: string,
       photoURL?: string,
+      startDate?: number,
+      anonymous?: boolean,
       displayName?: string,
       emailVerified: boolean
     },
@@ -25,17 +29,10 @@ const userReducer = (
     case authActionTypes.LOGIN_START:
       return state;
 
-    case authActionTypes.LOGIN_SUCCESS:
+    case authActionTypes.STORE_USER_DATA:
       if (!action.user) return state;
 
-      return state.merge({
-        // subset of firebase' response
-        uid: action.user.uid,
-        name: action.user.displayName,
-        email: action.user.email,
-        photoUrl: action.user.photoURL,
-        emailVerified: action.user.emailVerified
-      });
+      return Immutable.replace(state, action.user);
 
     case authActionTypes.LOGIN_ERROR:
       console.error(action.error);

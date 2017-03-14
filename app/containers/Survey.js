@@ -10,6 +10,7 @@ function mapStateToProps(state) {
   return {
     userInput: state.survey.userInput,
     anonymous: state.survey.anonymous,
+    surveyKey: state.survey.surveyKey,
     surveyContent: state.survey.surveyContent,
     justSubmitted: state.survey.justSubmitted,
 

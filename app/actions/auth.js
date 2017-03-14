@@ -1,10 +1,11 @@
 // @flow
 import * as firebase from 'firebase';
+import { pick } from 'lodash';
 import { toggleButtonSpinner } from '../actions/ui';
 
 export const authActionTypes = {
   LOGIN_START: 'LOGIN_START',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  STORE_USER_DATA: 'STORE_USER_DATA',
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGOUT_START: 'LOGOUT_START',
   LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
@@ -16,7 +17,7 @@ export const loginStart = () => ({
 });
 
 export const storeUserData = (user: {}) => ({
-  type: authActionTypes.LOGIN_SUCCESS,
+  type: authActionTypes.STORE_USER_DATA,
   user
 });
 
@@ -31,9 +32,25 @@ export const login = (email: string, password: string) => (dispatch: Function) =
   dispatch(toggleButtonSpinner());
 
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(response => {
-      dispatch(storeUserData(response));
-      return dispatch(toggleButtonSpinner());
+    .then(user => {
+      // get app-specific user props
+      const usersRef = firebase.database().ref('users');
+
+      return usersRef.child(user.uid).once('value')
+        .then(snapshot => {
+          let userObj = pick(user, [
+            'uid',
+            'displayName',
+            'email',
+            'photoURL',
+            'emailVerified'
+          ]);
+
+          userObj = Object.assign(userObj, snapshot.val());
+          dispatch(storeUserData(userObj));
+          return dispatch(toggleButtonSpinner());
+        })
+        .catch(error => console.error('error', error));
     })
     .catch(error => {
       dispatch(loginError(error));

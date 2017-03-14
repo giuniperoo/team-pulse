@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { map, includes } from 'lodash';
+import { map, includes, isEmpty, pick } from 'lodash';
 import classNames from 'classnames/bind';
 import * as firebase from 'firebase';
 import Alert from './Alert';
@@ -33,9 +33,27 @@ export default class App extends Component {
       const routePaths = map(router.routes[0].childRoutes, route => route.path);
 
       if (user) {
-        if (!this.props.user.uid) {
-          // if no user data in store, save it (can happen on page reload)
-          this.props.storeUserData(user);
+        // if no user data in store, retrieve and save it (can happen on page reload)
+        if (isEmpty(this.props.user)) {
+          // Some user properties (`uid`, `displayName`, `email`, `photoURL`, and `emailVerified`)
+          // come from the firebase User object (https://firebase.google.com/docs/reference/js/firebase.User).
+          // The rest are app-specific and are stored in the `users` path of the database.
+          const usersRef = firebase.database().ref('users');
+
+          usersRef.child(user.uid).once('value')
+            .then(snapshot => {
+              let userObj = pick(user, [
+                'uid',
+                'displayName',
+                'email',
+                'photoURL',
+                'emailVerified'
+              ]);
+
+              userObj = Object.assign(userObj, snapshot.val());
+              return this.props.storeUserData(userObj);
+            })
+            .catch(error => console.error('error', error));
         }
 
         // user is logged in
@@ -58,8 +76,8 @@ export default class App extends Component {
   // https://firebase.google.com/docs/database/web/offline-capabilities
   detectOffline() {
     const connectedRef = firebase.database().ref('.info/connected');
-    connectedRef.on('value', snap => {
-      if (snap.val() === true) {
+    connectedRef.on('value', snapshot => {
+      if (snapshot.val() === true) {
         // we're connected (or reconnected)
         this.props.toggleOffline(false);
       } else {

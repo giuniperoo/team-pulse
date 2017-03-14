@@ -13,8 +13,9 @@ export const surveyActionTypes = {
   REMOVE_JUST_SUBMITTED: 'REMOVE_JUST_SUBMITTED'
 };
 
-export const toggleAnonymous = () => ({
-  type: surveyActionTypes.TOGGLE_ANONYMOUS
+export const toggleAnonymous = (toggle?: boolean) => ({
+  type: surveyActionTypes.TOGGLE_ANONYMOUS,
+  toggle
 });
 
 export const setUserInput = (value?: string, position: number) => ({

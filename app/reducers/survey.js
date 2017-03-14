@@ -1,12 +1,13 @@
 // @flow
 import Immutable from 'seamless-immutable';
-import { keys } from 'lodash';
+import { keys, isBoolean } from 'lodash';
 import { surveyActionTypes } from '../actions/survey';
 
 const initialState = Immutable({
   surveyContent: {},
+  surveyKey: '',
   userInput: [],
-  anonymous: false,
+  anonymous: null,
   justSubmitted: false
 });
 
@@ -14,10 +15,12 @@ const surveyReducer = (
   state: {
     /* eslint-disable flowtype/no-weak-types */
     set: Function,
+    merge: Function,
     /* eslint-enable flowtype/no-weak-types */
+    surveyKey: string,
     surveyContent: {},
     userInput: Array<*>,
-    anonymous: boolean,
+    anonymous?: boolean,
     justSubmitted: boolean
   } = initialState,
   action: {
@@ -25,17 +28,25 @@ const surveyReducer = (
     survey?: {},
     position?: number,
     value?: string,
-    error?: {}
+    error?: {},
+    toggle?: boolean
   }
 ) => {
   // lexical declarations for inside case blocks
   let arrayPos = null;
   let surveyKey = null;
+  let surveyContent = null;
   let userInputArray = [];
 
   switch (action.type) {
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
-      return state.set('surveyContent', action.survey);
+      surveyKey = keys(action.survey)[0];
+      surveyContent = action.survey && action.survey[surveyKey];
+
+      return state.merge({
+        surveyKey,
+        surveyContent
+      });
 
     case surveyActionTypes.FETCH_SURVEY_ERROR:
       console.error('FETCH_SURVEY_ERROR');
@@ -43,8 +54,7 @@ const surveyReducer = (
 
     case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
       // store key of submitted survey in local storage
-      surveyKey = keys(state.surveyContent)[0];
-      localStorage.setItem('lastSubmittedSurvey', surveyKey);
+      localStorage.setItem('lastSubmittedSurvey', state.surveyKey);
 
       return state.set('justSubmitted', true);
 
@@ -53,6 +63,9 @@ const surveyReducer = (
       return state;
 
     case surveyActionTypes.TOGGLE_ANONYMOUS:
+      if (isBoolean(action.toggle)) {
+        return state.set('anonymous', action.toggle);
+      }
       return state.set('anonymous', !state.anonymous);
 
     case surveyActionTypes.SET_USER_INPUT:

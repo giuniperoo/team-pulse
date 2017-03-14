@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { isEmpty, keys, map, includes, forEach, delay } from 'lodash';
+import { map, includes, forEach, delay, isEmpty, isBoolean } from 'lodash';
 import moment from 'moment';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Haiku from './Haiku';
@@ -58,22 +58,19 @@ export default class Survey extends Component {
   }
 
   componentWillMount() {
-    if (isEmpty(this.props.surveyContent)) {
-      this.props.fetchSurvey();
-    }
+    if (isEmpty(this.props.surveyContent)) this.props.fetchSurvey();
   }
 
-  componentWillUpdate(nextProps: { surveyContent: {}}) {
-    this.surveyKey = keys(nextProps.surveyContent)[0];
-    this.survey = nextProps.surveyContent[this.surveyKey];
+  componentWillReceiveProps(nextProps: { user: { uid?: string, anonymous?: boolean }}) {
+    // set anonymous toggle based on user preference
+    if (!isBoolean(this.props.anonymous) && isEmpty(this.props.user) && !isEmpty(nextProps.user)) {
+      this.props.toggleAnonymous(nextProps.user.anonymous);
+    }
   }
 
   componentWillUnmount() {
     if (this.props.justSubmitted) this.props.removeJustSubmitted();
   }
-
-  surveyKey = null;
-  survey = {};
 
   // iterate through each question in the survey:
   // if a required question hasn't been answered,
@@ -82,7 +79,7 @@ export default class Survey extends Component {
   // returns true if validation succeeds, false if fails
   validate() {
     const requiredQuestionTypes = ['numeric', 'pictoral'];
-    const questions = this.survey.questions;
+    const questions = this.props.surveyContent.questions;
     const userInput = this.props.userInput;
     // eslint-disable-next-line max-len
     const requiredQuestions = map(questions, (question) => includes(requiredQuestionTypes, question.type));
@@ -107,7 +104,7 @@ export default class Survey extends Component {
   submit() {
     const userInput = this.props.userInput;
     const userId = !this.props.anonymous ? this.props.user.uid : null;
-    this.props.submitSurvey(this.surveyKey, userInput, userId);
+    this.props.submitSurvey(this.props.surveyKey, userInput, userId);
   }
 
   validateAndSubmit() {
@@ -117,7 +114,7 @@ export default class Survey extends Component {
 
   prepareSurveyQuestions() {
     const userInput = this.props.userInput;
-    const questions = this.survey.questions;
+    const questions = this.props.surveyContent.questions;
     const components = [];
 
     questions.forEach((question, index) => {
@@ -170,8 +167,8 @@ export default class Survey extends Component {
   }
 
   renderSurvey() {
-    const surveyTitle = this.survey.surveyTitle;
-    const startDate = this.survey.start && moment(this.survey.start).format('MMM Do YYYY');
+    const surveyTitle = this.props.surveyContent.surveyTitle;
+    const startDate = this.props.surveyContent.start && moment(this.props.surveyContent.start).format('MMM Do YYYY');
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
@@ -182,7 +179,7 @@ export default class Survey extends Component {
             label="Anonymous"
             id="anonymousCheckbox"
             classes={styles.surveyCheckbox}
-            isChecked={this.props.anonymous}
+            isChecked={this.props.anonymous || false}
             onClick={() => { this.props.toggleAnonymous(); }}
           />
           <ButtonWithSpinner
@@ -197,15 +194,15 @@ export default class Survey extends Component {
 
   // render loader, survey, 'submitted' view, or 'just submitted' view
   renderContent() {
-    if (isEmpty(this.survey) && !this.props.offline) return <Loader />;
+    if (isEmpty(this.props.surveyContent) && !this.props.offline) return <Loader />;
 
     if (this.props.justSubmitted) return Survey.renderJustSubmittedView();
 
-    if (this.surveyKey && this.surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
+    if (this.props.surveyKey && this.props.surveyKey === localStorage.getItem('lastSubmittedSurvey')) {
       return Survey.renderSubmittedView();
     }
 
-    if (isEmpty(this.survey) && this.props.offline) return <div />;
+    if (isEmpty(this.props.surveyContent) && this.props.offline) return <div />;
 
     return this.renderSurvey();
   }
@@ -226,6 +223,7 @@ Survey.propTypes = {
   anonymous: PropTypes.bool,
   offline: PropTypes.bool.isRequired,
   justSubmitted: PropTypes.bool,
+  surveyKey: PropTypes.string.isRequired,
   fetchSurvey: PropTypes.func.isRequired,
   submitSurvey: PropTypes.func.isRequired,
   setUserInput: PropTypes.func.isRequired,
@@ -233,7 +231,8 @@ Survey.propTypes = {
   removeJustSubmitted: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired,
   user: PropTypes.shape({
-    uid: PropTypes.string
+    uid: PropTypes.string,
+    anonymous: PropTypes.bool
   }).isRequired,
   userInput: PropTypes.arrayOf(
     PropTypes.oneOfType([
