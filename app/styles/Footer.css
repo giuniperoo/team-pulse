@@ -1,9 +1,9 @@
 .footer {
-  margin: 10px 0;
-}
-
-.footer hr {
-  margin: 0 20px 20px;
+  width: calc(100% - 40px);
+  bottom: 0;
+  margin: 20px;
+  position: absolute;
+  border-top: 1px solid #d1d1d1;
 }
 
 .footer p,
@@ -12,8 +12,10 @@
   font-size: 12px;
 }
 
+.footer p { margin-top: 15px; }
+
 .footerLink {
-  margin: 0 7px 10px;
+  margin: 0 7px;
   display: inline-block;
   position: relative;
   font-weight: 300;

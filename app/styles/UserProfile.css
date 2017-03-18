@@ -12,19 +12,26 @@
 
 .email {
   color: #9b9b9b;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 .attributesContainer {
-  margin: 30px 60px 20px;
-}
-
-.attributesContainer div { clear: both; height: 25px; }
-.attributesContainer span { font-size: 14px; }
-.attributesContainer span:nth-of-type(2n) { float: right; }
-.attributesContainer span:nth-of-type(2n + 1) { float: left; }
-
-.userProfile :global .blueButton {
-  margin: 0 60px 15px;
+  margin: 20px auto;
   width: calc(100% - 120px);
 }
+
+.attributesContainer div {
+  clear: both;
+  height: 30px;
+  line-height: 30px;
+}
+
+.attributesContainer div:last-of-type { margin-bottom: 20px; }
+
+.attributesContainer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.attributesContainer > div p:nth-of-type(2n + 1) { float: left;  }
+.attributesContainer > div p:nth-of-type(2n)     { float: right; }

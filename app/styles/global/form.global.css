@@ -34,6 +34,7 @@ input:focus, textarea {
   cursor: pointer;
   display: inline-block;
   position: relative;
+  text-align: left;
   background: white;
 }
 

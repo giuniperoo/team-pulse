@@ -4,26 +4,26 @@ import styles from '../styles/Avatar.css';
 
 export default class Avatar extends Component {
   static defaultProps = {
-    photoUrl: null,
+    photoURL: null,
     inEditMode: false
   }
 
   render() {
     if (this.props.inEditMode) {
-      if (this.props.photoUrl) {
-        return <div className={styles.avatar} />;
+      if (this.props.photoURL) {
+        return <img src={this.props.photoURL} alt="user avatar" className={styles.avatar} />;
       }
       return <div className={`icon-satisfied ${styles.avatar}`} />;
     }
 
-    if (this.props.photoUrl) {
-      return <div className={styles.avatar} />;
+    if (this.props.photoURL) {
+      return <img src={this.props.photoURL} alt="user avatar" className={styles.avatar} />;
     }
     return <div className={`icon-satisfied ${styles.avatar}`} />;
   }
 }
 
 Avatar.propTypes = {
-  photoUrl: PropTypes.string,
+  photoURL: PropTypes.string,
   inEditMode: PropTypes.bool
 };

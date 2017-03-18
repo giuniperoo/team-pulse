@@ -5,8 +5,7 @@ import { uiActionTypes } from '../actions/ui';
 const initialState = Immutable({
   displayedTab: '',
   offline: false,
-  buttonSpinnerActive: false,
-  userProfileInEditMode: false
+  buttonSpinnerActive: false
 });
 
 const uiReducer = (
@@ -17,12 +16,13 @@ const uiReducer = (
   switch (action.type) {
     case uiActionTypes.CHANGE_TAB:
       return state.set('displayedTab', action.tab);
-    case uiActionTypes.EDIT_USER_PROFILE:
-      return state.set('userProfileInEditMode', true);
+
     case uiActionTypes.TOGGLE_BUTTON_SPINNER:
       return state.set('buttonSpinnerActive', !state.buttonSpinnerActive);
+
     case uiActionTypes.TOGGLE_OFFLINE:
       return state.set('offline', action.toggle);
+
     default:
       return state;
   }

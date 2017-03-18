@@ -63,7 +63,7 @@ export default class Survey extends Component {
 
   componentWillReceiveProps(nextProps: { user: { uid?: string, anonymous?: boolean }}) {
     // set anonymous toggle based on user preference
-    if (!isBoolean(this.props.anonymous) && isEmpty(this.props.user) && !isEmpty(nextProps.user)) {
+    if (!isBoolean(this.props.anonymous) && !this.props.user.uid && nextProps.user.uid) {
       this.props.toggleAnonymous(nextProps.user.anonymous);
     }
   }
@@ -168,7 +168,7 @@ export default class Survey extends Component {
 
   renderSurvey() {
     const surveyTitle = this.props.surveyContent.surveyTitle;
-    const startDate = this.props.surveyContent.start && moment(this.props.surveyContent.start).format('MMM Do YYYY');
+    const startDate = this.props.surveyContent.start && moment(this.props.surveyContent.start).format('MMM Do, YYYY');
 
     return (
       <CardContainer header={surveyTitle} icon="feedback" startDate={startDate}>
@@ -176,8 +176,8 @@ export default class Survey extends Component {
           {this.prepareSurveyQuestions()}
           <hr />
           <Checkbox
-            label="Anonymous"
             id="anonymousCheckbox"
+            label="Anonymous"
             classes={styles.surveyCheckbox}
             isChecked={this.props.anonymous || false}
             onClick={() => { this.props.toggleAnonymous(); }}

@@ -4,47 +4,46 @@ import moment from 'moment';
 import Header from './Header';
 import Footer from './Footer';
 import Avatar from './Avatar';
-import ButtonWithSpinner from './ButtonWithSpinner';
+import Checkbox from './Checkbox';
 import styles from '../styles/UserProfile.css';
 
 
 export default class UserProfile extends Component {
   render() {
-    const startDate = moment.utc(this.props.user.startDate).format('MMM Do YYYY');
-    const anonymous = this.props.user.anonymous ? 'ON' : 'OFF';
+    const startDate = moment.utc(this.props.user.startDate).format('MMM Do, YYYY');
+    const anonymous = this.props.user.anonymous;
+    const uid = this.props.user.uid;
 
     return (
       <section className={styles.userProfile}>
         <Header activeTab="userProfile" {...this.props} />
+
         <div className="tabContainer">
-          <Avatar photoUrl={this.props.user.photoUrl} />
+          <Avatar photoURL={this.props.user.photoURL} />
           <h2 className={styles.name}>{this.props.user.displayName}</h2>
           <p className={styles.email}>{this.props.user.email}</p>
 
           <section className={styles.attributesContainer}>
             <div>
-              <span className={styles.label}>Start Date</span>
-              <span className={styles.value}>{startDate}</span>
+              <p className={styles.label}>Team</p>
+              <p className={styles.value}>{this.props.user.team}</p>
             </div>
             <div>
-              <span className={styles.label}>Team</span>
-              <span className={styles.value}>{this.props.user.team}</span>
+              <p className={styles.label}>Location</p>
+              <p className={styles.value}>{this.props.user.location}</p>
             </div>
             <div>
-              <span className={styles.label}>Location</span>
-              <span className={styles.value}>{this.props.user.location}</span>
+              <p className={styles.label}>Start Date</p>
+              <p className={styles.value}>{startDate}</p>
             </div>
-            <div>
-              <span className={styles.label}>Default to anonymous responses</span>
-              <span className={styles.value}>{anonymous}</span>
-            </div>
-          </section>
 
-          <ButtonWithSpinner
-            label="Edit Profile"
-            onClick={() => this.props.editUserProfile()}
-            buttonSpinnerActive={this.props.buttonSpinnerActive}
-          />
+            <Checkbox
+              id="defaultAnonymousCheckbox"
+              label="Default to anonymous responses"
+              isChecked={anonymous || false}
+              onClick={() => { this.props.toggleDefaultAnonymous(uid, !anonymous); }}
+            />
+          </section>
 
           <Footer withLogoutLink logout={this.props.logout} />
         </div>
@@ -56,14 +55,14 @@ export default class UserProfile extends Component {
 UserProfile.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.shape({
+    uid: PropTypes.string,
     team: PropTypes.string,
     email: PropTypes.string,
-    photoUrl: PropTypes.string,
+    photoURL: PropTypes.string,
     location: PropTypes.string,
     anonymous: PropTypes.bool,
     startDate: PropTypes.number,
     displayName: PropTypes.string
   }).isRequired,
-  editUserProfile: PropTypes.func.isRequired,
-  buttonSpinnerActive: PropTypes.bool.isRequired
+  toggleDefaultAnonymous: PropTypes.func.isRequired
 };

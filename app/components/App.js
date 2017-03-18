@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { map, includes, isEmpty, pick } from 'lodash';
+import { map, includes, pick } from 'lodash';
 import classNames from 'classnames/bind';
 import * as firebase from 'firebase';
 import Alert from './Alert';
@@ -34,7 +34,7 @@ export default class App extends Component {
 
       if (user) {
         // if no user data in store, retrieve and save it (can happen on page reload)
-        if (isEmpty(this.props.user)) {
+        if (!this.props.user.uid) {
           // Some user properties (`uid`, `displayName`, `email`, `photoURL`, and `emailVerified`)
           // come from the firebase User object (https://firebase.google.com/docs/reference/js/firebase.User).
           // The rest are app-specific and are stored in the `users` path of the database.

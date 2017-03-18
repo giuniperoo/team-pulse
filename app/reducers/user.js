@@ -1,13 +1,25 @@
 // @flow
 import Immutable from 'seamless-immutable';
 import { authActionTypes } from '../actions/auth';
+import { userActionTypes } from '../actions/user';
 
-const initialState = Immutable({});
+const initialState = Immutable({
+  uid: '',
+  team: '',
+  email: '',
+  location: '',
+  photoURL: null,
+  startDate: null,
+  anonymous: false,
+  displayName: null,
+  emailVerified: null
+});
 
 const userReducer = (
   state: {
     // eslint-disable-next-line flowtype/no-weak-types
-    set: Function
+    set: Function,
+    anonymous?: boolean
   } = initialState,
   action: {
     type: string,
@@ -56,6 +68,13 @@ const userReducer = (
 
     case authActionTypes.LOGOUT_ERROR:
       console.error(action.error);
+      return state;
+
+    case userActionTypes.TOGGLE_DEFAULT_ANONYMOUS_SUCCESS:
+      return state.set('anonymous', !state.anonymous);
+
+    case userActionTypes.TOGGLE_DEFAULT_ANONYMOUS_ERROR:
+      console.error('TOGGLE_DEFAULT_ANONYMOUS_ERROR');
       return state;
 
     default:

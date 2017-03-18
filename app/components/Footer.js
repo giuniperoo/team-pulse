@@ -13,7 +13,6 @@ export default class Footer extends Component {
 
     return (
       <div className={styles.footer}>
-        <hr />
         <p>Version 1.0.0</p>
         <Link to="/user-profile" className={styles.footerLink}>Terms of Service</Link>
         <Link to="/user-profile" className={styles.footerLink}>Privacy</Link>
