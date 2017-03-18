@@ -57,14 +57,17 @@ export default class Survey extends Component {
     );
   }
 
-  componentWillMount() {
-    if (isEmpty(this.props.surveyContent)) this.props.fetchSurvey();
-  }
+  componentWillReceiveProps(nextProps: {
+    user: { uid?: string, anonymous?: boolean, organization?: string }
+  }) {
+    // take action once user data in store
+    if (!this.props.user.uid && nextProps.user.uid) {
+      if (isEmpty(this.props.surveyContent)) this.props.fetchSurvey(nextProps.user.organization);
 
-  componentWillReceiveProps(nextProps: { user: { uid?: string, anonymous?: boolean }}) {
-    // set anonymous toggle based on user preference
-    if (!isBoolean(this.props.anonymous) && !this.props.user.uid && nextProps.user.uid) {
-      this.props.toggleAnonymous(nextProps.user.anonymous);
+      // set anonymous toggle based on user preference
+      if (!isBoolean(this.props.anonymous)) {
+        this.props.toggleAnonymous(nextProps.user.anonymous);
+      }
     }
   }
 

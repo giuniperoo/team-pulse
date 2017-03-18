@@ -34,9 +34,11 @@ const userReducer = (
       displayName?: string,
       emailVerified: boolean
     },
-    error?: {}
+    error?: { code: string }
   }
 ) => {
+  let errorCode;
+
   switch (action.type) {
     case authActionTypes.LOGIN_START:
       return state;
@@ -47,17 +49,13 @@ const userReducer = (
       return Immutable.replace(state, action.user);
 
     case authActionTypes.LOGIN_ERROR:
-      console.error(action.error);
+      errorCode = action.error && action.error.code;
 
-      // Handle Errors here.
-      // var errorCode = action.error.code;
-      // var errorMessage = action.error.message;
-      // if (errorCode === 'auth/wrong-password') {
-      //   alert('Wrong password.');
-      // } else {
-      //   alert(errorMessage);
-      // }
+      if (errorCode === 'auth/wrong-password') {
+        // TODO: display wrong password alert
+      }
 
+      console.error('LOGIN_ERROR', action.error);
       return state;
 
     case authActionTypes.LOGOUT_START:
@@ -67,14 +65,14 @@ const userReducer = (
       return Immutable.replace(state, {});
 
     case authActionTypes.LOGOUT_ERROR:
-      console.error(action.error);
+      console.error('LOGOUT_ERROR', action.error);
       return state;
 
     case userActionTypes.TOGGLE_DEFAULT_ANONYMOUS_SUCCESS:
       return state.set('anonymous', !state.anonymous);
 
     case userActionTypes.TOGGLE_DEFAULT_ANONYMOUS_ERROR:
-      console.error('TOGGLE_DEFAULT_ANONYMOUS_ERROR');
+      console.error('TOGGLE_DEFAULT_ANONYMOUS_ERROR', action.error);
       return state;
 
     default:

@@ -49,7 +49,7 @@ const surveyReducer = (
       });
 
     case surveyActionTypes.FETCH_SURVEY_ERROR:
-      console.error('FETCH_SURVEY_ERROR');
+      console.error('FETCH_SURVEY_ERROR', action.error);
       return state;
 
     case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
@@ -59,7 +59,7 @@ const surveyReducer = (
       return state.set('justSubmitted', true);
 
     case surveyActionTypes.SUBMIT_SURVEY_ERROR:
-      console.error('submitSurveyError', action.error);
+      console.error('SUBMIT_SURVEY_ERROR', action.error);
       return state;
 
     case surveyActionTypes.TOGGLE_ANONYMOUS:
