@@ -19,7 +19,7 @@ export default class UserProfile extends Component {
         <Header activeTab="userProfile" {...this.props} />
 
         <div className="tabContainer">
-          <Avatar photoURL={this.props.user.photoURL} />
+          <Avatar {...this.props} />
           <h2 className={styles.name}>{this.props.user.displayName}</h2>
           <p className={styles.email}>{this.props.user.email}</p>
 
@@ -58,7 +58,6 @@ UserProfile.propTypes = {
     uid: PropTypes.string,
     team: PropTypes.string,
     email: PropTypes.string,
-    photoURL: PropTypes.string,
     location: PropTypes.string,
     anonymous: PropTypes.bool,
     startDate: PropTypes.number,

@@ -75,6 +75,10 @@ const userReducer = (
       console.error('TOGGLE_DEFAULT_ANONYMOUS_ERROR', action.error);
       return state;
 
+    case userActionTypes.UPDATE_USER_PHOTO_URL:
+      if (!action.user) return state;
+      return state.set('photoURL', action.user.photoURL);
+
     default:
       return state;
   }
