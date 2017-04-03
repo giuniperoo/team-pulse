@@ -1,6 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import Alert from './Alert';
 import Header from './Header';
 import Footer from './Footer';
 import Avatar from './Avatar';
@@ -19,6 +20,7 @@ export default class UserProfile extends Component {
         <Header activeTab="userProfile" {...this.props} />
 
         <div className="tabContainer">
+          <Alert active={this.props.alertActive} text={this.props.alertText} />
           <Avatar {...this.props} />
           <h2 className={styles.name}>{this.props.user.displayName}</h2>
           <p className={styles.email}>{this.props.user.email}</p>
@@ -63,5 +65,7 @@ UserProfile.propTypes = {
     startDate: PropTypes.number,
     displayName: PropTypes.string
   }).isRequired,
+  alertText: PropTypes.string.isRequired,
+  alertActive: PropTypes.bool.isRequired,
   toggleDefaultAnonymous: PropTypes.func.isRequired
 };

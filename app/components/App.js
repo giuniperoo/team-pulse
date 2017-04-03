@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { map, includes, pick } from 'lodash';
 import classNames from 'classnames/bind';
 import * as firebase from 'firebase';
-import Alert from './Alert';
+import OverlayNotice from './OverlayNotice';
 import styles from '../styles/App.css';
 
 const cx = classNames.bind(styles);
@@ -93,7 +93,7 @@ export default class App extends Component {
 
     return (
       <div className={className}>
-        {this.props.offline && <Alert text="You appear to be offline" />}
+        {this.props.offline && <OverlayNotice text="You appear to be offline" />}
         {this.props.children}
       </div>
     );

@@ -1,0 +1,20 @@
+.overlayNotice {
+  top: 25%;
+  width: 240px;
+  color: #545555;
+  height: 40px;
+  border: 1px solid #d1d1d1;
+  position: absolute;
+  background: white;
+  text-align: center;
+  transition: opacity 300ms;
+  box-shadow: 0px 0px 20px rgba(84, 85, 85, 0.2);
+  line-height: 38px;
+  font-weight: 300;
+  border-radius: 4px;
+}
+
+:global .overlayNoticeFade-appear        { opacity: 0; }
+:global .overlayNoticeFade-appear-active { opacity: 1; }
+:global .overlayNoticeFade-leave         { opacity: 1; }
+:global .overlayNoticeFade-leave-active  { opacity: 0; }

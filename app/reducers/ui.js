@@ -5,13 +5,21 @@ import { uiActionTypes } from '../actions/ui';
 const initialState = Immutable({
   displayedTab: '',
   offline: false,
+  alertText: '',
+  alertActive: false,
   buttonSpinnerActive: false
 });
 
 const uiReducer = (
-  // eslint-disable-next-line flowtype/no-weak-types
-  state: { set: Function, displayedTab: string, buttonSpinnerActive: boolean } = initialState,
-  action: { type: string, tab?: string, toggle?: boolean }
+  state: {
+    /* eslint-disable flowtype/no-weak-types */
+    set: Function,
+    merge: Function,
+    /* eslint-enable flowtype/no-weak-types */
+    displayedTab: string,
+    buttonSpinnerActive: boolean
+  } = initialState,
+  action: { type: string, tab?: string, toggle?: boolean, text?: string }
 ) => {
   switch (action.type) {
     case uiActionTypes.CHANGE_TAB:
@@ -22,6 +30,12 @@ const uiReducer = (
 
     case uiActionTypes.TOGGLE_OFFLINE:
       return state.set('offline', action.toggle);
+
+    case uiActionTypes.TOGGLE_ALERT:
+      return state.merge({
+        alertText: action.text ? action.text : '',
+        alertActive: action.toggle
+      });
 
     default:
       return state;

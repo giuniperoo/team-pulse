@@ -1,8 +1,9 @@
 // @flow
 export const uiActionTypes = {
   CHANGE_TAB: 'CHANGE_TAB',
-  TOGGLE_BUTTON_SPINNER: 'TOGGLE_BUTTON_SPINNER',
-  TOGGLE_OFFLINE: 'TOGGLE_OFFLINE'
+  TOGGLE_ALERT: 'TOGGLE_ALERT',
+  TOGGLE_OFFLINE: 'TOGGLE_OFFLINE',
+  TOGGLE_BUTTON_SPINNER: 'TOGGLE_BUTTON_SPINNER'
 };
 
 export const changeTab = (tab: string) => ({
@@ -17,4 +18,10 @@ export const toggleButtonSpinner = () => ({
 export const toggleOffline = (toggle: boolean) => ({
   type: uiActionTypes.TOGGLE_OFFLINE,
   toggle
+});
+
+export const toggleAlert = (toggle: boolean, text?: string) => ({
+  type: uiActionTypes.TOGGLE_ALERT,
+  toggle,
+  text
 });

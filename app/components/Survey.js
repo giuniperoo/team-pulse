@@ -27,7 +27,7 @@ export default class Survey extends Component {
     return (
       <div className={`icon-thumbs-up ${styles.submitted}`}>
         <h2 style={{ fontSize: '24px' }}>Next survey goes up in 3 days...</h2>
-        <h2 style={{ fontSize: '21px' }}>We&apos;ll send out a notification :)</h2>
+        <h2 style={{ fontSize: '21px' }}>We&#39;ll send out a notification :)</h2>
       </div>
     );
   }

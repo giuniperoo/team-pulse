@@ -22,10 +22,10 @@ export default class Avatar extends Component {
     const file = event.target.files[0];
 
     if (file.size > 500000) {
-      // TODO: display alert
-      console.log('file larger than 500KB', file.size);
-      return;
+      return this.props.toggleAlert(true, 'Image shouldn\'t be larger than 500 KB. Sorry bout that.');
     }
+
+    if (this.props.alertActive) this.props.toggleAlert(false);
 
     return this.props.uploadAvatar(this.props.user.uid, file);
   }
@@ -66,5 +66,7 @@ Avatar.propTypes = {
     photoURL: PropTypes.string,
     displayName: PropTypes.string
   }).isRequired,
+  toggleAlert: PropTypes.func.isRequired,
+  alertActive: PropTypes.bool.isRequired,
   uploadAvatar: PropTypes.func.isRequired
 };

@@ -11,6 +11,8 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     offline: state.ui.offline,
+    alertText: state.ui.alertText,
+    alertActive: state.ui.alertActive,
     displayedTab: state.ui.displayedTab,
     buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
