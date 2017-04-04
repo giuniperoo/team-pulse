@@ -8,7 +8,8 @@ const initialState = Immutable({
   surveyKey: '',
   userInput: [],
   anonymous: null,
-  justSubmitted: false
+  justSubmitted: false,
+  surveyBeingFetched: false
 });
 
 const surveyReducer = (
@@ -21,7 +22,8 @@ const surveyReducer = (
     surveyContent: {},
     userInput: Array<*>,
     anonymous?: boolean,
-    justSubmitted: boolean
+    justSubmitted: boolean,
+    surveyBeingFetched: boolean
   } = initialState,
   action: {
     type: string,
@@ -39,18 +41,22 @@ const surveyReducer = (
   let userInputArray = [];
 
   switch (action.type) {
+    case surveyActionTypes.FETCHING_SURVEY:
+      return state.set('surveyBeingFetched', true);
+
     case surveyActionTypes.FETCH_SURVEY_SUCCESS:
       surveyKey = keys(action.survey)[0];
       surveyContent = action.survey && action.survey[surveyKey];
 
       return state.merge({
         surveyKey,
-        surveyContent
+        surveyContent,
+        surveyBeingFetched: false
       });
 
     case surveyActionTypes.FETCH_SURVEY_ERROR:
       console.error('FETCH_SURVEY_ERROR', action.error);
-      return state;
+      return state.set('surveyBeingFetched', false);
 
     case surveyActionTypes.SUBMIT_SURVEY_SUCCESS:
       // store key of submitted survey in local storage

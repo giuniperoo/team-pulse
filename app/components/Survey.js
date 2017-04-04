@@ -58,16 +58,24 @@ export default class Survey extends Component {
   }
 
   componentWillReceiveProps(nextProps: {
+    anonymous?: boolean, surveyBeingFetched: boolean,
     user: { uid?: string, anonymous?: boolean, organization?: string }
   }) {
-    // take action once user data in store
-    if (!this.props.user.uid && nextProps.user.uid) {
-      if (isEmpty(this.props.surveyContent)) this.props.fetchSurvey(nextProps.user.organization);
+    // set anonymous toggle based on user preference
+    if (!isBoolean(nextProps.anonymous) && nextProps.user.anonymous) {
+      this.props.toggleAnonymous(nextProps.user.anonymous);
+    }
 
-      // set anonymous toggle based on user preference
-      if (!isBoolean(this.props.anonymous)) {
-        this.props.toggleAnonymous(nextProps.user.anonymous);
-      }
+    // fetch survey if all of the conditions are met:
+    // * survey doesn't exist in store
+    // * survey isn't in the process of being fetched
+    // * user data exists (survey must be fetched based on user's org)
+    if (
+      isEmpty(this.props.surveyContent) &&
+      !this.props.surveyBeingFetched &&
+      !nextProps.surveyBeingFetched &&
+      nextProps.user.organization) {
+      this.props.fetchSurvey(nextProps.user.organization);
     }
   }
 
@@ -231,6 +239,7 @@ Survey.propTypes = {
   submitSurvey: PropTypes.func.isRequired,
   setUserInput: PropTypes.func.isRequired,
   toggleAnonymous: PropTypes.func.isRequired,
+  surveyBeingFetched: PropTypes.bool.isRequired,
   removeJustSubmitted: PropTypes.func.isRequired,
   buttonSpinnerActive: PropTypes.bool.isRequired,
   user: PropTypes.shape({

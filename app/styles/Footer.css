@@ -19,10 +19,11 @@
   display: inline-block;
   position: relative;
   font-weight: 300;
+  border-bottom: 1px solid transparent;
   text-decoration: none;
 }
 
-.footerLink:hover { border-bottom: 1px solid; }
+.footerLink:hover { border-bottom-color: #9b9b9b; }
 
 .footerLink:after {
   right: -8px;

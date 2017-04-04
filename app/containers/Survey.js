@@ -13,6 +13,7 @@ function mapStateToProps(state) {
     surveyKey: state.survey.surveyKey,
     surveyContent: state.survey.surveyContent,
     justSubmitted: state.survey.justSubmitted,
+    surveyBeingFetched: state.survey.surveyBeingFetched,
 
     user: state.user,
 

@@ -4,6 +4,7 @@ import { delay } from 'lodash';
 import { toggleButtonSpinner } from '../actions/ui';
 
 export const surveyActionTypes = {
+  FETCHING_SURVEY: 'FETCHING_SURVEY',
   FETCH_SURVEY_SUCCESS: 'FETCH_SURVEY_SUCCESS',
   FETCH_SURVEY_ERROR: 'FETCH_SURVEY_ERROR',
   SUBMIT_SURVEY_SUCCESS: 'SUBMIT_SURVEY_SUCCESS',
@@ -24,6 +25,10 @@ export const setUserInput = (value?: string, position: number) => ({
   position
 });
 
+const fetchingSurvey = () => ({
+  type: surveyActionTypes.FETCHING_SURVEY
+});
+
 export const fetchSurveySuccess = (survey: {}) => ({
   type: surveyActionTypes.FETCH_SURVEY_SUCCESS,
   survey
@@ -42,6 +47,7 @@ export const fetchSurvey = (organization: string) => (dispatch: Function) => {
     .equalTo(organization)
     .limitToLast(1);
 
+  dispatch(fetchingSurvey());
   survey.once('value')
     .then(snapshot => dispatch(fetchSurveySuccess(snapshot.val())))
     .catch(error => dispatch(fetchSurveyError(error)));
