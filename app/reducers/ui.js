@@ -7,6 +7,7 @@ const initialState = Immutable({
   offline: false,
   alertText: '',
   alertActive: false,
+  avatarImageLoaded: false,
   buttonSpinnerActive: false
 });
 
@@ -17,6 +18,7 @@ const uiReducer = (
     merge: Function,
     /* eslint-enable flowtype/no-weak-types */
     displayedTab: string,
+    avatarImageLoaded: boolean,
     buttonSpinnerActive: boolean
   } = initialState,
   action: { type: string, tab?: string, toggle?: boolean, text?: string }
@@ -30,6 +32,9 @@ const uiReducer = (
 
     case uiActionTypes.TOGGLE_OFFLINE:
       return state.set('offline', action.toggle);
+
+    case uiActionTypes.TOGGLE_AVATAR_IMAGE_LOADED:
+      return state.set('avatarImageLoaded', action.toggle);
 
     case uiActionTypes.TOGGLE_ALERT:
       return state.merge({

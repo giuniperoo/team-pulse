@@ -1,10 +1,37 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import ReactSpinner from 'react-spinjs';
 import styles from '../styles/Avatar.css';
 
 export default class Avatar extends Component {
   static defaultProps = {
     photoURL: null
+  }
+
+  constructor() {
+    super();
+    this.spinnerOptions = {
+      color: '#d1d1d1',
+      lines: 9,
+      width: 2,
+      length: 6,
+      radius: 6,
+      hwaccel: true
+    };
+  }
+
+  componentWillMount() {
+    // load avatar image when user already has app loaded
+    // and tabs into view with avatar for the first time
+    if (this.props.user.photoURL) this.loadAvatarImage(this.props.user.photoURL);
+  }
+
+  componentWillReceiveProps(nextProps: { user: { photoURL?: string }}) {
+    // load avatar image when app is (re)loaded or when user uploads new image
+    if (nextProps.user.photoURL && this.props.user.photoURL !== nextProps.user.photoURL) {
+      this.loadAvatarImage(nextProps.user.photoURL);
+      console.log('loadAvatarImage');
+    }
   }
 
   getInitials() {
@@ -17,6 +44,15 @@ export default class Avatar extends Component {
     return firstInit + lastInit;
   }
 
+  spinnerOptions: {}
+
+  loadAvatarImage(url: string) {
+    const img = new Image();
+    img.onload = () => this.props.toggleAvatarImageLoaded(true);
+    img.onerror = () => this.props.toggleAvatarImageLoaded(true);
+    img.src = url;
+  }
+
   // eslint-disable-next-line flowtype/no-weak-types
   handleFile(event: {target: Object}) {
     const file = event.target.files[0];
@@ -27,10 +63,21 @@ export default class Avatar extends Component {
 
     if (this.props.alertActive) this.props.toggleAlert(false);
 
+    this.props.toggleAvatarImageLoaded(false);
+
     return this.props.uploadAvatar(this.props.user.uid, file);
   }
 
   render() {
+    // show spinner if user data or avatar image not yet loaded
+    if (!this.props.user.uid || !this.props.avatarImageLoaded) {
+      return (
+        <div className={styles.avatarContainer}>
+          <ReactSpinner config={this.spinnerOptions} />
+        </div>
+      );
+    }
+
     const photoURL = this.props.user.photoURL;
 
     return (
@@ -68,5 +115,7 @@ Avatar.propTypes = {
   }).isRequired,
   toggleAlert: PropTypes.func.isRequired,
   alertActive: PropTypes.bool.isRequired,
-  uploadAvatar: PropTypes.func.isRequired
+  uploadAvatar: PropTypes.func.isRequired,
+  avatarImageLoaded: PropTypes.bool.isRequired,
+  toggleAvatarImageLoaded: PropTypes.func.isRequired
 };

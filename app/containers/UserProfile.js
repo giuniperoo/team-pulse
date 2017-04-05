@@ -14,6 +14,7 @@ function mapStateToProps(state) {
     alertText: state.ui.alertText,
     alertActive: state.ui.alertActive,
     displayedTab: state.ui.displayedTab,
+    avatarImageLoaded: state.ui.avatarImageLoaded,
     buttonSpinnerActive: state.ui.buttonSpinnerActive
   };
 }
