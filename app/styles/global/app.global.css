@@ -1,6 +1,8 @@
+@value colors: "./colors.global.css";
+@value blue, darkBlue, grey, darkGrey, lightGrey, ultraLightGrey from colors;
+
 @import "./icon-font.global.css";
 @import "./form.global.css";
-
 
 html {
   box-sizing: border-box;
@@ -25,12 +27,12 @@ p {
 
 h1 {
   font-size: 24px;
-  color: #545555;
+  color: darkGrey;
 }
 
 h2 {
   font-size: 18px;
-  color: #9b9b9b;
+  color: grey;
 }
 
 p {
@@ -38,7 +40,7 @@ p {
 }
 
 button {
-  color: #545555;
+  color: darkGrey;
   cursor: pointer;
   padding: 0;
 
@@ -54,7 +56,7 @@ button:focus {
 hr {
   height: 1px;
   border: none;
-  background-color: #d1d1d1;
+  background-color: lightGrey;
 }
 
 /* Below are global classes */
@@ -65,13 +67,13 @@ hr {
   overflow: auto;
   position: absolute;
   min-width: 400px;
-  background: #efefef;
+  background: ultraLightGrey;
 }
 
 .cardContainer {
   width: calc(100% - 20px);
   margin: 10px;
-  border: 1px solid #d1d1d1;
+  border: 1px solid lightGrey;
   min-height: 100px;
   background: white;
   border-radius: 4px;
@@ -86,7 +88,7 @@ hr {
   margin: 5px 0;
   position: relative;
   font-size: 15px;
-  background: #34abff;
+  background: blue;
   font-weight: 300;
   border-radius: 4px;
   text-transform: uppercase;
@@ -94,7 +96,7 @@ hr {
 }
 
 .blueButton:hover {
-  background: #008cf0;
+  background: darkBlue;
 }
 
 .scalePulse { animation: scalePulse 500ms; }

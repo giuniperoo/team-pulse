@@ -1,8 +1,11 @@
+@value colors: "./global/colors.global.css";
+@value darkGrey, transparentBlack from colors;
+
 .app {
   top: 10px;
   left: 0;
   right: 0;
-  color: #545555;
+  color: darkGrey;
   height: calc(100% - 10px);
   position: absolute;
   font-family: Helvetica Neue, Helvetica, serif;
@@ -36,7 +39,7 @@
   position: absolute;
   min-width: 400px;
   justify-content: center;
-  background: rgba(1, 1, 1, 0.1);
+  background: transparentBlack;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }

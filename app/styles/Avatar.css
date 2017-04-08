@@ -1,9 +1,12 @@
+@value colors: "./global/colors.global.css";
+@value lightGrey, transparentWhite from colors;
+
 .avatarContainer {
   width: 90px;
   height: 90px;
   cursor: pointer;
   margin: 20px auto;
-  border: 1px solid #d1d1d1;
+  border: 1px solid lightGrey;
   z-index: 1;
   display: block;
   overflow: hidden;
@@ -25,7 +28,7 @@
   font-weight: 300;
   line-height: 78px;
   border-radius: 44px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: transparentWhite;
 }
 
 .initialsContainer {
@@ -58,7 +61,7 @@
   height: 88px;
   display: inline-block;
   font-size: 50px;
-  background: #d1d1d1;
+  background: lightGrey;
   font-weight: 300;
   line-height: 78px;
   border-radius: 44px;

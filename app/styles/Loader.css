@@ -1,3 +1,6 @@
+@value colors: "./global/colors.global.css";
+@value lightGrey from colors;
+
 .spinner {
   top: 40%;
   left: 50%;
@@ -10,7 +13,7 @@
 }
 
 .spinner > .path {
-  stroke: #d1d1d1;
+  stroke: lightGrey;
   stroke-linecap: round;
   animation: dash 1.5s ease-in-out infinite;
 }

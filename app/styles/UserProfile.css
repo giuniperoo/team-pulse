@@ -1,17 +1,20 @@
+@value colors: "./global/colors.global.css";
+@value grey, darkGrey from colors;
+
 .userProfile :global .tabContainer {
   background: white;
   text-align: center;
 }
 
 .name {
-  color: #545555;
+  color: darkGrey;
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 0;
 }
 
 .email {
-  color: #9b9b9b;
+  color: grey;
   margin-top: 5px;
 }
 

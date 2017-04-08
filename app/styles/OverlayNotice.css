@@ -1,9 +1,12 @@
+@value colors: "./global/colors.global.css";
+@value darkGrey, lightGrey from colors;
+
 .overlayNotice {
   top: 25%;
   width: 240px;
-  color: #545555;
+  color: darkGrey;
   height: 40px;
-  border: 1px solid #d1d1d1;
+  border: 1px solid lightGrey;
   position: absolute;
   background: white;
   text-align: center;

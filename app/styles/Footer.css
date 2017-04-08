@@ -1,14 +1,17 @@
+@value colors: "./global/colors.global.css";
+@value grey, lightGrey from colors;
+
 .footer {
   width: calc(100% - 40px);
   bottom: 0;
   margin: 20px;
   position: absolute;
-  border-top: 1px solid #d1d1d1;
+  border-top: 1px solid lightGrey;
 }
 
 .footer p,
 .footerLink {
-  color: #9b9b9b;
+  color: grey;
   font-size: 12px;
 }
 
@@ -23,7 +26,7 @@
   text-decoration: none;
 }
 
-.footerLink:hover { border-bottom-color: #9b9b9b; }
+.footerLink:hover { border-bottom-color: grey; }
 
 .footerLink:after {
   right: -8px;

@@ -1,15 +1,18 @@
+@value colors: "./global/colors.global.css";
+@value blue, grey, lightGrey from colors;
+
 .header {
   height: 45px;
   padding: 7px;
   position: relative;
-  border-bottom: 1px solid #d1d1d1;
+  border-bottom: 1px solid lightGrey;
 }
 
 .icon {
   border-radius: 15px;
   width: 30px;
   height: 30px;
-  border: 1px solid #d1d1d1;
+  border: 1px solid lightGrey;
   text-align: center;
   line-height: 28px;
   position: absolute;;
@@ -18,7 +21,7 @@
 .icon[class^="icon-"]:before,
 .icon[class*=" icon-"]:before {
   top: 2px;
-  color: #0f93fc;
+  color: blue;
   position: relative;
 }
 
@@ -37,7 +40,7 @@
 
 .startDate {
   top: 23px;
-  color: #9b9b9b;
+  color: grey;
   font-size: 10px;
   line-height: 14px;
 }

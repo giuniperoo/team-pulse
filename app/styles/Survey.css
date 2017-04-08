@@ -1,3 +1,6 @@
+@value colors: "./global/colors.global.css";
+@value grey from colors;
+
 .survey .surveyFormContainer { padding: 10px; }
 
 .surveyTextQuestion { margin-bottom: 0; }
@@ -5,7 +8,7 @@
 .surveyCheckbox > input + label { margin-top: 0; }
 
 .survey .submitted {
-  color: #9b9b9b;
+  color: grey;
   font-size: 60px;
   margin-top: 30%;
   text-align: center;
