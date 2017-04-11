@@ -7,7 +7,7 @@ const initialState = Immutable({
   surveyContent: {},
   surveyKey: '',
   userInput: [],
-  anonymous: null,
+  anonymous: false, // should be null
   justSubmitted: false,
   surveyBeingFetched: false
 });

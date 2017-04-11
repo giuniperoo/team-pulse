@@ -22,7 +22,7 @@ export default class Login extends Component {
     return (
       <div style={{ opacity: 0 }} className={styles.loginContainer}>
         <div className={styles.loginForm}>
-          <img className={styles.logo} src="../resources/images/team-pulse-logo.svg" alt="TeamPulse logo" />
+          <img className={styles.logo} src="./images/team-pulse-logo.svg" alt="TeamPulse logo" />
           <h1>Welcome to TeamPulse</h1>
           <h2 style={{ marginBottom: 20 }}>Login with your credentials</h2>
 

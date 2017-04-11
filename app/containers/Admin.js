@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(uiActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin); // eslint-disable-line

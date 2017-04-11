@@ -40,7 +40,14 @@ app/bundle.js.map
 app/style.css
 app/style.css.map
 dist
+dll
 main.js
 main.js.map
+
+# Yarn auto-generated
+**/yarn.lock
+**/.yarnclean
+
+npm-debug.log.*
 
 Design

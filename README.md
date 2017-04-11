@@ -8,6 +8,8 @@ Concept by J. Scull
 
 Original design by T. Crivellari
 
+Project forked from [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
+
 ## Screenshots
 
 ![Survey tab](https://giuniperoo.github.io/team-pulse/survey-tab.png)
@@ -15,20 +17,35 @@ Original design by T. Crivellari
 
 ## Install & Run
 
-Clone the repo:
+#### Clone the repo:
 
 ```bash
 git clone https://github.com/giuniperoo/team-pulse.git
 ```
 
-Install dependencies:
+#### Install dependencies:
 
 ```bash
 $ cd team-pulse && npm install
 ```
 
-Run
+or
+
+```bash
+$ cd team-pulse && yarn
+```
+
+#### Run
+
+Development mode:
 
 ```bash
 $ npm run dev
+```
+
+Production mode:
+
+```bash
+$ npm run build
+$ npm start
 ```

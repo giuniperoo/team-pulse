@@ -23,4 +23,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Object.assign({}, authActions, userActions, uiActions), dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile); // eslint-disable-line

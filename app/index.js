@@ -8,7 +8,7 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import './styles/global/app.global.css';
 
-const store = configureStore();
+const store = configureStore({});
 const history = syncHistoryWithStore(hashHistory, store);
 
 render(

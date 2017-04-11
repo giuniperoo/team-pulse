@@ -58,7 +58,8 @@ export default class Survey extends Component {
   }
 
   componentWillReceiveProps(nextProps: {
-    anonymous?: boolean, surveyBeingFetched: boolean,
+    anonymous?: boolean,
+    surveyBeingFetched: boolean,
     user: { uid?: string, anonymous?: boolean, organization?: string }
   }) {
     // set anonymous toggle based on user preference
@@ -136,9 +137,9 @@ export default class Survey extends Component {
       switch (question.type) {
         case 'numeric':
           components.push(
+            /* eslint-disable */
             <NumericQuestion
               key={index}
-              // eslint-disable-next-line
               domRef={$elem => this[`question${index}`] = $elem}
               title={question.title}
               value={userInput[index]}
@@ -147,18 +148,20 @@ export default class Survey extends Component {
               surveyPosition={index + 1}
               onClick={(value, position) => this.props.setUserInput(value, position)}
             />);
+            /* eslint-enable */
           break;
         case 'pictoral':
           components.push(
+            /* eslint-disable */
             <PictoralQuestion
               key={index}
-              // eslint-disable-next-line
               domRef={$elem => this[`question${index}`] = $elem}
               title={question.title}
               value={userInput[index]}
               surveyPosition={index + 1}
               onClick={(value, position) => this.props.setUserInput(value, position)}
             />);
+            /* eslint-enable */
           break;
         default: // text
           components.push(
@@ -244,7 +247,8 @@ Survey.propTypes = {
   buttonSpinnerActive: PropTypes.bool.isRequired,
   user: PropTypes.shape({
     uid: PropTypes.string,
-    anonymous: PropTypes.bool
+    anonymous: PropTypes.bool,
+    organization: PropTypes.string
   }).isRequired,
   userInput: PropTypes.arrayOf(
     PropTypes.oneOfType([

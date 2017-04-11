@@ -1,15 +1,16 @@
 /**
- * Build config for electron 'Main Process' file
+ * Webpack config for production electron main process
  */
 
 import webpack from 'webpack';
-import validate from 'webpack-validator';
 import merge from 'webpack-merge';
 import BabiliPlugin from 'babili-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
-export default validate(merge(baseConfig, {
+export default merge.smart(baseConfig, {
   devtool: 'source-map',
+
+  target: 'electron-main',
 
   entry: ['babel-polyfill', './app/main.development'],
 
@@ -20,25 +21,24 @@ export default validate(merge(baseConfig, {
   },
 
   plugins: [
+    /**
+     * Babli is an ES6+ aware minifier based on the Babel toolchain (beta)
+     */
     new BabiliPlugin(),
-    // Add source map support for stack traces in node
-    // https://github.com/evanw/node-source-map-support
-    // new webpack.BannerPlugin(
-    //   'require("source-map-support").install();',
-    //   { raw: true, entryOnly: false }
-    // ),
+
+    /**
+     * Create global constants which can be configured at compile time.
+     *
+     * Useful for allowing different behaviour between development builds and
+     * release builds
+     *
+     * NODE_ENV should be production so that modules do not perform certain
+     * development checks
+     */
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     })
   ],
-
-  /**
-   * Set target to Electron specific node.js env.
-   * https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-   */
-  target: 'electron-main',
 
   /**
    * Disables webpack processing of __dirname and __filename.
@@ -49,4 +49,4 @@ export default validate(merge(baseConfig, {
     __dirname: false,
     __filename: false
   },
-}));
+});

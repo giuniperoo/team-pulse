@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import ReactSpinner from 'react-spinjs';
 
 export default class ButtonWithSpinner extends Component {
+  spinnerOptions: {}
+
   static defaultProps = {
     label: '',
     classes: 'blueButton'
@@ -19,8 +21,6 @@ export default class ButtonWithSpinner extends Component {
       hwaccel: true
     };
   }
-
-  spinnerOptions: {}
 
   render() {
     const label = this.props.label;

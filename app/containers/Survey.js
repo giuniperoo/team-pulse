@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Object.assign({}, surveyActions, uiActions), dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Survey);
+export default connect(mapStateToProps, mapDispatchToProps)(Survey); // eslint-disable-line

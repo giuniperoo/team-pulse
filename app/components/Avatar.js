@@ -4,6 +4,8 @@ import ReactSpinner from 'react-spinjs';
 import styles from '../styles/Avatar.css';
 
 export default class Avatar extends Component {
+  spinnerOptions: {}
+
   static defaultProps = {
     photoURL: null
   }
@@ -43,8 +45,6 @@ export default class Avatar extends Component {
     const lastInit = (nameArray.length > 1) ? nameArray[nameArray.length - 1][0] : '';
     return firstInit + lastInit;
   }
-
-  spinnerOptions: {}
 
   loadAvatarImage(url: string) {
     const img = new Image();
