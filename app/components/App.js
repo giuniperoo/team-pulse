@@ -4,7 +4,7 @@ import { map, includes, pick } from 'lodash';
 import classNames from 'classnames/bind';
 import * as firebase from 'firebase';
 import OverlayNotice from './OverlayNotice';
-import styles from '../styles/App.css';
+import styles from '../styles/App.scss';
 
 const cx = classNames.bind(styles);
 

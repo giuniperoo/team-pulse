@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Avatar from './Avatar';
 import Checkbox from './Checkbox';
-import styles from '../styles/UserProfile.css';
+import styles from '../styles/UserProfile.scss';
 
 
 export default class UserProfile extends Component {

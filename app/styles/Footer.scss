@@ -1,17 +1,16 @@
-@value colors: "./global/colors.global.css";
-@value grey, lightGrey from colors;
+@import './global/colors.global';
 
 .footer {
   width: calc(100% - 40px);
   bottom: 0;
   margin: 20px;
   position: absolute;
-  border-top: 1px solid lightGrey;
+  border-top: 1px solid $lightGrey;
 }
 
 .footer p,
 .footerLink {
-  color: grey;
+  color: $grey;
   font-size: 12px;
 }
 
@@ -24,15 +23,15 @@
   font-weight: 300;
   border-bottom: 1px solid transparent;
   text-decoration: none;
+
+  &:hover { border-bottom-color: $grey; }
+
+  &:after {
+    right: -8px;
+    content: '|';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:last-child:after { content: ''; }
 }
-
-.footerLink:hover { border-bottom-color: grey; }
-
-.footerLink:after {
-  right: -8px;
-  content: '|';
-  position: absolute;
-  pointer-events: none;
-}
-
-.footerLink:last-child:after { content: ''; }

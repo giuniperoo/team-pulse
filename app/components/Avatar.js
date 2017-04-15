@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import ReactSpinner from 'react-spinjs';
-import styles from '../styles/Avatar.css';
+import styles from '../styles/Avatar.scss';
 
 export default class Avatar extends Component {
   spinnerOptions: {}

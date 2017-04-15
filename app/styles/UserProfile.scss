@@ -1,0 +1,39 @@
+@import './global/colors.global';
+
+.userProfile :global .tabContainer {
+  background: white;
+  text-align: center;
+}
+
+.name {
+  color: $darkGrey;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.email {
+  color: $grey;
+  margin-top: 5px;
+}
+
+.attributesContainer {
+  margin: 20px auto;
+  width: calc(100% - 120px);
+
+  div {
+    clear: both;
+    height: 30px;
+    line-height: 30px;
+
+    &:last-of-type { margin-bottom: 20px; }
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  > div p:nth-of-type(2n + 1) { float: left;  }
+  > div p:nth-of-type(2n)     { float: right; }
+}

@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { kebabCase } from 'lodash';
 import classNames from 'classnames/bind';
-import styles from '../styles/PictoralQuestion.css';
+import styles from '../styles/PictoralQuestion.scss';
 
 const cx = classNames.bind(styles);
 

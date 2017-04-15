@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import styles from '../styles/Footer.css';
+import styles from '../styles/Footer.scss';
 
 
 export default class Footer extends Component {

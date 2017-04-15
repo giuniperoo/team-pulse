@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import styles from '../styles/Loader.css';
+import styles from '../styles/Loader.scss';
 
 
 // adapted from http://codepen.io/supah/pen/BjYLdW

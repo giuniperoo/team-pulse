@@ -1,0 +1,45 @@
+@import './global/colors.global';
+
+.header {
+  height: 45px;
+  padding: 7px;
+  position: relative;
+  border-bottom: 1px solid $lightGrey;
+}
+
+.icon {
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid $lightGrey;
+  text-align: center;
+  line-height: 28px;
+  position: absolute;
+
+	&[class^="icon-"]:before,
+	&[class*=" icon-"]:before {
+		top: 2px;
+		color: $blue;
+		position: relative;
+	}
+}
+
+.title,
+.startDate {
+  left: 45px;
+  position: absolute;
+}
+
+.title {
+  top: 14px;
+  font-size: 14px;
+
+  &.withDate { top: 7px; }
+}
+
+.startDate {
+  top: 23px;
+  color: $grey;
+  font-size: 10px;
+  line-height: 14px;
+}

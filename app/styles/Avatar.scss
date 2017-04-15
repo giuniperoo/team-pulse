@@ -1,0 +1,74 @@
+@import './global/colors.global';
+
+.avatarContainer {
+  $size: 90px;
+
+  width: $size;
+  height: $size;
+  cursor: pointer;
+  margin: 20px auto;
+  border: 1px solid $lightGrey;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  border-radius: $size / 2;
+
+	&:hover .avatarOverlay { opacity: 1; }
+	&:hover .initialsContainer { transform: translateX(-50%); }
+}
+
+.avatarOverlay {
+  $size: 88px;
+
+  color: white;
+  width: $size;
+  height: $size;
+  opacity: 0;
+  position: absolute;
+  font-size: 50px;
+  transition: opacity 300ms;
+  font-weight: 300;
+  line-height: $size - 10;
+  border-radius: $size / 2;
+  background-color: $transparentWhite;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+}
+
+.initialsContainer {
+	$size: 88px;
+
+  width: $size * 2;
+  height: $size;
+  transition: transform 300ms;
+
+  .initials {
+    width: 50%;
+    display: inline-block;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: $size;
+    text-indent: 4px;
+    letter-spacing: 4px;
+  }
+
+  .addAvatar {
+    width: 50%;
+    color: white;
+    height: $size;
+    display: inline-block;
+    font-size: 50px;
+    background: $lightGrey;
+    font-weight: 300;
+    line-height: $size - 10;
+    border-radius: $size / 2;
+    vertical-align: top;
+  }
+}

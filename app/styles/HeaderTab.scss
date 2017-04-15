@@ -1,0 +1,17 @@
+@import './global/colors.global';
+
+.headerTab {
+  color: $lightGrey;
+  flex-grow: 1;
+  background: white;
+  text-align: center;
+  transition: color 300ms;
+  text-decoration: none;
+
+  &[class^="icon-"]:before,
+  &[class*=" icon-"]:before { line-height: 35px; }
+
+  &:hover { color: $grey; }
+
+  &.active { color: $blue; }
+}

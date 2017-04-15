@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames/bind';
 import camelCase from 'lodash/camelCase';
-import styles from '../styles/HeaderTab.css';
+import styles from '../styles/HeaderTab.scss';
 
 const cx = classNames.bind(styles);
 

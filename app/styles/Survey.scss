@@ -1,28 +1,29 @@
-@value colors: "./global/colors.global.css";
-@value grey from colors;
-
-.survey .surveyFormContainer { padding: 10px; }
+@import './global/colors.global';
 
 .surveyTextQuestion { margin-bottom: 0; }
 
 .surveyCheckbox > input + label { margin-top: 0; }
 
-.survey .submitted {
-  color: grey;
-  font-size: 60px;
-  margin-top: 30%;
-  text-align: center;
-}
+.survey {
+  .surveyFormContainer { padding: 10px; }
 
-.survey .submittedContent {
-  animation: slideContent 10s ease 1;
-  animation-fill-mode: forwards;
-}
+  .submitted {
+    color: $grey;
+    font-size: 60px;
+    margin-top: 30%;
+    text-align: center;
+  }
 
-.survey .submittedContent h2,
-.survey .submittedContent aside {
-  width: 100%;
-  position: absolute;
+  .submittedContent {
+    animation: slideContent 10s ease 1;
+    animation-fill-mode: forwards;
+
+    h2,
+    aside {
+      width: 100%;
+      position: absolute;
+    }
+  }
 }
 
 :global .submittedContent-appear { opacity: 0; }

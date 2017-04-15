@@ -12,7 +12,7 @@ import TextQuestion from './TextQuestion';
 import NumericQuestion from './NumericQuestion';
 import PictoralQuestion from './PictoralQuestion';
 import ButtonWithSpinner from './ButtonWithSpinner';
-import styles from '../styles/Survey.css';
+import styles from '../styles/Survey.scss';
 
 
 export default class Survey extends Component {

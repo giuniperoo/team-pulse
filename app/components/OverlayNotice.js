@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import styles from '../styles/OverlayNotice.css';
+import styles from '../styles/OverlayNotice.scss';
 
 
 export default class OverlayNotice extends Component {

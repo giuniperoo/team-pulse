@@ -1,15 +1,12 @@
-@value colors: "./colors.global.css";
-@value blue, darkGrey, lightGrey from colors;
-
 .checkbox > label,
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
   width: 100%;
-  color: darkGrey;
+  color: $darkGrey;
   margin: 5px 0;
-  border: 1px solid lightGrey;
+  border: 1px solid $lightGrey;
   padding: 0 10px;
   font-size: 16px;
   font-weight: 300;
@@ -30,7 +27,7 @@ input:focus, textarea {
 }
 
 ::-webkit-input-placeholder {
-  color: lightGrey;
+  color: $lightGrey;
 }
 
 .checkbox > label {
@@ -45,13 +42,13 @@ input:focus, textarea {
 
 .checkbox > label:before {
   right: 7px;
-  color: lightGrey;
+  color: $lightGrey;
   content: "\62";
   position: absolute;
   font-family: "teamPulse" !important;
 }
 
 .checkbox > input:checked + label:before {
-  color: blue;
+  color: $blue;
   content: "\61";
 }

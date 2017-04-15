@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import styles from '../styles/CardContainer.css';
+import styles from '../styles/CardContainer.scss';
 
 const cx = classNames.bind(styles);
 

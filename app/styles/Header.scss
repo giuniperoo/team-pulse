@@ -1,12 +1,11 @@
-@value colors: "./global/colors.global.css";
-@value lightGrey from colors;
+@import './global/colors.global';
 
 .header {
   height: 35px;
   display: flex;
   overflow: hidden;
   position: relative;
-  border-bottom: 1px solid lightGrey;
+  border-bottom: 1px solid $lightGrey;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -16,7 +15,7 @@
   height: 2px;
   bottom: 0;
   position: absolute;
-  background: #0f93fc;
+  background: $blue;
   transition: transform 300ms;
 }
 
