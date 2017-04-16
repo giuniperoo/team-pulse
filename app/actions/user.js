@@ -1,5 +1,6 @@
 // @flow
 import * as firebase from 'firebase';
+import 'firebase/storage-node';
 
 export const userActionTypes = {
   TOGGLE_DEFAULT_ANONYMOUS_SUCCESS: 'TOGGLE_DEFAULT_ANONYMOUS_SUCCESS',

@@ -21,6 +21,7 @@ export default class App extends Component {
       apiKey: 'AIzaSyAgDXaM3G0WizjDejx-XxreQXEoUf8pKyU',
       authDomain: 'team-pulse-6ed1c.firebaseapp.com',
       databaseURL: 'https://team-pulse-6ed1c.firebaseio.com',
+      projectId: 'team-pulse-6ed1c',
       storageBucket: 'team-pulse-6ed1c.appspot.com',
       messagingSenderId: '618048040108'
     };
