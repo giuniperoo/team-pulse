@@ -224,10 +224,12 @@ export default class Survey extends Component {
   render() {
     return (
       <section className={styles.survey}>
-        <Header activeTab="survey" {...this.props} />
-        <div className="tabContainer">
-          {this.renderContent()}
-        </div>
+        <span>
+          <Header activeTab="survey" {...this.props} />
+          <div className="tabContainer">
+            {this.renderContent()}
+          </div>
+        </span>
       </section>
     );
   }

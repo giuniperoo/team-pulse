@@ -17,38 +17,40 @@ export default class UserProfile extends Component {
 
     return (
       <section className={styles.userProfile}>
-        <Header activeTab="userProfile" {...this.props} />
+        <span>
+          <Header activeTab="userProfile" {...this.props} />
 
-        <div className="tabContainer">
-          <Alert active={this.props.alertActive} text={this.props.alertText} />
-          <Avatar {...this.props} />
-          <h2 className={styles.name}>{this.props.user.displayName}</h2>
-          <p className={styles.email}>{this.props.user.email}</p>
+          <div className="tabContainer">
+            <Alert active={this.props.alertActive} text={this.props.alertText} />
+            <Avatar {...this.props} />
+            <h2 className={styles.name}>{this.props.user.displayName}</h2>
+            <p className={styles.email}>{this.props.user.email}</p>
 
-          <section className={styles.attributesContainer}>
-            <div>
-              <p className={styles.label}>Team</p>
-              <p className={styles.value}>{this.props.user.team}</p>
-            </div>
-            <div>
-              <p className={styles.label}>Location</p>
-              <p className={styles.value}>{this.props.user.location}</p>
-            </div>
-            <div>
-              <p className={styles.label}>Start Date</p>
-              <p className={styles.value}>{startDate}</p>
-            </div>
+            <section className={styles.attributesContainer}>
+              <div>
+                <p className={styles.label}>Team</p>
+                <p className={styles.value}>{this.props.user.team}</p>
+              </div>
+              <div>
+                <p className={styles.label}>Location</p>
+                <p className={styles.value}>{this.props.user.location}</p>
+              </div>
+              <div>
+                <p className={styles.label}>Start Date</p>
+                <p className={styles.value}>{startDate}</p>
+              </div>
 
-            <Checkbox
-              id="defaultAnonymousCheckbox"
-              label="Default to anonymous responses"
-              isChecked={anonymous || false}
-              onClick={() => { this.props.toggleDefaultAnonymous(uid, !anonymous); }}
-            />
-          </section>
+              <Checkbox
+                id="defaultAnonymousCheckbox"
+                label="Default to anonymous responses"
+                isChecked={anonymous || false}
+                onClick={() => { this.props.toggleDefaultAnonymous(uid, !anonymous); }}
+              />
+            </section>
 
-          <Footer withLogoutLink logout={this.props.logout} />
-        </div>
+            <Footer withLogoutLink logout={this.props.logout} />
+          </div>
+        </span>
       </section>
     );
   }
