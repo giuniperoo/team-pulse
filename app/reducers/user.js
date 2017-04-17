@@ -19,7 +19,7 @@ const userReducer = (
   state: {
     // eslint-disable-next-line flowtype/no-weak-types
     set: Function,
-    anonymous?: boolean
+    anonymous: ?boolean
   } = initialState,
   action: {
     type: string,

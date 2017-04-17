@@ -7,7 +7,7 @@ const initialState = Immutable({
   surveyContent: {},
   surveyKey: '',
   userInput: [],
-  anonymous: false, // should be null
+  anonymous: null,
   justSubmitted: false,
   surveyBeingFetched: false
 });
@@ -21,7 +21,7 @@ const surveyReducer = (
     surveyKey: string,
     surveyContent: {},
     userInput: Array<*>,
-    anonymous?: boolean,
+    anonymous: ?boolean,
     justSubmitted: boolean,
     surveyBeingFetched: boolean
   } = initialState,

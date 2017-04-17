@@ -58,7 +58,7 @@ export default class Survey extends Component {
   }
 
   componentWillReceiveProps(nextProps: {
-    anonymous?: boolean,
+    anonymous: ?boolean,
     surveyBeingFetched: boolean,
     user: { uid?: string, anonymous?: boolean, organization?: string }
   }) {

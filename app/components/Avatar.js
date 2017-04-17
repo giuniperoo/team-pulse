@@ -28,11 +28,10 @@ export default class Avatar extends Component {
     if (this.props.user.photoURL) this.loadAvatarImage(this.props.user.photoURL);
   }
 
-  componentWillReceiveProps(nextProps: { user: { photoURL?: string }}) {
+  componentWillReceiveProps(nextProps: { user: { photoURL: ?string }}) {
     // load avatar image when app is (re)loaded or when user uploads new image
     if (nextProps.user.photoURL && this.props.user.photoURL !== nextProps.user.photoURL) {
       this.loadAvatarImage(nextProps.user.photoURL);
-      console.log('loadAvatarImage');
     }
   }
 

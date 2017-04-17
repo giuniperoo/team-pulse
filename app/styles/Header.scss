@@ -5,13 +5,14 @@
   display: flex;
   overflow: hidden;
   position: relative;
+  min-width: 400px;
   border-bottom: 1px solid $lightGrey;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
 .slider {
-  width: 33.333%;
+  width: 50%;
   height: 2px;
   bottom: 0;
   position: absolute;
@@ -21,4 +22,3 @@
 
 .sliderActive1 { transform: translateX(0); }
 .sliderActive2 { transform: translateX(100%); }
-.sliderActive3 { transform: translateX(200%); }
